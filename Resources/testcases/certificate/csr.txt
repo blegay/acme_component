@@ -1,0 +1,47 @@
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: C=FR, L=Paris, ST=Paris (75), O=AC Consulting, OU=AC Consulting/emailAddress=b.legay@ac-consulting.fr, CN=test-ssl-ble-freebox-mle.ac-consulting.fr
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:b4:11:ae:ee:5d:3b:ce:a0:59:1c:dd:51:c3:39:
+                    ee:4f:68:91:6b:05:39:4b:57:28:98:a6:19:d5:50:
+                    49:cf:6f:31:b3:48:38:80:82:cb:11:69:b2:19:27:
+                    aa:b6:ee:23:25:8b:09:3e:29:cf:00:e5:a7:49:54:
+                    20:b9:0b:85:2e:52:aa:4e:6e:52:a0:57:48:b5:7d:
+                    c5:b0:86:6a:b4:cd:c7:06:46:63:08:b7:33:af:19:
+                    8d:85:05:43:3b:d6:50:c9:34:3b:a5:63:6d:a2:1e:
+                    01:94:fc:c2:9e:b6:b1:62:5b:ba:72:b0:d7:f4:46:
+                    04:77:31:8c:91:41:c4:41:bc:a3:97:e5:6b:30:7e:
+                    98:38:3b:8b:93:a2:00:20:c9:c8:d1:9b:5e:4c:d7:
+                    92:26:43:af:af:93:70:9c:72:ea:6b:3e:9f:5e:e9:
+                    ae:f6:37:f8:76:cb:81:32:bb:13:0b:78:06:3c:7c:
+                    55:96:d1:ac:af:0e:af:6a:52:e9:bb:98:21:0d:0a:
+                    5f:43:fa:a0:83:28:fe:02:df:c7:c6:f5:b3:73:3f:
+                    df:37:a3:2e:af:c1:b4:2e:57:f8:3f:e1:7e:2d:74:
+                    cb:9b:98:02:30:2d:cb:2f:e8:12:0e:b0:0a:96:9f:
+                    fc:16:d1:b1:4a:82:70:d2:2b:e5:30:4a:5e:69:24:
+                    13:df
+                Exponent: 65537 (0x10001)
+        Attributes:
+        Requested Extensions:
+            X509v3 Subject Alternative Name: 
+                DNS:test1-ssl-ble-freebox-mle.ac-consulting.fr, DNS:test2-ssl-ble-freebox-mle.ac-consulting.fr, DNS:test3-ssl-ble-freebox-mle.ac-consulting.fr
+    Signature Algorithm: sha256WithRSAEncryption
+         98:be:ec:b8:63:4c:2f:31:11:a3:72:4f:a0:db:3b:2b:b8:5b:
+         6d:fe:90:60:c1:01:40:b7:e5:32:f1:cc:a9:1f:bd:dd:1c:06:
+         d6:95:b3:4e:77:51:9c:f8:32:b2:72:df:fe:dc:3d:8a:fc:c2:
+         09:61:bc:ce:c2:42:7e:dd:cf:ea:ee:bf:cf:9c:5b:9a:46:32:
+         8d:32:47:83:4e:dc:c7:c3:fb:e6:08:96:e6:8c:d4:f3:65:2d:
+         65:47:97:83:18:24:df:c2:09:10:c7:65:a8:97:62:aa:3d:7b:
+         2a:77:5b:0b:22:ce:43:2b:20:14:79:f5:be:38:96:79:78:ac:
+         da:f7:98:4a:77:8a:ef:e8:1c:cb:38:aa:8c:e0:42:d7:14:dc:
+         6b:73:4d:7b:82:1d:51:0a:bb:37:34:44:63:cf:86:17:70:c6:
+         44:02:b5:3f:7f:a3:2f:19:a6:c3:4a:37:63:25:d7:13:54:e9:
+         00:86:aa:c3:aa:36:e2:65:63:37:9f:95:a3:78:e5:a3:47:20:
+         04:3b:12:06:7f:cb:f7:f3:12:37:57:a2:04:01:36:68:f4:9d:
+         85:c3:e9:02:66:02:6d:c7:69:64:0d:6e:eb:ae:00:05:28:a2:
+         03:f9:a1:c4:cb:73:94:d6:b5:97:f3:a5:6c:da:5a:87:fd:30:
+         eb:ea:87:15

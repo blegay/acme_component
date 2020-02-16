@@ -1,0 +1,100 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            fa:97:4b:3a:47:f1:78:07:f5:e8:96:5b:56:af:ea:60:48:d2
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=Fake LE Intermediate X1
+        Validity
+            Not Before: Jun 29 09:05:24 2018 GMT
+            Not After : Sep 27 09:05:24 2018 GMT
+        Subject: CN=test-ssl-ble-freebox-mle.ac-consulting.fr
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:b4:11:ae:ee:5d:3b:ce:a0:59:1c:dd:51:c3:39:
+                    ee:4f:68:91:6b:05:39:4b:57:28:98:a6:19:d5:50:
+                    49:cf:6f:31:b3:48:38:80:82:cb:11:69:b2:19:27:
+                    aa:b6:ee:23:25:8b:09:3e:29:cf:00:e5:a7:49:54:
+                    20:b9:0b:85:2e:52:aa:4e:6e:52:a0:57:48:b5:7d:
+                    c5:b0:86:6a:b4:cd:c7:06:46:63:08:b7:33:af:19:
+                    8d:85:05:43:3b:d6:50:c9:34:3b:a5:63:6d:a2:1e:
+                    01:94:fc:c2:9e:b6:b1:62:5b:ba:72:b0:d7:f4:46:
+                    04:77:31:8c:91:41:c4:41:bc:a3:97:e5:6b:30:7e:
+                    98:38:3b:8b:93:a2:00:20:c9:c8:d1:9b:5e:4c:d7:
+                    92:26:43:af:af:93:70:9c:72:ea:6b:3e:9f:5e:e9:
+                    ae:f6:37:f8:76:cb:81:32:bb:13:0b:78:06:3c:7c:
+                    55:96:d1:ac:af:0e:af:6a:52:e9:bb:98:21:0d:0a:
+                    5f:43:fa:a0:83:28:fe:02:df:c7:c6:f5:b3:73:3f:
+                    df:37:a3:2e:af:c1:b4:2e:57:f8:3f:e1:7e:2d:74:
+                    cb:9b:98:02:30:2d:cb:2f:e8:12:0e:b0:0a:96:9f:
+                    fc:16:d1:b1:4a:82:70:d2:2b:e5:30:4a:5e:69:24:
+                    13:df
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                98:BF:02:2F:32:83:1E:43:A1:A4:39:8F:53:A8:09:FF:77:5A:3C:52
+            X509v3 Authority Key Identifier: 
+                keyid:C0:CC:03:46:B9:58:20:CC:5C:72:70:F3:E1:2E:CB:20:A6:F5:68:3A
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.stg-int-x1.letsencrypt.org
+                CA Issuers - URI:http://cert.stg-int-x1.letsencrypt.org/
+
+            X509v3 Subject Alternative Name: 
+                DNS:test-ssl-ble-freebox-mle.ac-consulting.fr, DNS:test1-ssl-ble-freebox-mle.ac-consulting.fr, DNS:test2-ssl-ble-freebox-mle.ac-consulting.fr, DNS:test3-ssl-ble-freebox-mle.ac-consulting.fr
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+                Policy: 1.3.6.1.4.1.44947.1.1.1
+                  CPS: http://cps.letsencrypt.org
+                  User Notice:
+                    Explicit Text: This Certificate may only be relied upon by Relying Parties and only in accordance with the Certificate Policy found at https://letsencrypt.org/repository/
+
+            CT Precertificate SCTs: 
+                Signed Certificate Timestamp:
+                    Version   : v1(0)
+                    Log ID    : DD:99:34:FC:A5:E7:24:80:C9:56:68:7D:81:34:99:08:
+                                49:B2:49:F7:B5:69:D8:C7:BC:AB:3F:5C:C1:F3:6E:64
+                    Timestamp : Jun 29 10:05:24.367 2018 GMT
+                    Extensions: none
+                    Signature : ecdsa-with-SHA256
+                                30:46:02:21:00:8D:B1:E5:4F:2C:1E:B1:DD:FA:A7:DC:
+                                BE:36:95:33:5C:49:BA:A7:B4:1B:8C:6F:BD:59:70:AF:
+                                96:F0:66:A0:9C:02:21:00:CD:84:21:58:90:40:CB:AC:
+                                F6:8C:C4:65:36:86:D9:6C:30:D5:59:4B:52:4F:F2:5C:
+                                14:88:F5:81:71:38:B2:C9
+                Signed Certificate Timestamp:
+                    Version   : v1(0)
+                    Log ID    : B0:CC:83:E5:A5:F9:7D:6B:AF:7C:09:CC:28:49:04:87:
+                                2A:C7:E8:8B:13:2C:63:50:B7:C6:FD:26:E1:6C:6C:77
+                    Timestamp : Jun 29 10:05:25.274 2018 GMT
+                    Extensions: none
+                    Signature : ecdsa-with-SHA256
+                                30:46:02:21:00:F9:55:00:21:95:E6:72:04:45:99:55:
+                                24:CE:E2:E3:F1:2C:C3:D1:7B:C5:04:F1:9E:FF:A5:13:
+                                C8:AF:1B:E9:C3:02:21:00:D8:26:E5:45:35:78:A2:6B:
+                                84:A1:D9:85:31:46:0F:75:14:41:E2:90:5E:E4:39:93:
+                                60:26:30:AB:03:84:AF:D0
+    Signature Algorithm: sha256WithRSAEncryption
+         4d:71:8a:80:51:77:b2:89:4b:50:93:18:4f:4f:8c:cd:2f:5d:
+         56:1c:5a:a7:58:16:32:57:d6:b4:32:2c:ca:67:9e:f1:6c:f5:
+         a9:31:f1:b8:32:32:5a:93:65:6b:bf:49:d9:6d:ee:9b:6e:ec:
+         6d:11:bb:ed:0d:dc:9d:98:45:50:60:44:da:1e:e5:a4:5e:24:
+         08:ca:f2:c0:47:1f:bf:77:70:a4:1a:8e:6e:5e:53:13:03:ee:
+         e4:15:ca:0c:f9:dc:57:b2:12:7a:c3:1e:0e:b9:bf:8e:4e:2c:
+         45:a1:76:99:09:ac:46:62:73:cd:0c:51:12:0a:d8:c5:9a:52:
+         80:6e:f6:9c:7a:ee:3b:f8:4a:87:b1:67:0d:51:6f:8d:b9:56:
+         25:39:6f:1a:e3:3a:e2:96:00:ba:a4:66:90:c9:7f:84:dc:1d:
+         01:35:c5:37:17:9c:c0:08:96:b3:db:3c:10:13:e7:c3:4f:c4:
+         21:42:c8:1f:9f:bc:34:01:2e:2d:66:b0:46:dc:2b:d7:ef:00:
+         ff:73:d7:58:52:84:c6:da:73:70:ca:ae:87:ec:23:f6:42:9b:
+         02:47:22:fa:d4:ca:a4:c0:10:76:5d:05:a6:0f:06:71:12:82:
+         89:fd:56:ab:16:3a:e8:40:40:cd:3e:de:f2:f4:6a:d5:65:e5:
+         b9:4c:64:fa
