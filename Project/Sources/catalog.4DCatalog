@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="" uuid="99C0C285A3734B78970E60D21E131D6F" collation_locale="fr">
+	<schema name="DEFAULT_SCHEMA"/>
+	<base_extra package_name="acme_component" structure_file_name="acme_component" data_file_path=":acme_component.4DD" ppc_code_stamp="41" __stringCompHash="icu:63.1.0" __keywordBuildingHash="icu:63.1.0">
+		<temp_folder folder_selector="data"/>
+		<journal_file journal_file_enabled="true"/>
+	</base_extra>
+</base>

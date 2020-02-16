@@ -1,0 +1,257 @@
+﻿{
+	"compiler": {
+		"methods": [
+			"Compiler_Methods",
+			"Compiler_Variables",
+			"Compiler_Variables_Inter"
+		]
+	},
+	"DAT": {
+		"methods": [
+			"DAT__tsBaseDate",
+			"DAT_iso8601DateTimeGmt",
+			"DAT_iso8601Diff",
+			"DAT_tsNew"
+		]
+	},
+	"DBG": {
+		"methods": [
+			"DBG__dbgInitAuto"
+		]
+	},
+	"Dossier par défaut": {
+		"groups": [
+			"Formulaires par défaut",
+			"Méthodes projet par défaut",
+			"Tables par défaut"
+		]
+	},
+	"ENV": {
+		"methods": [
+			"ENV_is64bits",
+			"ENV_onWindows",
+			"ENV_versionStr"
+		]
+	},
+	"Formulaires par défaut": {},
+	"FS": {
+		"methods": [
+			"FS_pathToFilename",
+			"FS_pathToParent"
+		]
+	},
+	"HEX": {
+		"methods": [
+			"HEX_blobPtrToHexStr",
+			"HEX_hexByteStrToByteInteger",
+			"HEX_hexCharToInt",
+			"HEX_hexTextToBlob"
+		]
+	},
+	"LONG": {
+		"methods": [
+			"LONG_isEven"
+		]
+	},
+	"Méthodes projet par défaut": {},
+	"OB": {
+		"methods": [
+			"OB_jsonBlobParse",
+			"OB_newObject"
+		]
+	},
+	"private": {
+		"methods": [
+			"acme__accountInit",
+			"acme__accountInitSub",
+			"acme__accountKeyDelete",
+			"acme__archiveFile",
+			"acme__certCurrentGet_",
+			"acme__challengeDirCleanup",
+			"acme__challengeRequest",
+			"acme__compiler",
+			"acme__compilerG",
+			"acme__csrReqConfObjectToText",
+			"acme__csrReqConfObjectToTextSub",
+			"acme__dateFormatIso8601",
+			"acme__directoryUrlGet",
+			"acme__domainReverse",
+			"acme__errHdlrToDevNull",
+			"acme__errorHandler",
+			"acme__errorHdlr",
+			"acme__errorHdlrAfter",
+			"acme__errorHdlrBefore",
+			"acme__errorLastGet",
+			"acme__errorReset",
+			"acme__execbitForce",
+			"acme__executeBatFile",
+			"acme__httpClientOptionsSet",
+			"acme__httpHeaderGetValForKey",
+			"acme__httpHeaderSignature",
+			"acme__httpHeadersToObject",
+			"acme__httpRequestHeaderCommon",
+			"acme__httpServerRequestHdrGet",
+			"acme__httpServerRequestIsSsl",
+			"acme__httpServerRequestMethod",
+			"acme__httpServerRequestToObject",
+			"acme__httpServerRequestUrl",
+			"acme__httpServerRequestVersion",
+			"acme__init",
+			"acme__initG",
+			"acme__initSub",
+			"acme__jsonContentType",
+			"acme__jswKeyInfosSet",
+			"acme__jwkThumbprint",
+			"acme__jwsObjectSign",
+			"acme__keyFileProtect",
+			"acme__keyPairRsaGenerate",
+			"acme__keyPairRsaGenerateTest",
+			"acme__keyPrivExponentGet",
+			"acme__keyPrivModulusGet",
+			"acme__keysKeyPairFileGenerate",
+			"acme__keysKeyPairFileGet",
+			"acme__keysKeyPairFilepathGet",
+			"acme__logEvent",
+			"acme__logInit",
+			"acme__moduleDebugDateTimeLine",
+			"acme__nonceGet",
+			"acme__nonceHeaderGet",
+			"acme__nonceRefresh",
+			"acme__notify",
+			"acme__objectToBlob",
+			"acme__opensslCertToText",
+			"acme__opensslCertToTexttest",
+			"acme__openSslCmd",
+			"acme__opensslConfigDefault",
+			"acme__opensslConfigDefaultSub",
+			"acme__opensslCsrConvertFormat",
+			"acme__opensslCsrNew",
+			"acme__opensslCsrToText",
+			"acme__opensslModulus",
+			"acme__opensslPathGet",
+			"acme__openSslSha256",
+			"acme__openSslSignKeyPath",
+			"acme__opensslToText",
+			"acme__opensslVersionGet",
+			"acme__pemFormatCheck",
+			"acme__pemFormatCheckTest",
+			"acme__protectedObjGet",
+			"acme__removeLastLFTest",
+			"acme__removeLastWhitespaces",
+			"acme__timestamp",
+			"acme__tokenToFilenameSafe",
+			"acme__urlLocationIdGet",
+			"acme__xdocInit",
+			"acme_webServerRestart"
+		]
+	},
+	"public": {
+		"methods": [
+			"acme_accountStatus",
+			"acme_authorizationGet",
+			"acme_certActiveDirPathGet",
+			"acme_certCheckEnd",
+			"acme_certCurrentGet",
+			"acme_certDateValidyInSeconds",
+			"acme_certificateAsTextInstall",
+			"acme_certificateGet",
+			"acme_certificateGetAndInstall",
+			"acme_certificateInstall",
+			"acme_certToText",
+			"acme_componentVersionGet",
+			"acme_csrAltnamesNew",
+			"acme_csrGenerateAndSign",
+			"acme_csrReqConfObjectNew",
+			"acme_dateParse",
+			"acme_digestFile",
+			"acme_directoryUrlGet",
+			"acme_directoryUrlSet",
+			"acme_httpChallengePrepare",
+			"acme_identifierObjectNew",
+			"acme_newAccount",
+			"acme_newAccountObject",
+			"acme_newOrder",
+			"acme_newOrderAndInstall",
+			"acme_newOrderObject",
+			"acme_onWebAuthentication",
+			"acme_onWebConnection",
+			"acme_orderAuthorisationProcess",
+			"acme_orderAuthorisationWait",
+			"acme_orderDirPathGet",
+			"acme_orderFinalize",
+			"acme_readme",
+			"acme_rsaCertSelfSignedCreate",
+			"acme_rsakeyPairGenerate",
+			"acme_sslCipherListGet",
+			"acme_sslCipherListSet",
+			"acme_workingDirGet",
+			"acme_workingDirSet"
+		]
+	},
+	"Tables par défaut": {},
+	"tests": {
+		"methods": [
+			"acme__domainReverseTest",
+			"acme__newAccountTest",
+			"acme__newNonceTest",
+			"acme__opensslCsrNewtest",
+			"acme__selftests",
+			"acme_accountStatusTest",
+			"acme_challengeStartTest",
+			"acme_httpChallengePrepareTest",
+			"acme_newOrderTest",
+			"acme_opensslCsrConvertFormatTes",
+			"acme_orderFinalizeTest",
+			"Méthode 142",
+			"Méthode 146",
+			"Méthode 151",
+			"Méthode 154",
+			"Méthode 156",
+			"Méthode 161",
+			"Méthode 162",
+			"Méthode 164",
+			"Méthode 166"
+		]
+	},
+	"TXT": {
+		"methods": [
+			"TXT_endOfLineNormalize",
+			"TXT_explodeFast",
+			"TXT_isEqualStrict",
+			"TXT_regexGetMatchingGroup",
+			"TXT_rtrim"
+		]
+	},
+	"utils": {
+		"groups": [
+			"DAT",
+			"DBG",
+			"ENV",
+			"FS",
+			"HEX",
+			"LONG",
+			"OB",
+			"TXT",
+			"UTL",
+			"UUID"
+		]
+	},
+	"UTL": {
+		"methods": [
+			"UTL_base64UrlSafeDecode",
+			"UTL_base64UrlSafeEncode",
+			"UTL_durationDifference",
+			"UTL_durationMsDebug",
+			"UTL_initAuto",
+			"UTL_pathToPosixConvert",
+			"UTL_textToDocument",
+			"UTL_textToFile"
+		]
+	},
+	"UUID": {
+		"methods": [
+			"UUID_new"
+		]
+	},
+	"trash": {}
+}

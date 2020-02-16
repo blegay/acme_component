@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><preferences stamp="17">
+	<com.4d>
+		<database>
+			<cache flush_buffer_delay="15" size_fixed="32" size_maximum="100" size_reserved="128"/>
+			<misc/>
+		</database>
+		<web>
+			<standalone_server>
+				<configuration allow_ssl="true" automatic_session_management="false" port_number="80" publish_at_startup="false">
+					<hosts>
+						<host home_page="index.html" html_root="./DossierWeb/" id="0" name="Default"/>
+					</hosts>
+				</configuration>
+				<options>
+					<web_processes max_concurrent="100" timeout_for_inactives="5"/>
+					<filters allow_4dsync_urls="false"/>
+					<cache cache_max_size="524288" use_4d_web_cache="false"/>
+					<keep_alive requests_number="100"/>
+				</options>
+				<log>
+					<backup daily="" hourly="" monthly="" size="0" weekly=""/>
+				</log>
+				<misc/>
+				<webservices>
+					<server allow_requests="false" name="A_WebService"/>
+				</webservices>
+			</standalone_server>
+			<remote>
+				<options>
+					<web_processes timeout_for_inactives="5"/>
+					<filters allow_4dsync_urls="true"/>
+					<cache use_4d_web_cache="false"/>
+				</options>
+				<configuration automatic_session_management="false"/>
+				<misc/>
+			</remote>
+		</web>
+		<compiler>
+			<typage default_for_button="2" default_for_numeric="2"/>
+			<options compilation_path="3" fat_binary="true"/>
+		</compiler>
+		<general>
+			<mover always_display_dialog="2"/>
+		</general>
+		<interface>
+			<user print_progress="false"/>
+		</interface>
+		<server>
+			<network>
+				<options publication_name="xxx_component" use_legacy_network_layer="false"/>
+				<client_server use_encryption="false"/>
+			</network>
+		</server>
+		<deployment>
+			<options/>
+		</deployment>
+	</com.4d>
+</preferences>
