@@ -7,10 +7,10 @@ C_TEXT:C284(UTL_initAuto ;$2)
 C_TEXT:C284(UTL_initAuto ;$3)
 
   //acme__moduleDebugDateTimeLine
-C_LONGINT:C283(acme__moduleDebugDateTimeLine ;$1)
-C_TEXT:C284(acme__moduleDebugDateTimeLine ;$2)
-C_TEXT:C284(acme__moduleDebugDateTimeLine ;$3)
-C_TEXT:C284(acme__moduleDebugDateTimeLine ;$4)
+C_LONGINT:C283(acme__log ;$1)
+C_TEXT:C284(acme__log ;$2)
+C_TEXT:C284(acme__log ;$3)
+C_TEXT:C284(acme__log ;$4)
 
   //DBG__dbgInitAuto
 C_POINTER:C301(DBG__dbgInitAuto ;$1)
@@ -644,3 +644,29 @@ C_TEXT:C284(acme_certChainToText ;$1)
 C_TEXT:C284(TXT_lineSepGet ;$0)
 C_TEXT:C284(TXT_lineSepGet ;$1)
 C_TEXT:C284(TXT_lineSepGet ;$2)
+
+  //acme__logWorker
+C_TEXT:C284(acme__logWorker ;$1)
+C_LONGINT:C283(acme__logWorker ;$2)
+C_TEXT:C284(acme__logWorker ;$3)
+C_TEXT:C284(acme__logWorker ;$4)
+
+  //acme_directoryGet
+C_TEXT:C284(acme_directoryGet ;$0)
+C_TEXT:C284(acme_directoryGet ;$1)
+C_TEXT:C284(acme_directoryGet ;$2)
+
+  //ENV_ispre-emptive
+C_BOOLEAN:C305(ENV_ispre-emptive;$0)
+
+  //ENV_isv17OrAbove
+C_BOOLEAN:C305(ENV_isv17OrAbove ;$0)
+
+  //ENV_isPreemptive
+C_BOOLEAN:C305(ENV_isPreemptive ;$0)
+
+  //acme__execbitForceSub
+C_BOOLEAN:C305(acme__execbitForceSub;$0)
+
+  //ENV__isComponent
+C_BOOLEAN:C305(ENV__isComponent ;$0)

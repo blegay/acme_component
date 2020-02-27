@@ -33,19 +33,19 @@ If (Count parameters:C259>0)
 			$vt_filepath:=$vt_keyDir+$tt_filename{$i}
 			
 			If (Test path name:C476($vt_filepath)=Is a document:K24:1)
-				acme__moduleDebugDateTimeLine (6;Current method name:C684;"deleting file \""+$vt_filepath+"\"...")
+				acme__log (6;Current method name:C684;"deleting file \""+$vt_filepath+"\"...")
 				DELETE DOCUMENT:C159($vt_filepath)
 				If (ok=1)
-					acme__moduleDebugDateTimeLine (4;Current method name:C684;"file \""+$vt_filepath+"\" deleted. [OK]")
+					acme__log (4;Current method name:C684;"file \""+$vt_filepath+"\" deleted. [OK]")
 				Else 
-					acme__moduleDebugDateTimeLine (2;Current method name:C684;"file \""+$vt_filepath+"\" could not be deleted. [KO]")
+					acme__log (2;Current method name:C684;"file \""+$vt_filepath+"\" could not be deleted. [KO]")
 				End if 
 			End if 
 			
 		End for 
 		
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"dir \""+$vt_filepath+"\" does not exist. [KO]")
+		acme__log (2;Current method name:C684;"dir \""+$vt_filepath+"\" does not exist. [KO]")
 	End if 
 	
 End if 

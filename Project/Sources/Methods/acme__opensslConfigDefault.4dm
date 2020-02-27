@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__opensslConfigDefault
@@ -41,7 +41,7 @@ If (ENV_onWindows )
 			
 			  //<Modif> Bruno LEGAY (BLE) (25/04/2019)
 			  // note : maybe it does not work :  err : "WARNING: can't open config file: /usr/local/ssl/openssl.cnf
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"set environment variable \""+$vt_variableName+"\" : \""+$vt_confPath+"\"")
+			acme__log (4;Current method name:C684;"set environment variable \""+$vt_variableName+"\" : \""+$vt_confPath+"\"")
 			  //<Modif>
 			
 		End if 

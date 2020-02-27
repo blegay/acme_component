@@ -32,9 +32,7 @@ SET BLOB SIZE:C606($vx_private;0)
 DOCUMENT TO BLOB:C525($vt_privateKeyPath;$vx_private)
 
 C_TEXT:C284($vt_args)
-$vt_args:="rsa"+\
-" -noout"+\
-" -modulus"
+$vt_args:="rsa"+" -noout"+" -modulus"
 
 acme__opensslConfigDefault 
 
@@ -47,13 +45,13 @@ If (acme__openSslCmd ($vt_args;->$vx_private;->$vt_out;->$vt_err))
 		
 		HEX_hexTextToBlob ($vt_modulus;->$vx_modulusBlob)
 		
-		acme__moduleDebugDateTimeLine (6;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" found modulus value (\""+$vt_regex+"\") : "+$vt_modulus+" success. [OK]")
+		acme__log (6;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" found modulus value (\""+$vt_regex+"\") : "+$vt_modulus+" success. [OK]")
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" modulus value (\""+$vt_regex+"\") not founf in "+$vt_out+". [KO]")
+		acme__log (2;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" modulus value (\""+$vt_regex+"\") not founf in "+$vt_out+". [KO]")
 	End if 
 	
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" modulus reading failed")
+	acme__log (2;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" modulus reading failed")
 End if 
 
 SET BLOB SIZE:C606($vx_private;0)

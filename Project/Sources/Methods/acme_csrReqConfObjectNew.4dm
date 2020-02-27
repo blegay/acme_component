@@ -115,6 +115,6 @@ If ($vb_altNames)
 	OB SET:C1220($vo_csr;"alt_names";$vo_altNames)
 End if 
 
-acme__moduleDebugDateTimeLine (4;Current method name:C684;"csr conf object :\r"+JSON Stringify:C1217($vo_csr;*))
+acme__log (4;Current method name:C684;"csr conf object :\r"+JSON Stringify:C1217($vo_csr;*))
 
 $0:=$vo_csr

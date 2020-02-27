@@ -31,5 +31,5 @@ If (True:C214)
 	$vt_dir:=Get 4D folder:C485(Current resources folder:K5:16)  // "Resources" dir for the component. Does not contain any client certificate
 	HTTP SET CERTIFICATES FOLDER:C1306($vt_dir)
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"default options set")
+	acme__log (4;Current method name:C684;"default options set")
 End if 

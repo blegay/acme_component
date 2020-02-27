@@ -17,12 +17,16 @@ $vt_serverIp:=$4
 $vt_username:=$5
 $vt_password:=$6
 
-Case of 
-	: (acme_onWebAuthentication ($vt_url;->$vb_allowed))
-		
-	Else 
-		$vb_allowed:=True:C214
-End case 
+If (Not:C34(Is compiled mode:C492))
+	
+	Case of 
+		: (acme_onWebAuthentication ($vt_url;->$vb_allowed))
+			
+		Else 
+			$vb_allowed:=True:C214
+	End case 
+	
+End if 
 
 $0:=$vb_allowed
 

@@ -1,4 +1,4 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_onWebAuthentication
@@ -64,42 +64,33 @@ $vp_allowedPtr:=$2
   //      "token": "LoqXcYV8q5ONbJQxbmR7SCTNo3tiAXDfowyjxAjEuX0"
   //    }
 
-  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
-  // the letsencrypt challenge is on a plain http (not https) connexion
+  // the letsencrypt HTTP-01 challenge is on a plain http (not https) connection
+  // note : it could be on a port other than 80 (behind a NAT for instance)
 If (Not:C34(WEB Is secured connection:C698))
-	  //<Modif>
 	
 	  // {
 	  //     "method": "GET",
-	  //     "url": "/.well-known/acme-challenge/-P9Ukqz_ehOWBxaB3H-StJVwWmvHVadfW8HA-H1zJIM",
+	  //     "url": "/.well-known/acme-challenge/LoqXcYV8q5ONbJQxbmR7SCTNo3tiAXDfowyjxAjEuX0",
 	  //     "version": "HTTP/1.1",
 	  //     "ssl": false,
 	  //     "requestHeaders": {
 	  //         "Accept": "*/*",
 	  //         "Accept-Encoding": "gzip",
 	  //         "Connection": "close",
-	  //         "Host": "accueil.institut-national-podologie.org",
+	  //         "Host": "www.example.org",
 	  //         "User-Agent": "Mozilla/5.0 (compatible; Let's Encrypt validation server; +https://www.letsencrypt.org)"
 	  //     }
 	  // }
 	
-	  ///.well-known/acme-challenge/LoqXcYV8q5ONbJQxbmR7SCTNo3tiAXDfowyjxAjEuX0
+	  // /.well-known/acme-challenge/LoqXcYV8q5ONbJQxbmR7SCTNo3tiAXDfowyjxAjEuX0
 	
-	  //<Modif> Bruno LEGAY (BLE) (06/09/2019) - v0.90.10
 	$vb_match:=acme__challengeReqUrlMatch ($vt_url)
-	  //$vb_match:=($vt_url="/.well-known/acme-challenge/@")
-	  //<Modif>
 	
 	If ($vb_match)
 		$vp_allowedPtr->:=True:C214
-		
-		  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"url match \""+$vt_url+"\"")
-		  //<Modif>
+		acme__log (4;Current method name:C684;"url match \""+$vt_url+"\"")
 	End if 
 	
-	  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
 End if 
-  //<Modif>
 
 $0:=$vb_match

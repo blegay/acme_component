@@ -94,7 +94,7 @@ If ($vl_nbParam>0)
 			If (Test path name:C476($vt_certPath)=Is a document:K24:1)
 				DOCUMENT TO BLOB:C525($vt_certPath;$vp_certPtr->)
 				ASSERT:C1129(ok=1;"error loading file \""+$vt_certPath+"\"")
-				acme__moduleDebugDateTimeLine (Choose:C955(ok=1;4;2);Current method name:C684;"loading file \""+$vt_certPath+"\". "+Choose:C955(ok=1;"[OK]";"[KO]"))
+				acme__log (Choose:C955(ok=1;4;2);Current method name:C684;"loading file \""+$vt_certPath+"\". "+Choose:C955(ok=1;"[OK]";"[KO]"))
 				
 				  //-----BEGIN CERTIFICATE-----
 				  // <base64 data>
@@ -107,12 +107,12 @@ If ($vl_nbParam>0)
 				$vb_valid:=acme__pemFormatCheck ($vp_certPtr;"CERTIFICATE";True:C214)
 				ASSERT:C1129($vb_valid;"invalid certificate PEM file")
 				If (Not:C34($vb_valid))
-					acme__moduleDebugDateTimeLine (Choose:C955($vb_valid;4;2);Current method name:C684;"file \""+$vt_certPath+"\" : pem is "+Choose:C955($vb_valid;"valid. [OK]";"invalid. [KO]"))
+					acme__log (Choose:C955($vb_valid;4;2);Current method name:C684;"file \""+$vt_certPath+"\" : pem is "+Choose:C955($vb_valid;"valid. [OK]";"invalid. [KO]"))
 				End if 
 				
 				$vb_ok:=True:C214
 			Else 
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"certificate file \""+$vt_certPath+"\" : file not found. [KO]")
+				acme__log (2;Current method name:C684;"certificate file \""+$vt_certPath+"\" : file not found. [KO]")
 			End if 
 			
 			  //<Modif> Bruno LEGAY (BLE) (30/09/2019)
@@ -123,7 +123,7 @@ If ($vl_nbParam>0)
 					
 					DOCUMENT TO BLOB:C525($vt_keyPath;$vp_keyPtr->)
 					ASSERT:C1129(ok=1;"error loading file \""+$vt_keyPath+"\"")
-					acme__moduleDebugDateTimeLine (Choose:C955(ok=1;4;2);Current method name:C684;"loading file \""+$vt_keyPath+"\". "+Choose:C955(ok=1;"[OK]";"[KO]"))
+					acme__log (Choose:C955(ok=1;4;2);Current method name:C684;"loading file \""+$vt_keyPath+"\". "+Choose:C955(ok=1;"[OK]";"[KO]"))
 					
 					  //-----BEGIN RSA PRIVATE KEY-----
 					  // <base64 data>
@@ -133,11 +133,11 @@ If ($vl_nbParam>0)
 					$vb_valid:=acme__pemFormatCheck ($vp_keyPtr;"RSA PRIVATE KEY";True:C214)
 					ASSERT:C1129($vb_valid;"invalid RSA private key PEM file")
 					If (Not:C34($vb_valid))
-						acme__moduleDebugDateTimeLine (Choose:C955($vb_valid;4;2);Current method name:C684;"file \""+$vt_keyPath+"\" : pem is "+Choose:C955($vb_valid;"valid. [OK]";"invalid. [KO]"))
+						acme__log (Choose:C955($vb_valid;4;2);Current method name:C684;"file \""+$vt_keyPath+"\" : pem is "+Choose:C955($vb_valid;"valid. [OK]";"invalid. [KO]"))
 					End if 
 					
 				Else 
-					acme__moduleDebugDateTimeLine (2;Current method name:C684;"rsa private key file \""+$vt_keyPath+"\" : file not found. [KO]")
+					acme__log (2;Current method name:C684;"rsa private key file \""+$vt_keyPath+"\" : file not found. [KO]")
 					$vb_ok:=False:C215
 				End if 
 				

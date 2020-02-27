@@ -131,7 +131,7 @@ If ($vl_nbParam>1)
 		  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 		C_LONGINT:C283($vl_networkError)
 		$vl_networkError:=acme__errorLastGet 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP POST method:K71:2+\
+		acme__log (2;Current method name:C684;"method : "+HTTP POST method:K71:2+\
 			", url : \""+$vt_finalizeUrl+"\""+\
 			", status : "+String:C10($vl_status)+\
 			", duration : "+UTL_durationMsDebug ($vl_ms)+\
@@ -198,7 +198,7 @@ If ($vl_nbParam>1)
 					CLEAR VARIABLE:C89($vo_httpResponse)
 				End if 
 				
-				acme__moduleDebugDateTimeLine (4;Current method name:C684;"url : \""+$vt_finalizeUrl+"\""+\
+				acme__log (4;Current method name:C684;"url : \""+$vt_finalizeUrl+"\""+\
 					", status : "+String:C10($vl_status)+\
 					", duration : "+UTL_durationMsDebug ($vl_ms)+\
 					", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
@@ -206,7 +206,7 @@ If ($vl_nbParam>1)
 					", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\","+\
 					", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
 			Else 
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_finalizeUrl+"\""+\
+				acme__log (2;Current method name:C684;"url : \""+$vt_finalizeUrl+"\""+\
 					", status : "+String:C10($vl_status)+\
 					", duration : "+UTL_durationMsDebug ($vl_ms)+\
 					", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
@@ -225,7 +225,7 @@ If ($vl_nbParam>1)
 				$vt_json:=Convert to text:C1012($vx_responseBody;"UTF-8")
 			End if 
 			
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_finalizeUrl+"\""+\
+			acme__log (2;Current method name:C684;"url : \""+$vt_finalizeUrl+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\

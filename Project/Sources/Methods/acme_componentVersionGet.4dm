@@ -1,15 +1,15 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_componentVersionGet
   //@scope : public
   //@deprecated : no
   //@description : This function returns the component version 
-  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "0.90.12")
+  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "0.90.13")
   //@notes :
   //@example : acme_componentVersionGet 
   //@see : 
-  //@version : 0.90.12
+  //@version : 0.90.13
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
   //@history : 
   // CREATION : Bruno LEGAY (BLE) - 04/12/2018, 23:39:22 - v0.90.00
@@ -45,24 +45,35 @@
   //  - fix in acme_certCurrentGet : was returning false if only one parameter was passed
   // MODIFICATION : Bruno LEGAY (BLE) - 27/01/2020, 15:05:36 - v0.90.12
   //  - loop with delay = 2 mins when "HTTP Request" returns 0 in acme__nonceGet and acme__directoryUrlGet
+  // MODIFICATION : Bruno LEGAY (BLE) - 19/02/2020, 18:26:24 - v0.90.13
+  //  - do a POST as GET to send a jws
+  //     https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
+  //     https://tools.ietf.org/html/rfc8555#section-6.3
   //@xdoc-end
   //================================================================================
 
 C_TEXT:C284($0;$vt_componentVersion)
 
   //<Modif> Bruno LEGAY (BLE) (01/03/2019)
-  // #totdo : 
+  // #todo ? : 
   //    - dns challenge
   //    - interface
   //    - proxy auth ?
   //<Modif>
 
-  //<Modif> Bruno LEGAY (BLE) (27/01/2020)
-  //    - loop with delay = 2 mins "HTTP Request" returns 0 in acme__nonceGet and acme__directoryUrlGet
-$vt_componentVersion:="0.90.12"
+  //<Modif> Bruno LEGAY (BLE) (11/02/2020)
+  // do a POST as GET to send a jws
+  // https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
+  // https://tools.ietf.org/html/rfc8555#section-6.3
+$vt_componentVersion:="0.90.13"
   //<Modif>
 
 If (False:C215)
+	
+	  //<Modif> Bruno LEGAY (BLE) (27/01/2020)
+	  //    - loop with delay = 2 mins "HTTP Request" returns 0 in acme__nonceGet and acme__directoryUrlGet
+	  // $vt_componentVersion:="0.90.12"
+	  //<Modif>
 	
 	  //<Modif> Bruno LEGAY (BLE) (30/09/2019)
 	  // - fix in acme_certCurrentGet : was returning false if only one parameter was passed

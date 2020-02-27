@@ -123,14 +123,14 @@ If (acme__domainExtractFromUrl ($vt_directoryUrl;->$vt_caDomain))
 	  //$vt_accountKeyPath:=$vt_accountKeyDir+"key.pem"
 	
 	If (Test path name:C476($vt_accountKeyDir)=Is a folder:K24:2)
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"account directory \""+$vt_accountKeyDir+"\" exists. [OK]")
+		acme__log (4;Current method name:C684;"account directory \""+$vt_accountKeyDir+"\" exists. [OK]")
 	Else 
 		CREATE FOLDER:C475($vt_accountKeyDir;*)
 		ASSERT:C1129(ok=1;"failed creating dir \""+$vt_accountKeyDir+"\"")
 		If (ok=1)
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"account directory \""+$vt_accountKeyDir+"\" created. [OK]")
+			acme__log (4;Current method name:C684;"account directory \""+$vt_accountKeyDir+"\" created. [OK]")
 		Else 
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"account directory \""+$vt_accountKeyDir+"\" could not be created. [KO]")
+			acme__log (2;Current method name:C684;"account directory \""+$vt_accountKeyDir+"\" could not be created. [KO]")
 		End if 
 	End if 
 	
@@ -143,7 +143,7 @@ If (acme__domainExtractFromUrl ($vt_directoryUrl;->$vt_caDomain))
 	acme__accountInitSub ($vt_accountKeyDir)
 	
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"domain not found in url \""+$vt_directoryUrl+"\". [KO]")
+	acme__log (2;Current method name:C684;"domain not found in url \""+$vt_directoryUrl+"\". [KO]")
 End if 
 
 $0:=$vt_accountKeyDir

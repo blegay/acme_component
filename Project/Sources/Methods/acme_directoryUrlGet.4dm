@@ -20,6 +20,13 @@ C_TEXT:C284($0;$vt_directoryUrl)
 
 acme__init 
 
-$vt_directoryUrl:=<>vt_ACME_directoryUrl
+If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
+	$vt_directoryUrl:=Storage:C1525.acme.config.directoryUrl
+Else 
+	  // unfortunately, the thread-safe compiler directive do not work with interprocess variables (v18.0)...
+	  //%T-
+	$vt_directoryUrl:=<>vt_ACME_directoryUrl
+	  //%T+
+End if 
 
 $0:=$vt_directoryUrl

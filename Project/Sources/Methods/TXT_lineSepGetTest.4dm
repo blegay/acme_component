@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
 
 
 ASSERT:C1129(TXT_lineSepGet ("a\r")="\r")

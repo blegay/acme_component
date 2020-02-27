@@ -113,7 +113,6 @@
 			"acme__keysKeyPairFilepathGet",
 			"acme__logEvent",
 			"acme__logInit",
-			"acme__moduleDebugDateTimeLine",
 			"acme__nonceGet",
 			"acme__nonceHeaderGet",
 			"acme__nonceRefresh",

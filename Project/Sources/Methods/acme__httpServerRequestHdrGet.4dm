@@ -7,7 +7,7 @@
   //@description : This function return the header value from a httpServerHeader for a given key  
   //@parameter[0-OUT-headerValue-TEXT] : header value
   //@parameter[1-IN-httpServerHeaderObject-OBJECT] : http server header object
-  //@parameter[2-IN-headerKey-TEXT] : header key
+  //@parameter[2-IN-headerKey-TEXT] : header key (will match case insensitive)
   //@notes : 
   //@example : acme__httpServerRequestHdrGet
   //@see : 
@@ -19,7 +19,7 @@
   //================================================================================
 
 C_TEXT:C284($0;$vt_headerValue)
-C_OBJECT:C1216($1;$vo_httpServerHeaderObject)
+C_OBJECT:C1216($1;$vo_httpServerRequestObject)
 C_TEXT:C284($2;$vt_key)
 
 ASSERT:C1129(Count parameters:C259>1;"requires 2 parameters")
@@ -27,13 +27,13 @@ ASSERT:C1129(OB Is defined:C1231($1);"$1 (httpServerHeaderObject) is undefined")
 ASSERT:C1129(Length:C16($2)>0;"header key is empty")
 
 $vt_headerValue:=""
-$vo_httpServerHeaderObject:=$1
+$vo_httpServerRequestObject:=$1
 $vt_key:=$2
 
-If (OB Is defined:C1231($vo_httpServerHeaderObject;"requestHeaders"))
+If (OB Is defined:C1231($vo_httpServerRequestObject;"requestHeaders"))
 	
 	C_OBJECT:C1216($vo_headers)
-	$vo_headers:=OB Get:C1224($vo_httpServerHeaderObject;"requestHeaders")
+	$vo_headers:=OB Get:C1224($vo_httpServerRequestObject;"requestHeaders")
 	If (OB Is defined:C1231($vo_headers;$vt_key))  // search case sensitive
 		$vt_headerValue:=OB Get:C1224($vo_headers;$vt_key;Is text:K8:3)
 	Else   // search case insensitive

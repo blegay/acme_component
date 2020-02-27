@@ -133,7 +133,7 @@ If ($vl_nbParam>0)
 			  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 			C_LONGINT:C283($vl_networkError)
 			$vl_networkError:=acme__errorLastGet 
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP POST method:K71:2+", url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+			acme__log (2;Current method name:C684;"method : "+HTTP POST method:K71:2+", url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 			
 		End if 
 		acme__errorHdlrAfter ($vt_errorHandler)
@@ -149,7 +149,7 @@ If ($vl_nbParam>0)
 		Case of 
 			: ($vl_status=200)  // account already created, account update ?
 				
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+", account already created ?. [KO]")
+				acme__log (2;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+", account already created ?. [KO]")
 				
 			: ($vl_status=201)  // account created
 				
@@ -267,9 +267,9 @@ If ($vl_nbParam>0)
 					End if 
 					  //<Modif>
 					
-					acme__moduleDebugDateTimeLine (4;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\","+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\","+", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
+					acme__log (4;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\","+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\","+", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
 				Else 
-					acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", unexpected \"Content-Type\": \""+$vt_contentType+"\". [KO]")
+					acme__log (2;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", unexpected \"Content-Type\": \""+$vt_contentType+"\". [KO]")
 				End if 
 				
 			Else 
@@ -282,7 +282,7 @@ If ($vl_nbParam>0)
 					$vt_json:=Convert to text:C1012($vx_responseBody;"UTF-8")
 				End if 
 				
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", response body : \""+$vt_json+"\". [KO]")
+				acme__log (2;Current method name:C684;"url : \""+$vt_newAccountUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", response body : \""+$vt_json+"\". [KO]")
 				
 		End case 
 		

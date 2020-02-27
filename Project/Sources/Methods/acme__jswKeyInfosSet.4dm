@@ -38,8 +38,7 @@ $vt_httpRequestFilePath:=$vt_accountKeyDir+"httpRequest.json"
 
 C_TEXT:C284($vt_accountFilePath)
 $vt_accountFilePath:=$vt_accountKeyDir+"account.json"
-If ((Test path name:C476($vt_accountFilePath)=Is a document:K24:1) & \
-(Test path name:C476($vt_httpRequestFilePath)=Is a document:K24:1))
+If ((Test path name:C476($vt_accountFilePath)=Is a document:K24:1) & (Test path name:C476($vt_httpRequestFilePath)=Is a document:K24:1))
 	
 	  // Key ID, for all requests signed using an existing account
 	  // For all other requests, the request is signed using an existing
@@ -119,7 +118,7 @@ If ((Test path name:C476($vt_accountFilePath)=Is a document:K24:1) & \
 	End if 
 	
 	OB SET:C1220($vo_object;"kid";$vt_keyId)
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"account already exists, found \"kid\" value : \""+$vt_keyId+"\" in file \""+$vt_httpRequestFilePath+"\"")
+	acme__log (4;Current method name:C684;"account already exists, found \"kid\" value : \""+$vt_keyId+"\" in file \""+$vt_httpRequestFilePath+"\"")
 	
 Else 
 	
@@ -132,7 +131,7 @@ Else
 	$vt_privateKeyPath:=acme__keysKeyPairFilepathGet ("private";$vt_accountKeyDir)
 	ASSERT:C1129(Test path name:C476($vt_privateKeyPath)=Is a document:K24:1;"private key file \""+$vt_privateKeyPath+"\" not found")
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"account does not exist, files \""+$vt_accountFilePath+"\" and \""+$vt_accountFilePath+"\" not found. Calculating modulus and exponent from private key file \""+$vt_privateKeyPath+"\" and setting \"jwk\" property")
+	acme__log (4;Current method name:C684;"account does not exist, files \""+$vt_accountFilePath+"\" and \""+$vt_accountFilePath+"\" not found. Calculating modulus and exponent from private key file \""+$vt_privateKeyPath+"\" and setting \"jwk\" property")
 	
 	  // create a jwk object with private key modulus and exponent
 	C_OBJECT:C1216($vo_jwk)

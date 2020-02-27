@@ -34,9 +34,7 @@ $vp_inPtr:=$1
 $vp_outPtr:=$2
 
 C_TEXT:C284($vt_args)
-$vt_args:="req "+\
-" -inform "+Choose:C955(Type:C295($vp_inPtr->)=Is BLOB:K8:12;"DER";"PEM")+\
-" -outform "+Choose:C955(Type:C295($vp_outPtr->)=Is BLOB:K8:12;"DER";"PEM")
+$vt_args:="req "+" -inform "+Choose:C955(Type:C295($vp_inPtr->)=Is BLOB:K8:12;"DER";"PEM")+" -outform "+Choose:C955(Type:C295($vp_outPtr->)=Is BLOB:K8:12;"DER";"PEM")
 
 acme__opensslConfigDefault 
 
@@ -46,9 +44,9 @@ $vt_err:=""
 If (acme__openSslCmd ($vt_args;$vp_inPtr;$vp_outPtr;->$vt_err))
 	$vb_ok:=True:C214
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"openssl csr convert format. [OK]")
+	acme__log (4;Current method name:C684;"openssl csr convert format. [OK]")
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"openssl csr convert format ("+$vt_err+"). [KO]")
+	acme__log (2;Current method name:C684;"openssl csr convert format ("+$vt_err+"). [KO]")
 	ASSERT:C1129(False:C215;$vt_err)
 End if 
 

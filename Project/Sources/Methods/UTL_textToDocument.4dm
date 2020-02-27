@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : UTL_textToDocument
@@ -35,10 +35,8 @@ End if
 
 C_BLOB:C604($vx_blob)
 SET BLOB SIZE:C606($vx_blob;0)
-  //<Modif> Bruno LEGAY (BLE) (26/04/2019)
+
 TEXT TO BLOB:C554($vt_text;$vx_blob;UTF8 text without length:K22:17)
-  //TEXTE VERS BLOB($vt_text;$vx_blob;UTF8 chaîne en C)
-  //<Modif>
 
 BLOB TO DOCUMENT:C526($vt_filepath;$vx_blob)
 $vb_ok:=(ok=1)

@@ -118,7 +118,7 @@ If ($vl_status=0)  // server did not respond
 	  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 	C_LONGINT:C283($vl_networkError)
 	$vl_networkError:=acme__errorLastGet 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP GET method:K71:1+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+	acme__log (2;Current method name:C684;"method : "+HTTP GET method:K71:1+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 	
 End if 
 acme__errorHdlrAfter ($vt_errorHandler)
@@ -177,14 +177,14 @@ Case of
 					$vp_certificatePtr->:=$vx_responseBody
 			End case 
 			
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+			acme__log (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", content type : \""+$vt_contentType+"\""+\
 				", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
 				", certificate :\r"+$vt_certficate+". [OK]")
 		Else 
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+			acme__log (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
@@ -192,7 +192,7 @@ Case of
 		End if 
 		
 	Else 
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+		acme__log (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
 			", status : "+String:C10($vl_status)+\
 			", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
 			", duration : "+UTL_durationMsDebug ($vl_ms)+". [OK]")

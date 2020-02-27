@@ -56,7 +56,7 @@ If (True:C214)
 	Else 
 		$vt_payload:=""
 		$vt_payloadJsonDebug:=""
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"empty payload. POST as GET jws?")
+		acme__log (4;Current method name:C684;"empty payload. POST as GET jws?")
 	End if 
 	
 Else 
@@ -103,12 +103,11 @@ OB SET:C1220($vo_jwt;"signature";$vt_signature)
   //<Modif> Bruno LEGAY (BLE) (11/02/2020)
   // https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
   // https://tools.ietf.org/html/rfc8555#section-6.3
-acme__moduleDebugDateTimeLine (4;Current method name:C684;"protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
+acme__log (4;Current method name:C684;"protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
 ", payload : \""+$vt_payloadJsonDebug+"\""+\
 ", with private key : \""+$vt_privateKeyPath+"\""+\
 ", signature : \""+$vt_signature+"\""+\
 ", jwt : \""+JSON Stringify:C1217($vo_jwt;*)+"\".")
-  //acme__moduleDebugDateTimeLine (4;Nom méthode courante;"protected : \""+JSON Stringify($vo_protected;*)+"\""+", payload : \""+JSON Stringify($vo_payload;*)+"\""+", with private key : \""+$vt_privateKeyPath+"\""+", signature : \""+$vt_signature+"\".") \
- //<Modif>
+  //acme__moduleDebugDateTimeLine (4;Nom méthode courante;"protected : \""+JSON Stringify($vo_protected;*)+"\""+", payload : \""+JSON Stringify($vo_payload;*)+"\""+", with private key : \""+$vt_privateKeyPath+"\""+", signature : \""+$vt_signature+"\".")  //<Modif>
 
 $0:=$vo_jwt

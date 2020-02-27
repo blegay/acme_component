@@ -15,10 +15,13 @@ $vt_serverIp:=$4
 $vt_username:=$5
 $vt_password:=$6
 
-
-Case of 
-	: (acme_onWebConnection ($vt_url))
-		
-	Else 
-		
-End case 
+If (Not:C34(Is compiled mode:C492))
+	
+	Case of 
+		: (acme_onWebConnection ($vt_url))
+			
+		Else 
+			
+	End case 
+	
+End if 

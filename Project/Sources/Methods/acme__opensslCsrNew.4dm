@@ -85,12 +85,7 @@ UTL_textToFile ($vt_configPath;$vt_csrConf)
   // and using the configuration file we have just generated
 
 C_TEXT:C284($vt_args)
-$vt_args:="req -new"+\
-" -key "+UTL_pathToPosixConvert ($vt_privateKeyPath)+\
-" -sha256"+\
-" -outform "+$vt_outForm+\
-" -nodes"+\
-" -config "+UTL_pathToPosixConvert ($vt_configPath)
+$vt_args:="req -new"+" -key "+UTL_pathToPosixConvert ($vt_privateKeyPath)+" -sha256"+" -outform "+$vt_outForm+" -nodes"+" -config "+UTL_pathToPosixConvert ($vt_configPath)
 
 C_TEXT:C284($vt_in;$vt_err)
 $vt_in:=""
@@ -99,14 +94,14 @@ $vt_err:=""
 If (acme__openSslCmd ($vt_args;->$vt_in;$vp_csrPtr;->$vt_err))
 	$vb_ok:=True:C214
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"openssl generate "+$vt_outForm+" csr, csrObj :\r"+JSON Stringify:C1217($vo_csrObj;*)+"\r, config :\r"+$vt_csrConf+"\r csr :\r"+acme__opensslCsrToText ($vp_csrPtr))
+	acme__log (4;Current method name:C684;"openssl generate "+$vt_outForm+" csr, csrObj :\r"+JSON Stringify:C1217($vo_csrObj;*)+"\r, config :\r"+$vt_csrConf+"\r csr :\r"+acme__opensslCsrToText ($vp_csrPtr))
 	
 	If (False:C215)  // for debugging
 		SET TEXT TO PASTEBOARD:C523(acme__opensslCsrToText ($vp_csrPtr))
 	End if 
 	
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"openssl failed to generate "+$vt_outForm+" csr, csrObj :\r"+JSON Stringify:C1217($vo_csrObj;*)+"\r, config :\r"+$vt_csrConf+"\r : "+$vt_err)
+	acme__log (2;Current method name:C684;"openssl failed to generate "+$vt_outForm+" csr, csrObj :\r"+JSON Stringify:C1217($vo_csrObj;*)+"\r, config :\r"+$vt_csrConf+"\r : "+$vt_err)
 	ASSERT:C1129(False:C215;$vt_err)
 End if 
 

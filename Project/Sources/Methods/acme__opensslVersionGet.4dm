@@ -35,13 +35,13 @@ If (acme__openSslCmd ($vt_args;->$vt_in;->$vt_out;->$vt_err))
 	$vt_regex:="^(?s)\\s*(.+?)\\s*$"
 	
 	If (TXT_regexGetMatchingGroup ($vt_regex;$vt_out;1;->$vt_opensslVersion))
-		acme__moduleDebugDateTimeLine (6;Current method name:C684;"openssl version : \""+$vt_opensslVersion+"\". [OK]")
+		acme__log (6;Current method name:C684;"openssl version : \""+$vt_opensslVersion+"\". [OK]")
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"reged \""+$vt_regex+"\" failed on \""+$vt_out+"\". [KO]")
+		acme__log (2;Current method name:C684;"reged \""+$vt_regex+"\" failed on \""+$vt_out+"\". [KO]")
 	End if 
 	
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"openssl version unknown, out : \""+$vt_out+"\", err : \""+$vt_err+"\". [KO]")
+	acme__log (2;Current method name:C684;"openssl version unknown, out : \""+$vt_out+"\", err : \""+$vt_err+"\". [KO]")
 End if 
 
 $0:=$vt_opensslVersion

@@ -51,7 +51,7 @@ If ($vl_nbParam>2)
 	
 	  // make an empty payload to get the account infos
 	C_OBJECT:C1216($vo_payload)
-	$vo_payload:=OB_newObject
+	$vo_payload:=OB_newObject 
 	
 	  // init debugger and stuff
 	acme__init 
@@ -120,7 +120,7 @@ If ($vl_nbParam>2)
 		  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 		C_LONGINT:C283($vl_networkError)
 		$vl_networkError:=acme__errorLastGet 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+		acme__log (2;Current method name:C684;"method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 		
 	End if 
 	acme__errorHdlrAfter ($vt_errorHandler)
@@ -185,9 +185,9 @@ If ($vl_nbParam>2)
 				  //   "status": "valid"
 				  // }
 				
-				acme__moduleDebugDateTimeLine (4;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\","+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\","+", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
+				acme__log (4;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\","+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\","+", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
 			Else 
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", unexpected \"Content-Type\": \""+$vt_contentType+"\". [KO]")
+				acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", unexpected \"Content-Type\": \""+$vt_contentType+"\". [KO]")
 			End if 
 			
 			
@@ -201,7 +201,7 @@ If ($vl_nbParam>2)
 				$vt_json:=Convert to text:C1012($vx_responseBody;"UTF-8")
 			End if 
 			
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", response body : \""+$vt_json+"\". [KO]")
+			acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", response body : \""+$vt_json+"\". [KO]")
 			
 	End case 
 	

@@ -4,7 +4,7 @@
   //@name : acme__executeBatFile
   //@scope : private
   //@deprecated : no
-  //@description : This function executes a batch file
+  //@description : This function executes a batch file on Windows
   //@parameter[0-OUT-ok-BOOLEAN] : TRUE if
   //@parameter[1-IN-batfile-TEXT] : bat file path
   //@parameter[2-OUT-outPtr-POINTER] : out text pointer (modified)
@@ -40,7 +40,10 @@ If (ENV_onWindows )
 	C_TEXT:C284($vt_batfilePosix)
 	$vt_batfilePosix:=UTL_pathToPosixConvert ($vt_batfile)
 	
-	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_HIDE_CONSOLE";"true")
+	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_HIDE_CONSOLE";"true")  // windows only
+	If (False:C215)
+		SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING_EXTERNAL_PROCESS is "true" by default
+	End if 
 	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_CURRENT_DIRECTORY";Get 4D folder:C485(Database folder:K5:14;*))
 	
 	C_TEXT:C284($vt_in;$vt_out;$vt_err)
@@ -62,9 +65,9 @@ If (ENV_onWindows )
 	$vp_errPtr->:=$vt_err
 	
 	If ($vb_ok)
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"bat file \""+$vt_batfilePosix+"\""+", in : \""+$vt_in+"\""+", out : \""+$vt_out+"\""+", err : \""+$vt_err+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" success. [OK]")
+		acme__log (4;Current method name:C684;"bat file \""+$vt_batfilePosix+"\""+", in : \""+$vt_in+"\""+", out : \""+$vt_out+"\""+", err : \""+$vt_err+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" success. [OK]")
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"bat file \""+$vt_batfilePosix+"\""+", in : \""+$vt_in+"\""+", out : \""+$vt_out+"\""+", err : \""+$vt_err+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" failed. [KO]")
+		acme__log (2;Current method name:C684;"bat file \""+$vt_batfilePosix+"\""+", in : \""+$vt_in+"\""+", out : \""+$vt_out+"\""+", err : \""+$vt_err+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" failed. [KO]")
 	End if 
 	
 End if 

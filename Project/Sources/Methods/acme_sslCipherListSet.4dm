@@ -31,17 +31,17 @@ acme__init
 
 C_TEXT:C284($vt_cipherListRead)
 C_REAL:C285($vr_result)
-$vr_result:=Get database parameter:C643(SSL cipher list:K37:54;$vt_cipherListRead)
-acme__moduleDebugDateTimeLine (6;Current method name:C684;"cipher list (old) : \""+$vt_cipherListRead+"\"")
+$vr_result:=Get database parameter:C643(SSL cipher list:K37:54;$vt_cipherListRead)  // not "thread-safe" compatible (in v18.0) #thread-safe : todo
+acme__log (6;Current method name:C684;"cipher list (old) : \""+$vt_cipherListRead+"\"")
 
 If (Not:C34(TXT_isEqualStrict ($vt_cipherList;$vt_cipherListRead)))
 	
-	SET DATABASE PARAMETER:C642(SSL cipher list:K37:54;$vt_cipherList)
-	acme__moduleDebugDateTimeLine (Choose:C955((ok=1);4;2);Current method name:C684;"cipher list : \""+$vt_cipherList+"\" set. "+Choose:C955((ok=1);"[OK]";"[KO]"))
+	SET DATABASE PARAMETER:C642(SSL cipher list:K37:54;$vt_cipherList)  // not "thread-safe" compatible (in v18.0) #thread-safe : todo
+	acme__log (Choose:C955((ok=1);4;2);Current method name:C684;"cipher list : \""+$vt_cipherList+"\" set. "+Choose:C955((ok=1);"[OK]";"[KO]"))
 	
 	C_REAL:C285($vr_result)
-	$vr_result:=Get database parameter:C643(SSL cipher list:K37:54;$vt_cipherListRead)
-	acme__moduleDebugDateTimeLine (6;Current method name:C684;"cipher list (new) : \""+$vt_cipherListRead+"\"")
+	$vr_result:=Get database parameter:C643(SSL cipher list:K37:54;$vt_cipherListRead)  // not "thread-safe" compatible (in v18.0) #thread-safe : todo
+	acme__log (6;Current method name:C684;"cipher list (new) : \""+$vt_cipherListRead+"\"")
 	
 	  // we need to restart the web server if it was started...
 	If (WEB Is server running:C1313)

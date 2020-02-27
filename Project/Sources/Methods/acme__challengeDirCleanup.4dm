@@ -59,10 +59,7 @@ For ($vl_fileIndex;$vl_fileCount;1;-1)
 			C_TIME:C306($vh_createdOn;$vh_modifiedOn)
 			GET DOCUMENT PROPERTIES:C477($vt_filepath;$vb_locked;$vb_invisible;$vd_createdOn;$vh_createdOn;$vd_modifiedOn;$vh_modifiedOn)
 			
-			$tt_timestamp{$vl_fileIndex}:=String:C10(Year of:C25($vd_createdOn);"0000")+"-"+\
-				String:C10(Month of:C24($vd_createdOn);"00")+"-"+\
-				String:C10(Day of:C23($vd_createdOn);"00")+"T"+\
-				Time string:C180($vh_createdOn)
+			$tt_timestamp{$vl_fileIndex}:=String:C10(Year of:C25($vd_createdOn);"0000")+"-"+String:C10(Month of:C24($vd_createdOn);"00")+"-"+String:C10(Day of:C23($vd_createdOn);"00")+"T"+Time string:C180($vh_createdOn)
 			
 			$tb_delete{$vl_fileIndex}:=($vd_createdOn<$vd_dateOldMax)
 			
@@ -74,7 +71,7 @@ For ($vl_fileIndex;$vl_fileCount;1;-1)
 			DELETE FROM ARRAY:C228($tb_delete;$vl_fileIndex;1)
 			DELETE FROM ARRAY:C228($tr_size;$vl_fileIndex;1)
 			
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"file \""+$vt_filename+"\" size "+String:C10($vr_size)+" bytes is greater or aqual to 256 bytes, file ignored.")
+			acme__log (4;Current method name:C684;"file \""+$vt_filename+"\" size "+String:C10($vr_size)+" bytes is greater or aqual to 256 bytes, file ignored.")
 		End if 
 		
 		
@@ -84,14 +81,13 @@ For ($vl_fileIndex;$vl_fileCount;1;-1)
 		DELETE FROM ARRAY:C228($tb_delete;$vl_fileIndex;1)
 		DELETE FROM ARRAY:C228($tr_size;$vl_fileIndex;1)
 		
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"file name \""+$vt_filename+"\" does not match regex \""+$vt_regex+"\", file ignored.")
+		acme__log (4;Current method name:C684;"file name \""+$vt_filename+"\" does not match regex \""+$vt_regex+"\", file ignored.")
 	End if 
 End for 
 
-$vl_fileCount:=Size of array:C274($tt_challengeFilename)
-
 SORT ARRAY:C229($tt_timestamp;$tt_challengeFilename;$tb_delete;$tr_size;>)
 
+$vl_fileCount:=Size of array:C274($tt_challengeFilename)
 For ($vl_fileIndex;1;$vl_fileCount)
 	
 	C_TEXT:C284($vt_filename)
@@ -106,9 +102,9 @@ For ($vl_fileIndex;1;$vl_fileCount)
 		$vb_challengeFileDeleteOk:=(ok=1)
 		ASSERT:C1129($vb_challengeFileDeleteOk;"error deleting file \""+$vt_filepath+"\"")
 		
-		acme__moduleDebugDateTimeLine (Choose:C955($vb_challengeFileDeleteOk;4;2);Current method name:C684;"deleting file \""+$vt_filepath+"\", (size "+String:C10($tr_size{$vl_fileIndex})+" bytes, created on "+$tt_timestamp{$vl_fileIndex}+", older than "+String:C10($vd_dateOldMax)+"). "+Choose:C955($vb_challengeFileDeleteOk;"[OK]";"[KO]"))
+		acme__log (Choose:C955($vb_challengeFileDeleteOk;4;2);Current method name:C684;"deleting file \""+$vt_filepath+"\", (size "+String:C10($tr_size{$vl_fileIndex})+" bytes, created on "+$tt_timestamp{$vl_fileIndex}+", older than "+String:C10($vd_dateOldMax)+"). "+Choose:C955($vb_challengeFileDeleteOk;"[OK]";"[KO]"))
 	Else 
-		acme__moduleDebugDateTimeLine (6;Current method name:C684;"file \""+$vt_filepath+"\" (size "+String:C10($tr_size{$vl_fileIndex})+" bytes, created on "+$tt_timestamp{$vl_fileIndex}+")")
+		acme__log (6;Current method name:C684;"file \""+$vt_filepath+"\" (size "+String:C10($tr_size{$vl_fileIndex})+" bytes, created on "+$tt_timestamp{$vl_fileIndex}+")")
 	End if 
 	
 End for 

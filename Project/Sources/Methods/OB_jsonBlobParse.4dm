@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : OB_jsonBlobParse
@@ -38,7 +38,7 @@ C_BOOLEAN:C305($vb_ok)
 $vb_ok:=(ok=1)
 ASSERT:C1129($vb_ok;"error converting blob to UTF-8 text")
 If ($vb_ok)
-	acme__moduleDebugDateTimeLine (6;Current method name:C684;"json :\r"+$vt_json)
+	acme__log (6;Current method name:C684;"json :\r"+$vt_json)
 Else 
 	C_TEXT:C284($vt_blobBase64)
 	BASE64 ENCODE:C895($vp_blobPtr->;$vt_blobBase64)  // encode standard Base64
@@ -46,7 +46,7 @@ Else
 	  // replace the "\r" and "/n" we may find...
 	$vt_blobBase64:=Replace string:C233($vt_blobBase64;"\r";"";*)
 	$vt_blobBase64:=Replace string:C233($vt_blobBase64;"\n";"";*)
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"error converting blob to UTF-8 text. Blob (bas64 encoded) : "+$vt_blobBase64)
+	acme__log (4;Current method name:C684;"error converting blob to UTF-8 text. Blob (bas64 encoded) : "+$vt_blobBase64)
 End if 
 
 $vo_object:=JSON Parse:C1218($vt_json)

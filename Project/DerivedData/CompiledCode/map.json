@@ -1,0 +1,961 @@
+﻿{
+	"map": [
+		{
+			"id": 2147483647,
+			"path": "Sources/Methods/_cert_accountCreate.4dm"
+		},
+		{
+			"id": 2147483646,
+			"path": "Sources/Methods/_cert_accountInit.4dm"
+		},
+		{
+			"id": 2147483645,
+			"path": "Sources/Methods/_cert_renew.4dm"
+		},
+		{
+			"id": 2147483644,
+			"path": "Sources/Methods/_cert_renewAuto.4dm"
+		},
+		{
+			"id": 2147483643,
+			"path": "Sources/Methods/acme__accountInit.4dm"
+		},
+		{
+			"id": 2147483642,
+			"path": "Sources/Methods/acme__accountInitSub.4dm"
+		},
+		{
+			"id": 2147483641,
+			"path": "Sources/Methods/acme__accountKeyDelete.4dm"
+		},
+		{
+			"id": 2147483640,
+			"path": "Sources/Methods/acme__archiveFile.4dm"
+		},
+		{
+			"id": 2147483639,
+			"path": "Sources/Methods/acme__certCurrentGet_.4dm"
+		},
+		{
+			"id": 2147483638,
+			"path": "Sources/Methods/acme__challengeDirCleanup.4dm"
+		},
+		{
+			"id": 2147483637,
+			"path": "Sources/Methods/acme__challengeRequest.4dm"
+		},
+		{
+			"id": 2147483636,
+			"path": "Sources/Methods/acme__challengeReqUrlMatch.4dm"
+		},
+		{
+			"id": 2147483635,
+			"path": "Sources/Methods/acme__challengeReqUrlMatchT.4dm"
+		},
+		{
+			"id": 2147483634,
+			"path": "Sources/Methods/acme__compiler.4dm"
+		},
+		{
+			"id": 2147483633,
+			"path": "Sources/Methods/acme__compilerG.4dm"
+		},
+		{
+			"id": 2147483632,
+			"path": "Sources/Methods/acme__csrReqConfObjectToText.4dm"
+		},
+		{
+			"id": 2147483631,
+			"path": "Sources/Methods/acme__csrReqConfObjectToTextSub.4dm"
+		},
+		{
+			"id": 2147483630,
+			"path": "Sources/Methods/acme__dateFormatIso8601.4dm"
+		},
+		{
+			"id": 2147483629,
+			"path": "Sources/Methods/acme__directoryUrlGet.4dm"
+		},
+		{
+			"id": 2147483628,
+			"path": "Sources/Methods/acme__domainExtractFromUrl.4dm"
+		},
+		{
+			"id": 2147483627,
+			"path": "Sources/Methods/acme__domainReverse.4dm"
+		},
+		{
+			"id": 2147483626,
+			"path": "Sources/Methods/acme__domainReverseTest.4dm"
+		},
+		{
+			"id": 2147483625,
+			"path": "Sources/Methods/acme__errHdlrToDevNull.4dm"
+		},
+		{
+			"id": 2147483624,
+			"path": "Sources/Methods/acme__errorHandler.4dm"
+		},
+		{
+			"id": 2147483623,
+			"path": "Sources/Methods/acme__errorHdlr.4dm"
+		},
+		{
+			"id": 2147483622,
+			"path": "Sources/Methods/acme__errorHdlrAfter.4dm"
+		},
+		{
+			"id": 2147483621,
+			"path": "Sources/Methods/acme__errorHdlrBefore.4dm"
+		},
+		{
+			"id": 2147483620,
+			"path": "Sources/Methods/acme__errorLastGet.4dm"
+		},
+		{
+			"id": 2147483619,
+			"path": "Sources/Methods/acme__errorReset.4dm"
+		},
+		{
+			"id": 2147483618,
+			"path": "Sources/Methods/acme__execbitForce.4dm"
+		},
+		{
+			"id": 2147483617,
+			"path": "Sources/Methods/acme__executeBatFile.4dm"
+		},
+		{
+			"id": 2147483616,
+			"path": "Sources/Methods/acme__httpClientOptionsSet.4dm"
+		},
+		{
+			"id": 2147483615,
+			"path": "Sources/Methods/acme__httpHeaderGetValForKey.4dm"
+		},
+		{
+			"id": 2147483614,
+			"path": "Sources/Methods/acme__httpHeaderSignature.4dm"
+		},
+		{
+			"id": 2147483613,
+			"path": "Sources/Methods/acme__httpHeadersToObject.4dm"
+		},
+		{
+			"id": 2147483612,
+			"path": "Sources/Methods/acme__httpRequestHeaderCommon.4dm"
+		},
+		{
+			"id": 2147483611,
+			"path": "Sources/Methods/acme__httpServerRequestHdrGet.4dm"
+		},
+		{
+			"id": 2147483610,
+			"path": "Sources/Methods/acme__httpServerRequestIsSsl.4dm"
+		},
+		{
+			"id": 2147483609,
+			"path": "Sources/Methods/acme__httpServerRequestMethod.4dm"
+		},
+		{
+			"id": 2147483608,
+			"path": "Sources/Methods/acme__httpServerRequestToObject.4dm"
+		},
+		{
+			"id": 2147483607,
+			"path": "Sources/Methods/acme__httpServerRequestUrl.4dm"
+		},
+		{
+			"id": 2147483606,
+			"path": "Sources/Methods/acme__httpServerRequestVersion.4dm"
+		},
+		{
+			"id": 2147483605,
+			"path": "Sources/Methods/acme__init.4dm"
+		},
+		{
+			"id": 2147483604,
+			"path": "Sources/Methods/acme__initG.4dm"
+		},
+		{
+			"id": 2147483603,
+			"path": "Sources/Methods/acme__initSub.4dm"
+		},
+		{
+			"id": 2147483602,
+			"path": "Sources/Methods/acme__jsonContentType.4dm"
+		},
+		{
+			"id": 2147483601,
+			"path": "Sources/Methods/acme__jswKeyInfosSet.4dm"
+		},
+		{
+			"id": 2147483600,
+			"path": "Sources/Methods/acme__jwkThumbprint.4dm"
+		},
+		{
+			"id": 2147483599,
+			"path": "Sources/Methods/acme__jwsObjectSign.4dm"
+		},
+		{
+			"id": 2147483598,
+			"path": "Sources/Methods/acme__keyFileProtect.4dm"
+		},
+		{
+			"id": 2147483597,
+			"path": "Sources/Methods/acme__keyPairRsaGenerate.4dm"
+		},
+		{
+			"id": 2147483596,
+			"path": "Sources/Methods/acme__keyPairRsaGenerateTest.4dm"
+		},
+		{
+			"id": 2147483595,
+			"path": "Sources/Methods/acme__keyPrivExponentGet.4dm"
+		},
+		{
+			"id": 2147483594,
+			"path": "Sources/Methods/acme__keyPrivModulusGet.4dm"
+		},
+		{
+			"id": 2147483593,
+			"path": "Sources/Methods/acme__keysKeyPairFileGenerate.4dm"
+		},
+		{
+			"id": 2147483592,
+			"path": "Sources/Methods/acme__keysKeyPairFileGet.4dm"
+		},
+		{
+			"id": 2147483591,
+			"path": "Sources/Methods/acme__keysKeyPairFilepathGet.4dm"
+		},
+		{
+			"id": 2147483590,
+			"path": "Sources/Methods/acme__log.4dm"
+		},
+		{
+			"id": 2147483589,
+			"path": "Sources/Methods/acme__logEvent.4dm"
+		},
+		{
+			"id": 2147483588,
+			"path": "Sources/Methods/acme__logInit.4dm"
+		},
+		{
+			"id": 2147483587,
+			"path": "Sources/Methods/acme__logWorker.4dm"
+		},
+		{
+			"id": 2147483586,
+			"path": "Sources/Methods/acme__logWorkerErrHdlr.4dm"
+		},
+		{
+			"id": 2147483585,
+			"path": "Sources/Methods/acme__newAccountTest.4dm"
+		},
+		{
+			"id": 2147483584,
+			"path": "Sources/Methods/acme__newNonceTest.4dm"
+		},
+		{
+			"id": 2147483583,
+			"path": "Sources/Methods/acme__nonceGet.4dm"
+		},
+		{
+			"id": 2147483582,
+			"path": "Sources/Methods/acme__nonceHeaderGet.4dm"
+		},
+		{
+			"id": 2147483581,
+			"path": "Sources/Methods/acme__nonceRefresh.4dm"
+		},
+		{
+			"id": 2147483580,
+			"path": "Sources/Methods/acme__notify.4dm"
+		},
+		{
+			"id": 2147483579,
+			"path": "Sources/Methods/acme__objectToBlob.4dm"
+		},
+		{
+			"id": 2147483578,
+			"path": "Sources/Methods/acme__openssl4dVersion.4dm"
+		},
+		{
+			"id": 2147483577,
+			"path": "Sources/Methods/acme__opensslCertToText.4dm"
+		},
+		{
+			"id": 2147483576,
+			"path": "Sources/Methods/acme__opensslCertToTexttest.4dm"
+		},
+		{
+			"id": 2147483575,
+			"path": "Sources/Methods/acme__openSslCmd.4dm"
+		},
+		{
+			"id": 2147483574,
+			"path": "Sources/Methods/acme__opensslConfigDefault.4dm"
+		},
+		{
+			"id": 2147483573,
+			"path": "Sources/Methods/acme__opensslConfigDefaultSub.4dm"
+		},
+		{
+			"id": 2147483572,
+			"path": "Sources/Methods/acme__opensslCsrConvertFormat.4dm"
+		},
+		{
+			"id": 2147483571,
+			"path": "Sources/Methods/acme__opensslCsrNew.4dm"
+		},
+		{
+			"id": 2147483570,
+			"path": "Sources/Methods/acme__opensslCsrNewtest.4dm"
+		},
+		{
+			"id": 2147483569,
+			"path": "Sources/Methods/acme__opensslCsrToText.4dm"
+		},
+		{
+			"id": 2147483568,
+			"path": "Sources/Methods/acme__opensslModulus.4dm"
+		},
+		{
+			"id": 2147483567,
+			"path": "Sources/Methods/acme__opensslPathGet.4dm"
+		},
+		{
+			"id": 2147483566,
+			"path": "Sources/Methods/acme__openSslSha256.4dm"
+		},
+		{
+			"id": 2147483565,
+			"path": "Sources/Methods/acme__openSslSignKeyPath.4dm"
+		},
+		{
+			"id": 2147483564,
+			"path": "Sources/Methods/acme__opensslToText.4dm"
+		},
+		{
+			"id": 2147483563,
+			"path": "Sources/Methods/acme__opensslVersionGet.4dm"
+		},
+		{
+			"id": 2147483562,
+			"path": "Sources/Methods/acme__pemFormatChainToArrayTest.4dm"
+		},
+		{
+			"id": 2147483561,
+			"path": "Sources/Methods/acme__pemFormatCheck.4dm"
+		},
+		{
+			"id": 2147483560,
+			"path": "Sources/Methods/acme__pemFormatCheckTest.4dm"
+		},
+		{
+			"id": 2147483559,
+			"path": "Sources/Methods/acme__protectedObjGet.4dm"
+		},
+		{
+			"id": 2147483558,
+			"path": "Sources/Methods/acme__removeLastLFTest.4dm"
+		},
+		{
+			"id": 2147483557,
+			"path": "Sources/Methods/acme__removeLastWhitespaces.4dm"
+		},
+		{
+			"id": 2147483556,
+			"path": "Sources/Methods/acme__selftests.4dm"
+		},
+		{
+			"id": 2147483555,
+			"path": "Sources/Methods/acme__timestamp.4dm"
+		},
+		{
+			"id": 2147483554,
+			"path": "Sources/Methods/acme__tokenToFilenameSafe.4dm"
+		},
+		{
+			"id": 2147483553,
+			"path": "Sources/Methods/acme__urlLocationIdGet.4dm"
+		},
+		{
+			"id": 2147483552,
+			"path": "Sources/Methods/acme__webHstsStart.4dm"
+		},
+		{
+			"id": 2147483551,
+			"path": "Sources/Methods/acme__webHstsStop.4dm"
+		},
+		{
+			"id": 2147483550,
+			"path": "Sources/Methods/acme__xdocInit.4dm"
+		},
+		{
+			"id": 2147483549,
+			"path": "Sources/Methods/acme_accountObjectGet.4dm"
+		},
+		{
+			"id": 2147483548,
+			"path": "Sources/Methods/acme_accountStatus.4dm"
+		},
+		{
+			"id": 2147483547,
+			"path": "Sources/Methods/acme_accountStatusTest.4dm"
+		},
+		{
+			"id": 2147483546,
+			"path": "Sources/Methods/acme_authorizationGet.4dm"
+		},
+		{
+			"id": 2147483545,
+			"path": "Sources/Methods/acme_certActiveDirPathGet.4dm"
+		},
+		{
+			"id": 2147483544,
+			"path": "Sources/Methods/acme_certChainToText.4dm"
+		},
+		{
+			"id": 2147483543,
+			"path": "Sources/Methods/acme_certCheckEnd.4dm"
+		},
+		{
+			"id": 2147483542,
+			"path": "Sources/Methods/acme_certCurrentGet.4dm"
+		},
+		{
+			"id": 2147483541,
+			"path": "Sources/Methods/acme_certDateValidyInSeconds.4dm"
+		},
+		{
+			"id": 2147483540,
+			"path": "Sources/Methods/acme_certificateAsTextInstall.4dm"
+		},
+		{
+			"id": 2147483539,
+			"path": "Sources/Methods/acme_certificateGet.4dm"
+		},
+		{
+			"id": 2147483538,
+			"path": "Sources/Methods/acme_certificateGetAndInstall.4dm"
+		},
+		{
+			"id": 2147483537,
+			"path": "Sources/Methods/acme_certificateInstall.4dm"
+		},
+		{
+			"id": 2147483536,
+			"path": "Sources/Methods/acme_certToText.4dm"
+		},
+		{
+			"id": 2147483535,
+			"path": "Sources/Methods/acme_challengeStartTest.4dm"
+		},
+		{
+			"id": 2147483534,
+			"path": "Sources/Methods/acme_componentVersionGet.4dm"
+		},
+		{
+			"id": 2147483533,
+			"path": "Sources/Methods/acme_csrAltnamesNew.4dm"
+		},
+		{
+			"id": 2147483532,
+			"path": "Sources/Methods/acme_csrGenerateAndSign.4dm"
+		},
+		{
+			"id": 2147483531,
+			"path": "Sources/Methods/acme_csrReqConfObjectNew.4dm"
+		},
+		{
+			"id": 2147483530,
+			"path": "Sources/Methods/acme_dateParse.4dm"
+		},
+		{
+			"id": 2147483529,
+			"path": "Sources/Methods/acme_digestFile.4dm"
+		},
+		{
+			"id": 2147483528,
+			"path": "Sources/Methods/acme_directoryGet.4dm"
+		},
+		{
+			"id": 2147483527,
+			"path": "Sources/Methods/acme_directoryUrlGet.4dm"
+		},
+		{
+			"id": 2147483526,
+			"path": "Sources/Methods/acme_directoryUrlSet.4dm"
+		},
+		{
+			"id": 2147483525,
+			"path": "Sources/Methods/acme_httpChallengePrepare.4dm"
+		},
+		{
+			"id": 2147483524,
+			"path": "Sources/Methods/acme_httpChallengePrepareTest.4dm"
+		},
+		{
+			"id": 2147483523,
+			"path": "Sources/Methods/acme_identifierObjectNew.4dm"
+		},
+		{
+			"id": 2147483522,
+			"path": "Sources/Methods/acme_logHttpServerInfos.4dm"
+		},
+		{
+			"id": 2147483521,
+			"path": "Sources/Methods/acme_newAccount.4dm"
+		},
+		{
+			"id": 2147483520,
+			"path": "Sources/Methods/acme_newAccountObject.4dm"
+		},
+		{
+			"id": 2147483519,
+			"path": "Sources/Methods/acme_newOrder.4dm"
+		},
+		{
+			"id": 2147483518,
+			"path": "Sources/Methods/acme_newOrderAndInstall.4dm"
+		},
+		{
+			"id": 2147483517,
+			"path": "Sources/Methods/acme_newOrderObject.4dm"
+		},
+		{
+			"id": 2147483516,
+			"path": "Sources/Methods/acme_newOrderTest.4dm"
+		},
+		{
+			"id": 2147483515,
+			"path": "Sources/Methods/acme_onWebAuthentication.4dm"
+		},
+		{
+			"id": 2147483514,
+			"path": "Sources/Methods/acme_onWebConnection.4dm"
+		},
+		{
+			"id": 2147483513,
+			"path": "Sources/Methods/acme_opensslCsrConvertFormatTes.4dm"
+		},
+		{
+			"id": 2147483512,
+			"path": "Sources/Methods/acme_orderAuthorisationProcess.4dm"
+		},
+		{
+			"id": 2147483511,
+			"path": "Sources/Methods/acme_orderAuthorisationWait.4dm"
+		},
+		{
+			"id": 2147483510,
+			"path": "Sources/Methods/acme_orderDirPathGet.4dm"
+		},
+		{
+			"id": 2147483509,
+			"path": "Sources/Methods/acme_orderFinalize.4dm"
+		},
+		{
+			"id": 2147483508,
+			"path": "Sources/Methods/acme_orderFinalizeTest.4dm"
+		},
+		{
+			"id": 2147483507,
+			"path": "Sources/Methods/acme_pemFormatChainToArray.4dm"
+		},
+		{
+			"id": 2147483506,
+			"path": "Sources/Methods/acme_READ_ME.4dm"
+		},
+		{
+			"id": 2147483505,
+			"path": "Sources/Methods/acme_readme.4dm"
+		},
+		{
+			"id": 2147483504,
+			"path": "Sources/Methods/acme_rsaCertSelfSignedCreate.4dm"
+		},
+		{
+			"id": 2147483503,
+			"path": "Sources/Methods/acme_rsakeyPairGenerate.4dm"
+		},
+		{
+			"id": 2147483502,
+			"path": "Sources/Methods/acme_sampleCode.4dm"
+		},
+		{
+			"id": 2147483501,
+			"path": "Sources/Methods/acme_sslCipherListGet.4dm"
+		},
+		{
+			"id": 2147483500,
+			"path": "Sources/Methods/acme_sslCipherListSet.4dm"
+		},
+		{
+			"id": 2147483499,
+			"path": "Sources/Methods/acme_webServerRestart.4dm"
+		},
+		{
+			"id": 2147483498,
+			"path": "Sources/Methods/acme_webServerStart.4dm"
+		},
+		{
+			"id": 2147483497,
+			"path": "Sources/Methods/acme_webServerStop.4dm"
+		},
+		{
+			"id": 2147483496,
+			"path": "Sources/Methods/acme_workingDirGet.4dm"
+		},
+		{
+			"id": 2147483495,
+			"path": "Sources/Methods/acme_workingDirSet.4dm"
+		},
+		{
+			"id": 2147483494,
+			"path": "Sources/Methods/Compiler_Methods.4dm"
+		},
+		{
+			"id": 2147483493,
+			"path": "Sources/Methods/Compiler_Variables.4dm"
+		},
+		{
+			"id": 2147483492,
+			"path": "Sources/Methods/Compiler_Variables_Inter.4dm"
+		},
+		{
+			"id": 2147483491,
+			"path": "Sources/Methods/DAT__tsBaseDate.4dm"
+		},
+		{
+			"id": 2147483490,
+			"path": "Sources/Methods/DAT_iso8601DateTimeGmt.4dm"
+		},
+		{
+			"id": 2147483489,
+			"path": "Sources/Methods/DAT_iso8601Diff.4dm"
+		},
+		{
+			"id": 2147483488,
+			"path": "Sources/Methods/DAT_tsNew.4dm"
+		},
+		{
+			"id": 2147483487,
+			"path": "Sources/Methods/DBG__dbgInitAuto.4dm"
+		},
+		{
+			"id": 2147483486,
+			"path": "Sources/Methods/ENV__isComponent.4dm"
+		},
+		{
+			"id": 2147483485,
+			"path": "Sources/Methods/ENV_is64bits.4dm"
+		},
+		{
+			"id": 2147483484,
+			"path": "Sources/Methods/ENV_isPreemptive.4dm"
+		},
+		{
+			"id": 2147483483,
+			"path": "Sources/Methods/ENV_isv17OrAbove.4dm"
+		},
+		{
+			"id": 2147483482,
+			"path": "Sources/Methods/ENV_onWindows.4dm"
+		},
+		{
+			"id": 2147483481,
+			"path": "Sources/Methods/ENV_versionStr.4dm"
+		},
+		{
+			"id": 2147483480,
+			"path": "Sources/Methods/FS_pathToFilename.4dm"
+		},
+		{
+			"id": 2147483479,
+			"path": "Sources/Methods/FS_pathToParent.4dm"
+		},
+		{
+			"id": 2147483478,
+			"path": "Sources/Methods/HEX_blobPtrToHexStr.4dm"
+		},
+		{
+			"id": 2147483477,
+			"path": "Sources/Methods/HEX_hexByteStrToByteInteger.4dm"
+		},
+		{
+			"id": 2147483476,
+			"path": "Sources/Methods/HEX_hexCharToInt.4dm"
+		},
+		{
+			"id": 2147483475,
+			"path": "Sources/Methods/HEX_hexTextToBlob.4dm"
+		},
+		{
+			"id": 2147483474,
+			"path": "Sources/Methods/LONG_isEven.4dm"
+		},
+		{
+			"id": 2147483473,
+			"path": "Sources/Methods/Méthode 142.4dm"
+		},
+		{
+			"id": 2147483472,
+			"path": "Sources/Methods/Méthode 146.4dm"
+		},
+		{
+			"id": 2147483471,
+			"path": "Sources/Methods/Méthode 151.4dm"
+		},
+		{
+			"id": 2147483470,
+			"path": "Sources/Methods/Méthode 154.4dm"
+		},
+		{
+			"id": 2147483469,
+			"path": "Sources/Methods/Méthode 156.4dm"
+		},
+		{
+			"id": 2147483468,
+			"path": "Sources/Methods/Méthode 161.4dm"
+		},
+		{
+			"id": 2147483467,
+			"path": "Sources/Methods/Méthode 162.4dm"
+		},
+		{
+			"id": 2147483466,
+			"path": "Sources/Methods/Méthode 164.4dm"
+		},
+		{
+			"id": 2147483465,
+			"path": "Sources/Methods/Méthode 166.4dm"
+		},
+		{
+			"id": 2147483464,
+			"path": "Sources/Methods/Méthode 170.4dm"
+		},
+		{
+			"id": 2147483463,
+			"path": "Sources/Methods/Méthode 172.4dm"
+		},
+		{
+			"id": 2147483462,
+			"path": "Sources/Methods/Méthode 175.4dm"
+		},
+		{
+			"id": 2147483461,
+			"path": "Sources/Methods/Méthode 177.4dm"
+		},
+		{
+			"id": 2147483460,
+			"path": "Sources/Methods/Méthode 178.4dm"
+		},
+		{
+			"id": 2147483459,
+			"path": "Sources/Methods/Méthode 188.4dm"
+		},
+		{
+			"id": 2147483458,
+			"path": "Sources/Methods/Méthode 190.4dm"
+		},
+		{
+			"id": 2147483457,
+			"path": "Sources/Methods/Méthode 192.4dm"
+		},
+		{
+			"id": 2147483456,
+			"path": "Sources/Methods/Méthode 193.4dm"
+		},
+		{
+			"id": 2147483455,
+			"path": "Sources/Methods/Méthode 195.4dm"
+		},
+		{
+			"id": 2147483454,
+			"path": "Sources/Methods/Méthode 196.4dm"
+		},
+		{
+			"id": 2147483453,
+			"path": "Sources/Methods/Méthode 197.4dm"
+		},
+		{
+			"id": 2147483452,
+			"path": "Sources/Methods/Méthode 201.4dm"
+		},
+		{
+			"id": 2147483451,
+			"path": "Sources/Methods/Méthode 202.4dm"
+		},
+		{
+			"id": 2147483450,
+			"path": "Sources/Methods/Méthode 204.4dm"
+		},
+		{
+			"id": 2147483449,
+			"path": "Sources/Methods/Méthode 205.4dm"
+		},
+		{
+			"id": 2147483448,
+			"path": "Sources/Methods/Méthode 211.4dm"
+		},
+		{
+			"id": 2147483447,
+			"path": "Sources/Methods/Méthode 220.4dm"
+		},
+		{
+			"id": 2147483446,
+			"path": "Sources/Methods/Méthode 222.4dm"
+		},
+		{
+			"id": 2147483445,
+			"path": "Sources/Methods/Méthode 224.4dm"
+		},
+		{
+			"id": 2147483444,
+			"path": "Sources/Methods/Méthode 226.4dm"
+		},
+		{
+			"id": 2147483443,
+			"path": "Sources/Methods/Méthode 229.4dm"
+		},
+		{
+			"id": 2147483442,
+			"path": "Sources/Methods/Méthode 230.4dm"
+		},
+		{
+			"id": 2147483441,
+			"path": "Sources/Methods/Méthode 232.4dm"
+		},
+		{
+			"id": 2147483440,
+			"path": "Sources/Methods/Méthode 234.4dm"
+		},
+		{
+			"id": 2147483439,
+			"path": "Sources/Methods/OB_jsonBlobParse.4dm"
+		},
+		{
+			"id": 2147483438,
+			"path": "Sources/Methods/OB_newObject.4dm"
+		},
+		{
+			"id": 2147483437,
+			"path": "Sources/Methods/TXT_endOfLineNormalize.4dm"
+		},
+		{
+			"id": 2147483436,
+			"path": "Sources/Methods/TXT_explodeFast.4dm"
+		},
+		{
+			"id": 2147483435,
+			"path": "Sources/Methods/TXT_isEqualStrict.4dm"
+		},
+		{
+			"id": 2147483434,
+			"path": "Sources/Methods/TXT_lineSepGet.4dm"
+		},
+		{
+			"id": 2147483433,
+			"path": "Sources/Methods/TXT_lineSepGetTest.4dm"
+		},
+		{
+			"id": 2147483432,
+			"path": "Sources/Methods/TXT_regexGetMatchingGroup.4dm"
+		},
+		{
+			"id": 2147483431,
+			"path": "Sources/Methods/TXT_rtrim.4dm"
+		},
+		{
+			"id": 2147483430,
+			"path": "Sources/Methods/UTL_base64UrlSafeDecode.4dm"
+		},
+		{
+			"id": 2147483429,
+			"path": "Sources/Methods/UTL_base64UrlSafeEncode.4dm"
+		},
+		{
+			"id": 2147483428,
+			"path": "Sources/Methods/UTL_durationDifference.4dm"
+		},
+		{
+			"id": 2147483427,
+			"path": "Sources/Methods/UTL_durationMsDebug.4dm"
+		},
+		{
+			"id": 2147483426,
+			"path": "Sources/Methods/UTL_initAuto.4dm"
+		},
+		{
+			"id": 2147483425,
+			"path": "Sources/Methods/UTL_pathToPosixConvert.4dm"
+		},
+		{
+			"id": 2147483424,
+			"path": "Sources/Methods/UTL_textToDocument.4dm"
+		},
+		{
+			"id": 2147483423,
+			"path": "Sources/Methods/UTL_textToFile.4dm"
+		},
+		{
+			"id": 2147483422,
+			"path": "Sources/Methods/UUID_new.4dm"
+		},
+		{
+			"id": 2147483421,
+			"path": "Trash/Methods/(_acme__signRequest).4dm"
+		},
+		{
+			"id": 2147483420,
+			"path": "Trash/Methods/(acme__execbitForceSub).4dm"
+		},
+		{
+			"id": 2147483419,
+			"path": "Trash/Methods/(acme_digestFileTest).4dm"
+		},
+		{
+			"id": 2147483418,
+			"path": "Trash/Methods/(Compiler_Arrays).4dm"
+		},
+		{
+			"id": 2147483417,
+			"path": "Trash/Methods/(Méthode 176).4dm"
+		},
+		{
+			"id": 2147483416,
+			"path": "Trash/Methods/(Méthode 183).4dm"
+		},
+		{
+			"id": 2147483415,
+			"path": "Trash/Methods/(Méthode 184).4dm"
+		},
+		{
+			"id": 2147483414,
+			"path": "Trash/Methods/(Méthode 270).4dm"
+		},
+		{
+			"id": 2147483413,
+			"path": "Trash/Methods/(XDOC_run).4dm"
+		},
+		{
+			"id": 2147483412,
+			"path": "Sources/DatabaseMethods/onStartup.4dm"
+		},
+		{
+			"id": 2147483411,
+			"path": "Sources/DatabaseMethods/onWebAuthentication.4dm"
+		},
+		{
+			"id": 2147483410,
+			"path": "Sources/DatabaseMethods/onWebConnection.4dm"
+		},
+		{
+			"id": 2147483409,
+			"path": "Sources/DatabaseMethods/onWebSessionSuspend.4dm"
+		}
+	],
+	"arch64": true
+}

@@ -1,4 +1,4 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name :  
@@ -49,51 +49,30 @@ ASSERT:C1129(Count parameters:C259>0;"requires 1 parameters")
 $vb_match:=False:C215
 $vt_url:=$1
 
-  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
-  // the letsencrypt challenge is on a plain http (not https) connexion
+  // the letsencrypt HTTP-01 challenge is on a plain http (not https) connection
+  // note : it could be on a port other than 80 (behind a NAT for instance)
 If (Not:C34(WEB Is secured connection:C698))
-	  //<Modif>
 	
-	  // "/.well-known/acme-challenge/Loq...X0"
+	  // "/.well-known/acme-challenge/LoqXcYV8q5ONbJQxbmR7SCTNo3tiAXDfowyjxAjEuX0"
 	
-	
-	  //<Modif> Bruno LEGAY (BLE) (06/09/2019) - v0.90.10
 	C_TEXT:C284($vt_token)
 	$vb_match:=acme__challengeReqUrlMatch ($vt_url;->$vt_token)
-	
-	  //C_TEXTE($vt_urlStartTag)
-	  //$vt_urlStartTag:="/.well-known/acme-challenge/"
-	
-	  //C_TEXTE($vt_regex)
-	  //$vt_regex:="^/\\.well-known/acme-challenge/(.*)$"
-	
-	  //C_TEXTE($vt_token)
-	  //$vb_match:=TXT_regexGetMatchingGroup ($vt_regex;$vt_url;1;->$vt_token)
-	
-	  //<Modif>
-	
-	  //$vb_match:=TXT_isEqualStrict (Sous chaîne($vt_url;1;Longueur($vt_urlStartTag));$vt_urlStartTag)
-	  //$vb_match:=($vt_url=$vt_urlStartTag+"@")
 	If ($vb_match)
 		
-		C_OBJECT:C1216($vo_httpServerHeaderObject)
-		$vo_httpServerHeaderObject:=acme__httpServerRequestToObject 
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"http request :\r"+JSON Stringify:C1217($vo_httpServerHeaderObject;*))
+		  // initialize a httpServerRequest object with the http request infos...
+		C_OBJECT:C1216($vo_httpServerRequestObject)
+		$vo_httpServerRequestObject:=acme__httpServerRequestToObject 
+		acme__log (4;Current method name:C684;"http request :\r"+JSON Stringify:C1217($vo_httpServerRequestObject;*))
 		
-		  //ASSERT(acme__httpServerRequestHdrGet ($vo_httpServerHeaderObject;"accept")="*/*")
-		  //ASSERT(acme__httpServerRequestHdrGet ($vo_httpServerHeaderObject;"Host")="www.example.com")
-		  //ASSERT(acme__httpServerRequestIsSsl ($vo_httpServerHeaderObject)=Faux)
-		  //ASSERT(acme__httpServerRequestMethod ($vo_httpServerHeaderObject)="GET")
-		  //ASSERT(acme__httpServerRequestVersion ($vo_httpServerHeaderObject)="HTTP/1.1")
+		  //ASSERT(acme__httpServerRequestHdrGet ($vo_httpServerRequestObject;"accept")="*/*")
+		  //ASSERT(acme__httpServerRequestHdrGet ($vo_httpServerRequestObject;"Host")="www.example.com")
+		  //ASSERT(acme__httpServerRequestIsSsl ($vo_httpServerRequestObject)=Faux)
+		  //ASSERT(acme__httpServerRequestMethod ($vo_httpServerRequestObject)="GET")
+		  //ASSERT(acme__httpServerRequestVersion ($vo_httpServerRequestObject)="HTTP/1.1")
 		
 		C_TEXT:C284($vt_httpMethod)
-		$vt_httpMethod:=acme__httpServerRequestMethod ($vo_httpServerHeaderObject)
+		$vt_httpMethod:=acme__httpServerRequestMethod ($vo_httpServerRequestObject)
 		If (($vt_httpMethod="GET") | ($vt_httpMethod="HEAD"))
-			
-			  //<Modif> Bruno LEGAY (BLE) (06/09/2019) - v0.90.10
-			  //C_TEXTE($vt_token)
-			  //$vt_token:=Sous chaîne($vt_url;Longueur($vt_urlStartTag)+1)
-			  //<Modif>
 			
 			C_TEXT:C284($vt_challengeDirPath)
 			$vt_challengeDirPath:=Get 4D folder:C485(HTML Root folder:K5:20)+".well-known"+Folder separator:K24:12+"acme-challenge"+Folder separator:K24:12
@@ -113,7 +92,6 @@ If (Not:C34(WEB Is secured connection:C698))
 				  // set the response http headers
 				ARRAY TEXT:C222($tt_headerKey;0)
 				ARRAY TEXT:C222($tt_headerValue;0)
-				  //acme__httpRequestHeaderCommon (->$tt_headerKey;->$tt_headerValue;$vt_contentType)
 				
 				APPEND TO ARRAY:C911($tt_headerKey;"Server")
 				APPEND TO ARRAY:C911($tt_headerValue;acme__httpHeaderSignature )
@@ -124,14 +102,13 @@ If (Not:C34(WEB Is secured connection:C698))
 				C_BLOB:C604($vx_responseBodyBlob)
 				SET BLOB SIZE:C606($vx_responseBodyBlob;0)
 				
+				  // load the challenge response to a blob
 				DOCUMENT TO BLOB:C525($vt_challengeFilePath;$vx_responseBodyBlob)
 				
-				  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
 				C_BOOLEAN:C305($vb_challengeFileRead)
 				$vb_challengeFileRead:=(ok=1)
 				ASSERT:C1129($vb_challengeFileRead;"error reading file \""+$vt_challengeFilePath+"\"")
-				acme__moduleDebugDateTimeLine (Choose:C955($vb_challengeFileRead;4;2);Current method name:C684;"reading file \""+$vt_challengeFilePath+"\". "+Choose:C955($vb_challengeFileRead;"[OK]";"[KO]"))
-				  //<Modif>
+				acme__log (Choose:C955($vb_challengeFileRead;4;2);Current method name:C684;"reading file \""+$vt_challengeFilePath+"\". "+Choose:C955($vb_challengeFileRead;"[OK]";"[KO]"))
 				
 				If (($vt_httpMethod="HEAD"))  // if "HEAD", send an empty blob but with the right "Content-Length"
 					APPEND TO ARRAY:C911($tt_headerKey;"Content-Length")
@@ -143,19 +120,12 @@ If (Not:C34(WEB Is secured connection:C698))
 				
 				  // send the blob data
 				WEB SEND BLOB:C654($vx_responseBodyBlob;$vt_contentType)
-				acme__moduleDebugDateTimeLine (4;Current method name:C684;"sending challenge \""+$vt_challengeFilename+"\" : "+String:C10(BLOB size:C605($vx_responseBodyBlob))+" bytes")
+				acme__log (4;Current method name:C684;"sending challenge \""+$vt_challengeFilename+"\" : "+String:C10(BLOB size:C605($vx_responseBodyBlob))+" bytes")
 				
-				  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
+				  // do not delete the challenge document now
 				If (True:C214)  // only delete old files (it looks like we need to keep the challenge files for some time, no idea how long just empirical)
 					acme__challengeDirCleanup ($vt_challengeDirPath)
-				Else   // delete the challege file as soon as it has been requested
-					DELETE DOCUMENT:C159($vt_challengeFilePath)
-					C_BOOLEAN:C305($vb_challengeFileDeleteOk)
-					$vb_challengeFileDeleteOk:=(ok=1)
-					ASSERT:C1129($vb_challengeFileDeleteOk;"error deleting file \""+$vt_challengeFilePath+"\"")
-					acme__moduleDebugDateTimeLine (Choose:C955($vb_challengeFileDeleteOk;4;2);Current method name:C684;"deleting file \""+$vt_challengeFilePath+"\". "+Choose:C955($vb_challengeFileDeleteOk;"[OK]";"[KO]"))
 				End if 
-				  //<Modif>
 				
 				  // clear the blob and header arrays
 				SET BLOB SIZE:C606($vx_responseBodyBlob;0)
@@ -172,23 +142,27 @@ If (Not:C34(WEB Is secured connection:C698))
 				  // Expires: Mon, 25 Jun 2018 18:19:16 GMT
 				  // Server: 4D/15.0.2
 				
-				  //SUPPRIMER DOCUMENT($vt_challengeFilePath)
+				acme__log (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+					", host : \""+acme__httpServerRequestHdrGet ($vo_httpServerRequestObject;"Host")+"\""+\
+					", ssl : "+Choose:C955(WEB Is secured connection:C698;"true";"false")+\
+					", token : \""+$vt_token+"\""+\
+					", http request : "+JSON Stringify:C1217($vo_httpServerRequestObject;*)+\
+					", file : \""+$vt_challengeFilePath+"\" sent. [OK]")
 				
-				acme__moduleDebugDateTimeLine (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+", host \""+acme__httpServerRequestHdrGet ($vo_httpServerHeaderObject;"Host")+"\""+", ssl : "+Choose:C955(WEB Is secured connection:C698;"true";"false")+""+", token \""+$vt_token+"\""+", http request "+JSON Stringify:C1217($vo_httpServerHeaderObject;*)+", file \""+$vt_challengeFilePath+"\" sent. [OK]")
-				
-			Else 
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+", token \""+$vt_token+"\""+", file \""+$vt_challengeFilePath+"\" not found. [KO]")
+			Else   // will return a 404
+				acme__log (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+					", token \""+$vt_token+"\""+\
+					", file \""+$vt_challengeFilePath+"\" not found. [KO]")
 			End if 
 			
-		Else 
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+", unexpected http method. [OK]")
+		Else   // will return a 404
+			acme__log (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+				", unexpected http method. [OK]")
 		End if 
 		
-		CLEAR VARIABLE:C89($vo_httpServerHeaderObject)
+		CLEAR VARIABLE:C89($vo_httpServerRequestObject)
 	End if 
 	
-	  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
 End if 
-  //<Modif>
 
 $0:=$vb_match

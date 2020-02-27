@@ -42,7 +42,6 @@ End case
 
 If ($vl_nbParam>0)
 	
-	
 	  //  "/.well-known/acme-challenge/-P9Ukqz_ehOWBxaB3H-StJVwWmvHVadfW8HA-H1zJIM"
 	  //  "/.well-known/acme-challenge/5nTCyyUMDZ-Wo68784SPas9EWIrNZTbg9ArHimPr4Qk"
 	  //  "/.well-known/acme-challenge/AmnMB9UGzwbFEb3S4x_nss1JCNjH7xAoeCo4vBnhFZg"
@@ -68,7 +67,6 @@ If ($vl_nbParam>0)
 	  //  ".well-known/acme-challenge/wUDZVYkobBj40sabCVGdKuD6JYH9IzWatSeDfb1DUAM"
 	  //  ".well-known/acme-challenge/Qp1ncKwBMKP2RfhyGF4gViD5wJQigIriAKv1vp70i04"
 	
-	
 	C_TEXT:C284($vt_regex)
 	
 	C_LONGINT:C283($vl_length)
@@ -76,8 +74,7 @@ If ($vl_nbParam>0)
 	If (($vl_length>=27) & ($vl_length<=120))
 		  //Si (($vl_length>=27) & ($vl_length<=71))
 		
-		If (($vt_url=".well-known/acme-challenge/@") | \
-			($vt_url="/.well-known/acme-challenge/@"))
+		If (($vt_url=".well-known/acme-challenge/@") | ($vt_url="/.well-known/acme-challenge/@"))
 			
 			If ($vl_nbParam=1)
 				
@@ -86,7 +83,7 @@ If ($vl_nbParam>0)
 				$vb_match:=Match regex:C1019($vt_regex;$vt_url;1;*)
 				
 				If ($vb_match)
-					acme__moduleDebugDateTimeLine (6;Current method name:C684;"url \""+$vt_url+"\" did match regex \""+$vt_regex+"\"")
+					acme__log (6;Current method name:C684;"url \""+$vt_url+"\" did match regex \""+$vt_regex+"\"")
 				End if 
 				
 			Else 
@@ -98,13 +95,13 @@ If ($vl_nbParam>0)
 				$vp_tokenPtr->:=$vt_token
 				
 				If ($vb_match)
-					acme__moduleDebugDateTimeLine (6;Current method name:C684;"url \""+$vt_url+"\" did match regex \""+$vt_regex+"\", token : \""+$vt_token+"\"")
+					acme__log (6;Current method name:C684;"url \""+$vt_url+"\" did match regex \""+$vt_regex+"\", token : \""+$vt_token+"\"")
 				End if 
 				
 			End if 
 			
 			If (Not:C34($vb_match))
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"url \""+$vt_url+"\" did not match regex \""+$vt_regex+"\"")
+				acme__log (2;Current method name:C684;"url \""+$vt_url+"\" did not match regex \""+$vt_regex+"\"")
 			End if 
 			
 		End if 

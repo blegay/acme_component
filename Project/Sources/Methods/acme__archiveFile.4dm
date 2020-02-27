@@ -51,9 +51,9 @@ If (Test path name:C476($vt_filepath)=Is a document:K24:1)
 	$vb_ok:=(ok=1)
 	
 	If ($vb_ok)
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"file \""+$vt_filepath+"\" archived to \""+$vt_filepathNew+"\". [OK]")
+		acme__log (4;Current method name:C684;"file \""+$vt_filepath+"\" archived to \""+$vt_filepathNew+"\". [OK]")
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"failed to move file \""+$vt_filepath+"\" to \""+$vt_filepathNew+"\". [KO]")
+		acme__log (2;Current method name:C684;"failed to move file \""+$vt_filepath+"\" to \""+$vt_filepathNew+"\". [KO]")
 	End if 
 	ASSERT:C1129($vb_ok;"failed to move file \""+$vt_filepath+"\" to \""+$vt_filepathNew+"\"")
 	

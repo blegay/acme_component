@@ -49,9 +49,9 @@ If ($vl_status#0)
 			vl_ACME_nonceTickcount:=Tickcount:C458
 			vt_ACME_nonceLast:=$vp_headerValArrayPtr->{$vl_found}
 			
-			acme__moduleDebugDateTimeLine (6;Current method name:C684;"http status : "+String:C10($vl_status)+", nonce : \""+vt_ACME_nonceLast+"\" (in process "+String:C10(Current process:C322)+", tickcount "+String:C10(vl_ACME_nonceTickcount)+" ticks)")
+			acme__log (6;Current method name:C684;"http status : "+String:C10($vl_status)+", nonce : \""+vt_ACME_nonceLast+"\" (in process "+String:C10(Current process:C322)+", tickcount "+String:C10(vl_ACME_nonceTickcount)+" ticks)")
 		Else 
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"http status : "+String:C10($vl_status)+" no \"Replay-Nonce\" header in response")
+			acme__log (2;Current method name:C684;"http status : "+String:C10($vl_status)+" no \"Replay-Nonce\" header in response")
 		End if 
 		
 	End if 

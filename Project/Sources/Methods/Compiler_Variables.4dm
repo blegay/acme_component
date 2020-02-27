@@ -8,3 +8,7 @@ C_LONGINT:C283(vl_ACME_error)
 C_BOOLEAN:C305(vb_ACME_init)
 C_LONGINT:C283(vl_ACME_nonceTickcount)
 C_TEXT:C284(vt_ACME_nonceLast)
+
+C_BOOLEAN:C305(emptive)
+C_BOOLEAN:C305(ENV_ispre)
+C_BOOLEAN:C305(acme__execbitForceSub)

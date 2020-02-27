@@ -19,7 +19,7 @@
   //================================================================================
 
 If (WEB Is server running:C1313)
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"stopping web server...")
+	acme__log (4;Current method name:C684;"stopping web server...")
 	acme__notify ("4D http server : stopping...")
 	
 	C_BOOLEAN:C305($vb_stopped)
@@ -27,5 +27,5 @@ If (WEB Is server running:C1313)
 	$vb_stopped:=(ok=1)
 	
 	ASSERT:C1129($vb_stopped;"web server failed to stop")
-	acme__moduleDebugDateTimeLine (Choose:C955($vb_stopped;4;2);Current method name:C684;"web server stopped. "+Choose:C955(ok=1;"[OK]";"[KO]"))
+	acme__log (Choose:C955($vb_stopped;4;2);Current method name:C684;"web server stopped. "+Choose:C955(ok=1;"[OK]";"[KO]"))
 End if 

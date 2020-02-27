@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__opensslPathGet

@@ -91,8 +91,8 @@ If ($vl_nbParam>0)
 			
 		End if 
 	End if 
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"workingDir : \""+$vt_workingDir+"\"")
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"directoryUrl : \""+$vt_directoryUrl+"\"")
+	acme__log (4;Current method name:C684;"workingDir : \""+$vt_workingDir+"\"")
+	acme__log (4;Current method name:C684;"directoryUrl : \""+$vt_directoryUrl+"\"")
 	
 	OB SET:C1220($vb_newOrderObject;"workingDir";$vt_workingDir)
 	OB SET:C1220($vb_newOrderObject;"directoryUrl";$vt_directoryUrl)
@@ -112,7 +112,7 @@ If ($vl_nbParam>0)
 	OB SET ARRAY:C1227($vb_newOrderObject;"identifiers";$to_identifiers)
 	CLEAR VARIABLE:C89($to_identifiers)
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"new order object :\r"+JSON Stringify:C1217($vb_newOrderObject;*))
+	acme__log (4;Current method name:C684;"new order object :\r"+JSON Stringify:C1217($vb_newOrderObject;*))
 	If (False:C215)
 		SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vb_newOrderObject;*))
 	End if 

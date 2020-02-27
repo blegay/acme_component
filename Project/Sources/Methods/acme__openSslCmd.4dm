@@ -39,40 +39,20 @@ $vp_inPtr:=$2
 $vp_outPtr:=$3
 $vp_errPtr:=$4
 
-  //Si (Nombre de paramètres>4)
-  //$vb_checkErrorLevelOnWindows:=$5
-  //Sinon 
-  //$vb_checkErrorLevelOnWindows:=Faux
-  //Fin de si 
-
 C_TEXT:C284($vt_openSslPath)
 $vt_openSslPath:=acme__opensslPathGet 
 
 acme__execbitForce ($vt_openSslPath)
 
-  //FIXER VARIABLE ENVIRONNEMENT("_4D_OPTION_CURRENT_DIRECTORY";$CertFolder)
-
 C_TEXT:C284($vt_openSslCmd)
 $vt_openSslCmd:=$vt_openSslPath+" "+$vt_args
 
-C_BOOLEAN:C305($vb_windows)
-$vb_windows:=ENV_onWindows 
-If ($vb_windows)
-	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_HIDE_CONSOLE";"true")
-	
-	
-	  //<Modif> Bruno LEGAY (BLE) (25/04/2019)
-	  //$vb_checkErrorLevelOnWindows
-	  //$vt_openSslCmd:=$vt_openSslCmd+" & echo %errorlevel%"
-	  //<Modif>
-	
-	
+If (ENV_onWindows )
+	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_HIDE_CONSOLE";"true")  // windows only
 End if 
-
 If (False:C215)
-	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING mode by default
+	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING_EXTERNAL_PROCESS is "true" by default
 End if 
-
 SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_CURRENT_DIRECTORY";Get 4D folder:C485(Database folder:K5:14;*))
 
   // timer
@@ -81,19 +61,6 @@ $vl_ms:=Milliseconds:C459
 
 LAUNCH EXTERNAL PROCESS:C811($vt_openSslCmd;$vp_inPtr->;$vp_outPtr->;$vp_errPtr->)
 $vb_ok:=(ok=1)
-
-  //Si ($vb_windows)
-
-  //Si (Type($vp_outPtr->)=Est un texte)
-  //$vt_out:=$vp_outPtr->
-  //Sinon 
-  //$vt_out:=Convertir vers texte($vp_outPtr->;"UTF-8")
-  //Fin de si 
-
-  //$vb_ok:=(ok=1) & ()
-  //Sinon 
-  //$vb_ok:=(ok=1)
-  //Fin de si 
 
   // timer
 $vl_ms:=UTL_durationDifference ($vl_ms;Milliseconds:C459)
@@ -105,8 +72,6 @@ End if
 
 If ((Type:C295($vp_outPtr->)=Is text:K8:3))
 	$vt_outDebug:=$vp_outPtr->
-	  //Sinon 
-	  //$vt_outDebug:=Convertir vers texte($vp_outPtr->;"UTF-8")
 End if 
 
 If ((Type:C295($vp_errPtr->)=Is text:K8:3))
@@ -114,9 +79,9 @@ If ((Type:C295($vp_errPtr->)=Is text:K8:3))
 End if 
 
 If ($vb_ok)
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"cmd \""+$vt_openSslCmd+"\""+", in : \""+$vt_inDebug+"\""+", out : \""+$vt_outDebug+"\""+", err : \""+$vt_errDebug+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" success. [OK]")
+	acme__log (4;Current method name:C684;"cmd \""+$vt_openSslCmd+"\""+", in : \""+$vt_inDebug+"\""+", out : \""+$vt_outDebug+"\""+", err : \""+$vt_errDebug+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" success. [OK]")
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"cmd \""+$vt_openSslCmd+"\""+", in : \""+$vt_inDebug+"\""+", out : \""+$vt_outDebug+"\""+", err : \""+$vt_errDebug+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" failed. [KO]")
+	acme__log (2;Current method name:C684;"cmd \""+$vt_openSslCmd+"\""+", in : \""+$vt_inDebug+"\""+", out : \""+$vt_outDebug+"\""+", err : \""+$vt_errDebug+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" failed. [KO]")
 End if 
 
 $0:=$vb_ok

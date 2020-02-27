@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : OB_newObject
@@ -18,6 +18,7 @@
 
 C_OBJECT:C1216($0;$vo_object)
 
-$vo_object:=JSON Parse:C1218("{}")
+$vo_object:=New object:C1471  // 4D v16 R3
+  //$vo_object:=JSON Parse("{}")
 
 $0:=$vo_object

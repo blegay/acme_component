@@ -12,7 +12,7 @@
   //
   // curl https://acme-staging-v02.api.letsencrypt.org/directory
   // {
-  //   "IKpf1NyBPSU": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
+  //   "IKpf1NyBPSU": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/1234",
   //   "keyChange": "https://acme-staging-v02.api.letsencrypt.org/acme/key-change",
   //   "meta": {
   //     "caaIdentities": [
@@ -41,6 +41,12 @@ C_TEXT:C284($1;$vt_directoryUrl)
 C_TEXT:C284($2;$vt_serviceKey)
 
 ASSERT:C1129(Count parameters:C259>1;"requires 2 parameters")
+
+ASSERT:C1129(Length:C16($1)>0;"directory url \""+$1+"\" should not be empty")
+ASSERT:C1129(TXT_isEqualStrict ($2;"newAccount") | \
+TXT_isEqualStrict ($2;"newNonce") | \
+TXT_isEqualStrict ($2;"newOrder") | \
+TXT_isEqualStrict ($2;"revokeCert");"serviceKey \""+$2+"\" should be \"newAccount\", \"newNonce\", \"newOrder\" or \"revokeCert\"")
 
 $vt_serviceUrl:=""
 $vt_directoryUrl:=$1
@@ -81,7 +87,7 @@ Repeat
 		  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 		C_LONGINT:C283($vl_networkError)
 		$vl_networkError:=acme__errorLastGet 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP GET method:K71:1+", url : \""+$vt_directoryUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+		acme__log (2;Current method name:C684;"method : "+HTTP GET method:K71:1+", url : \""+$vt_directoryUrl+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 		
 	End if 
 	acme__errorHdlrAfter ($vt_errorHandler)
@@ -120,13 +126,13 @@ Repeat
 				
 				If (OB Is defined:C1231($vo_responseObject;$vt_serviceKey))
 					$vt_serviceUrl:=OB Get:C1224($vo_responseObject;$vt_serviceKey;Is text:K8:3)
-					acme__moduleDebugDateTimeLine (4;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
+					acme__log (4;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
 						", status : "+String:C10($vl_status)+\
 						", service : \""+$vt_serviceKey+"\""+\
 						", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
 						", serviceUrl : \""+$vt_serviceUrl+"\". [OK]")
 				Else 
-					acme__moduleDebugDateTimeLine (2;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
+					acme__log (2;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
 						", status : "+String:C10($vl_status)+\
 						", service : \""+$vt_serviceKey+"\""+\
 						", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
@@ -134,13 +140,13 @@ Repeat
 				End if 
 				
 			Else 
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
+				acme__log (2;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
 					", status : "+String:C10($vl_status)+\
 					", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
 					", unexpected Content-Type : \""+$vt_contentType+"\". [KO]")
 			End if 
 		Else 
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
+			acme__log (2;Current method name:C684;"directory url : \""+$vt_directoryUrl+"\""+\
 				", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
 				", status : "+String:C10($vl_status)+". [KO]")
 			
@@ -151,9 +157,9 @@ Repeat
 	  //<Modif> Bruno LEGAY (BLE) (27/01/2020)
 	If (Length:C16($vt_serviceUrl)=0)
 		acme__notify ("http GET \""+$vt_directoryUrl+"\" failed ...")
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"pausing process "+String:C10(Current process:C322)+" for 120s...")
+		acme__log (4;Current method name:C684;"pausing process "+String:C10(Current process:C322)+" for 120s...")
 		DELAY PROCESS:C323(Current process:C322;2*60*60)  // pause 2 minutes
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"wake-up")
+		acme__log (4;Current method name:C684;"wake-up")
 	End if 
 Until (Length:C16($vt_serviceUrl)>0)
   //<Modif>

@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : ENV_onWindows
@@ -18,7 +18,7 @@
 
 C_BOOLEAN:C305($0;$vb_onWindows)
 
-$vb_onWindows:=Is Windows:C1573
+$vb_onWindows:=Is Windows:C1573  // 4D v17
 
   //C_LONGINT($vl_plateform)
   //PLATFORM PROPERTIES($vl_plateform)

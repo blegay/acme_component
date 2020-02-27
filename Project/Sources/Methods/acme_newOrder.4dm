@@ -187,7 +187,7 @@ If ($vl_nbParam>1)
 		  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 		C_LONGINT:C283($vl_networkError)
 		$vl_networkError:=acme__errorLastGet 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+		acme__log (2;Current method name:C684;"method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 		
 	End if 
 	acme__errorHdlrAfter ($vt_errorHandler)
@@ -203,7 +203,7 @@ If ($vl_nbParam>1)
 	Case of 
 		: ($vl_status=200)  //account already created, account update ?
 			
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+", account already created ?. [KO]")
+			acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+", account already created ?. [KO]")
 			
 		: ($vl_status=201)  // certificate issuance request created
 			
@@ -236,7 +236,7 @@ If ($vl_nbParam>1)
 				C_BOOLEAN:C305($vb_direCreated)
 				$vb_direCreated:=(ok=1)
 				ASSERT:C1129($vb_direCreated;"failed to create \""+$vt_orderDir+"\" directory")
-				acme__moduleDebugDateTimeLine (Choose:C955($vb_direCreated;4;2);Current method name:C684;"order dir : \""+$vt_orderDir+". "+Choose:C955($vb_direCreated;"[OK]";"[KO]"))
+				acme__log (Choose:C955($vb_direCreated;4;2);Current method name:C684;"order dir : \""+$vt_orderDir+". "+Choose:C955($vb_direCreated;"[OK]";"[KO]"))
 				
 				  // generate an rsa key pair in the order dir
 				acme_rsakeyPairGenerate ($vt_orderDir)
@@ -277,17 +277,17 @@ If ($vl_nbParam>1)
 				End if 
 				
 				C_LONGINT:C283($vl_nbSecondsMax)
-				$vl_nbSecondsMax:=120
+				$vl_nbSecondsMax:=120  // wait two minutes 
 				acme_orderAuthorisationWait ($vo_responseBody;$vl_nbSecondsMax)
 				
-				acme__moduleDebugDateTimeLine (4;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+\
+				acme__log (4;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+\
 					", duration : "+UTL_durationMsDebug ($vl_ms)+\
 					", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
 					", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+\
 					", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+\
 					", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
 			Else 
-				acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_url+"\""+\
+				acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+\
 					", status : "+String:C10($vl_status)+\
 					", duration : "+UTL_durationMsDebug ($vl_ms)+\
 					", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
@@ -306,7 +306,7 @@ If ($vl_nbParam>1)
 				$vt_json:=Convert to text:C1012($vx_responseBody;"UTF-8")
 			End if 
 			
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"url : \""+$vt_url+"\""+\
+			acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\

@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__tokenToFilenameSafe
@@ -42,7 +42,7 @@ If (True:C214)
 	
 	$vt_filename:=$vt_token+"-"+$vt_tokenMd5+".txt"
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"token : \""+$vt_token+"\", token md5 : \""+$vt_tokenMd5+"\", file name : \""+$vt_filename+"\"")
+	acme__log (4;Current method name:C684;"token : \""+$vt_token+"\", token md5 : \""+$vt_tokenMd5+"\", file name : \""+$vt_filename+"\"")
 Else 
 	$vt_filename:=$vt_token+".txt"
 End if 

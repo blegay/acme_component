@@ -46,13 +46,12 @@ C_TEXT:C284($vt_keyPrivPath;$vt_keyPubPath)
 $vt_keyPubPath:=$vt_certDir+$vt_filenamebase+".pub"
 $vt_keyPrivPath:=$vt_certDir+$vt_filenamebase+".pem"
 
-If ((Test path name:C476($vt_keyPubPath)=Is a document:K24:1) & \
-(Test path name:C476($vt_keyPrivPath)=Is a document:K24:1))
+If ((Test path name:C476($vt_keyPubPath)=Is a document:K24:1) & (Test path name:C476($vt_keyPrivPath)=Is a document:K24:1))
 	  // done
 	
 	$vb_ok:=True:C214
 	
-	acme__moduleDebugDateTimeLine (6;Current method name:C684;"files \""+$vt_keyPrivPath+"\" and \""+$vt_keyPubPath+"\" already exist (left untouched). [OK]")
+	acme__log (6;Current method name:C684;"files \""+$vt_keyPrivPath+"\" and \""+$vt_keyPubPath+"\" already exist (left untouched). [OK]")
 	
 Else 
 	
@@ -64,9 +63,9 @@ Else
 	  // generate rsa key pairs (in pem format)
 	C_LONGINT:C283($vl_size)
 	$vl_size:=2048
-	acme__moduleDebugDateTimeLine (6;Current method name:C684;"generating rsa key pair ("+String:C10($vl_size)+" bits)...")
+	acme__log (6;Current method name:C684;"generating rsa key pair ("+String:C10($vl_size)+" bits)...")
 	acme__keyPairRsaGenerate (->$vx_keyPrivBlob;->$vx_keyPubBlob;$vl_size)
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"rsa key pair ("+String:C10($vl_size)+" bits) generated")
+	acme__log (4;Current method name:C684;"rsa key pair ("+String:C10($vl_size)+" bits) generated")
 	
 	$vb_ok:=True:C214
 	
@@ -74,19 +73,19 @@ Else
 	BLOB TO DOCUMENT:C526($vt_keyPrivPath;$vx_keyPrivBlob)
 	If (ok=1)
 		acme__keyFileProtect ($vt_keyPrivPath)
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"private key written to file \""+$vt_keyPubPath+"\". [OK]")
+		acme__log (4;Current method name:C684;"private key written to file \""+$vt_keyPubPath+"\". [OK]")
 	Else 
 		$vb_ok:=False:C215
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"error writing private key to file \""+$vt_keyPubPath+"\". [KO]")
+		acme__log (2;Current method name:C684;"error writing private key to file \""+$vt_keyPubPath+"\". [KO]")
 	End if 
 	
 	  // write public key file to disk
 	BLOB TO DOCUMENT:C526($vt_keyPubPath;$vx_keyPubBlob)
 	If (ok=1)
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"public key written to file \""+$vt_keyPubPath+"\". [OK]")
+		acme__log (4;Current method name:C684;"public key written to file \""+$vt_keyPubPath+"\". [OK]")
 	Else 
 		$vb_ok:=False:C215
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"error writing public key to file \""+$vt_keyPubPath+"\". [KO]")
+		acme__log (2;Current method name:C684;"error writing public key to file \""+$vt_keyPubPath+"\". [KO]")
 	End if 
 	
 	SET BLOB SIZE:C606($vx_keyPrivBlob;0)

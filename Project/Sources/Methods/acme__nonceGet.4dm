@@ -18,12 +18,7 @@
   //@xdoc-end
   //================================================================================
 
-  //@parameter[1-IN-directoryUrl-TEXT] : directory url (e.g. "https://acme-v02.api.letsencrypt.org/directory")
-
 C_TEXT:C284($0;$vt_nonce)  // nonce (e.g. "A-oIXIMunC6AL2VJqn-g0EobW_PidYijJ-KhZbGz3k4")
-  //C_TEXTE($1;$vt_directoryUrl)  // directory url (e.g. "https://acme-v02.api.letsencrypt.org/directory")
-
-  //ASSERT(Nombre de paramètres>0;"requires 1 parameter")
 
 $vt_nonce:=""
 
@@ -42,7 +37,7 @@ If ((Length:C16(vt_ACME_nonceLast)>0) & (vl_ACME_nonceTickcount#0))
 	If (($vl_diffTicks>=0) & ($vl_diffTicks<$vl_nonceDurationMaxTicks))
 		$vt_nonce:=vt_ACME_nonceLast
 		
-		acme__moduleDebugDateTimeLine (6;Current method name:C684;"nonce \""+vt_ACME_nonceLast+"\" reused"+\
+		acme__log (6;Current method name:C684;"nonce \""+vt_ACME_nonceLast+"\" reused"+\
 			", nonce tick count : "+String:C10(vl_ACME_nonceTickcount)+\
 			", now tick count : "+String:C10($vl_nowTicks)+\
 			", diff : "+String:C10($vl_diffTicks)+" ticks"+\
@@ -50,7 +45,7 @@ If ((Length:C16(vt_ACME_nonceLast)>0) & (vl_ACME_nonceTickcount#0))
 			", diff max : "+String:C10($vl_nonceDurationMaxSecs)+" seconds")
 	Else 
 		
-		acme__moduleDebugDateTimeLine (6;Current method name:C684;"nonce \""+vt_ACME_nonceLast+"\" too old"+\
+		acme__log (6;Current method name:C684;"nonce \""+vt_ACME_nonceLast+"\" too old"+\
 			", nonce tick count : "+String:C10(vl_ACME_nonceTickcount)+\
 			", now tick count : "+String:C10($vl_nowTicks)+\
 			", diff : "+String:C10($vl_diffTicks)+" ticks"+\
@@ -66,16 +61,11 @@ If (Length:C16($vt_nonce)=0)
 	C_TEXT:C284($vt_directoryUrl)
 	$vt_directoryUrl:=acme_directoryUrlGet 
 	
-	  //C_TEXTE($1;$vt_directoryUrl) 
-	  //$vt_directoryUrl:=$1
-	
 	C_TEXT:C284($vt_url)
 	$vt_url:=acme__directoryUrlGet ($vt_directoryUrl;"newNonce")
 	  // "https://acme-staging-v02.api.letsencrypt.org/acme/new-nonce"
 	
-	  //<Modif> Bruno LEGAY (BLE) (27/01/2020)
 	Repeat 
-		  //<Modif>
 		
 		ARRAY TEXT:C222($tt_headerKey;0)
 		ARRAY TEXT:C222($tt_headerValue;0)
@@ -106,7 +96,7 @@ If (Length:C16($vt_nonce)=0)
 			  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 			C_LONGINT:C283($vl_networkError)
 			$vl_networkError:=acme__errorLastGet 
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+			acme__log (2;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 			
 		End if 
 		
@@ -116,25 +106,23 @@ If (Length:C16($vt_nonce)=0)
 			  // HEAD on https://acme-staging-v02.api.letsencrypt.org/acme/new-nonce will return 204 (No content)
 			$vt_nonce:=acme__httpHeaderGetValForKey (->$tt_headerKey;->$tt_headerValue;"Replay-Nonce")
 			
-			acme__moduleDebugDateTimeLine (6;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", nonce : \""+$vt_nonce+"\". [OK]")
+			acme__log (6;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", nonce : \""+$vt_nonce+"\". [OK]")
 		Else 
 			ASSERT:C1129(False:C215;"HEAD on \""+$vt_url+"\" failed, status : "+String:C10($vl_status))
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+". [KO]")
+			acme__log (2;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+". [KO]")
 		End if 
 		
 		
 		SET BLOB SIZE:C606($vx_requestBody;0)
 		SET BLOB SIZE:C606($vx_responseBody;0)
 		
-		  //<Modif> Bruno LEGAY (BLE) (27/01/2020)
 		If (Length:C16($vt_nonce)=0)
 			acme__notify ("http HEAD \""+$vt_url+"\" failed...")
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"pausing process "+String:C10(Current process:C322)+" for 120s...")
+			acme__log (4;Current method name:C684;"pausing process "+String:C10(Current process:C322)+" for 120s...")
 			DELAY PROCESS:C323(Current process:C322;2*60*60)  // pause 2 minutes
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"wake-up")
+			acme__log (4;Current method name:C684;"wake-up")
 		End if 
 	Until (Length:C16($vt_nonce)>0)
-	  //<Modif>
 	
 End if 
 

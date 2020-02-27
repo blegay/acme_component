@@ -41,8 +41,10 @@ If (ENV_onWindows )
 		$vt_out:=""
 		$vt_err:=""
 		
-		SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING mode by default
 		SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_HIDE_CONSOLE";"true")  // windows only
+		If (False:C215)
+			SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING_EXTERNAL_PROCESS is "true" by default
+		End if 
 		SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_CURRENT_DIRECTORY";Get 4D folder:C485(Database folder:K5:14;*))
 		
 		LAUNCH EXTERNAL PROCESS:C811($vt_cmd;$vt_in;$vt_out;$vt_err)
@@ -52,7 +54,7 @@ If (ENV_onWindows )
 		  // attrib -R filename ?
 	End if 
 	
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"protecting file \""+$vt_privateKeyPath+"\" on windows ?")
+	acme__log (2;Current method name:C684;"protecting file \""+$vt_privateKeyPath+"\" on windows ?")
 	
 Else 
 	
@@ -65,15 +67,14 @@ Else
 	
 	If (False:C215)
 		SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_HIDE_CONSOLE";"true")  // windows only
+		SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING_EXTERNAL_PROCESS is "true" by default
 	End if 
-	
-	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING mode by default
 	SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_CURRENT_DIRECTORY";Get 4D folder:C485(Database folder:K5:14;*))
 	
 	LAUNCH EXTERNAL PROCESS:C811($vt_cmd;$vt_in;$vt_out;$vt_err)
 	$vb_ok:=(ok=1)
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"command : \""+$vt_cmd+"\", in : \""+$vt_in+"\", out : \""+$vt_out+"\", err : \""+$vt_err+"\". "+Choose:C955($vb_ok;"[OK]";"[KO]"))
+	acme__log (4;Current method name:C684;"command : \""+$vt_cmd+"\", in : \""+$vt_in+"\", out : \""+$vt_out+"\", err : \""+$vt_err+"\". "+Choose:C955($vb_ok;"[OK]";"[KO]"))
 	
 End if 
 $0:=$vb_ok

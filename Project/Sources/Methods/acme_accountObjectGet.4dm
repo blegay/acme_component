@@ -74,10 +74,10 @@ If (acme__domainExtractFromUrl ($vt_directoryUrl;->$vt_caDomain))
 		$vo_accountObject:=JSON Parse:C1218($vt_json)
 		
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"file \""+$vt_accountJsonFilePath+"\" not found. [KO]")
+		acme__log (2;Current method name:C684;"file \""+$vt_accountJsonFilePath+"\" not found. [KO]")
 	End if 
 	
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"domain not found in url \""+$vt_directoryUrl+"\". [KO]")
+	acme__log (2;Current method name:C684;"domain not found in url \""+$vt_directoryUrl+"\". [KO]")
 End if 
 $0:=$vo_accountObject

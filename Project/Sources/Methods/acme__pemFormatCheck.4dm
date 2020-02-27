@@ -63,6 +63,7 @@ If ($vl_nbParam>1)
 	$vt_startTag:="-----BEGIN "+$vt_pemTypeKey+"-----\n"
 	$vt_endTag:="-----END "+$vt_pemTypeKey+"-----\n"
 	
+	
 	  // pattern to search for non base64 chracters
 	C_TEXT:C284($vt_regex)
 	$vt_regex:="^[-A-Za-z0-9+/]+$"
@@ -126,7 +127,7 @@ If ($vl_nbParam>1)
 	
 	$vb_ok:=(($vl_count>0) & ($vl_count=$vl_countValid))
 	
-	acme__moduleDebugDateTimeLine (Choose:C955($vb_ok;6;2);Current method name:C684;"pem data \""+$vt_pemDebug+"\" "+Choose:C955($vb_ok;" valid. [OK]";"  invalid. [KO]"))
+	acme__log (Choose:C955($vb_ok;6;2);Current method name:C684;"pem data \""+$vt_pemDebug+"\" "+Choose:C955($vb_ok;" valid. [OK]";"  invalid. [KO]"))
 End if 
 
 $0:=$vb_ok

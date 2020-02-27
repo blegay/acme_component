@@ -92,6 +92,7 @@ If (Size of array:C274($tt_authUrl)>0)
 		
 		C_OBJECT:C1216($vo_authObj)
 		
+		  // retrieves the authorization object from Let's Encrypt®
 		If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 			
 			ASSERT:C1129(OB Is defined:C1231($vo_authObj;"identifier"))
@@ -108,7 +109,7 @@ If (Size of array:C274($tt_authUrl)>0)
 			
 			If ($vt_authorizationStatus="pending")
 				
-				acme__moduleDebugDateTimeLine (6;Current method name:C684;"domain : \""+$vt_domain+"\""+\
+				acme__log (6;Current method name:C684;"domain : \""+$vt_domain+"\""+\
 					", status : "+$vt_authorizationStatus)
 				
 				  // look at the next one
@@ -116,6 +117,7 @@ If (Size of array:C274($tt_authUrl)>0)
 					$vl_index:=$vl_index+1
 				Else 
 					$vl_index:=1
+					DELAY PROCESS:C323(Current process:C322;60)  // pause the process 1 second
 				End if 
 				
 			Else 
@@ -147,7 +149,7 @@ If (Size of array:C274($tt_authUrl)>0)
 					$vl_index:=1
 				End if 
 				
-				acme__moduleDebugDateTimeLine (4;Current method name:C684;"domain : \""+$vt_domain+"\""+\
+				acme__log (4;Current method name:C684;"domain : \""+$vt_domain+"\""+\
 					", status : "+$vt_authorizationStatus)
 				
 			End if 
@@ -167,7 +169,7 @@ If (Size of array:C274($tt_authUrl)>0)
 		
 	Until ($vb_exit)
 	
-	acme__moduleDebugDateTimeLine (Choose:C955($vb_ok;4;2);Current method name:C684;"pending : "+String:C10($vl_pendingCount)+\
+	acme__log (Choose:C955($vb_ok;4;2);Current method name:C684;"pending : "+String:C10($vl_pendingCount)+\
 		", invalid : "+String:C10($vl_validCount)+\
 		", invalid : "+String:C10($vl_invalidCount)+\
 		", deactivated : "+String:C10($vl_deactivatedCount)+\

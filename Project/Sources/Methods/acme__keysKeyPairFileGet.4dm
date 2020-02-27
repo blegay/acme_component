@@ -43,17 +43,17 @@ If (Length:C16($vt_keyPath)>0)
 		
 		DOCUMENT TO BLOB:C525($vt_keyPath;$vx_key)
 		If (ok=1)
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"key file \""+$vt_keyPath+"\" loaded. [OK]")
+			acme__log (4;Current method name:C684;"key file \""+$vt_keyPath+"\" loaded. [OK]")
 		Else 
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;"key file \""+$vt_keyPath+"\" could not be loaded. [KO]")
+			acme__log (2;Current method name:C684;"key file \""+$vt_keyPath+"\" could not be loaded. [KO]")
 		End if 
 		
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"key file \""+$vt_keyPath+"\" does not exist, key type : \""+$vt_keyType+"\", key dir : \""+$vt_keyDir+"\". [KO]")
+		acme__log (2;Current method name:C684;"key file \""+$vt_keyPath+"\" does not exist, key type : \""+$vt_keyType+"\", key dir : \""+$vt_keyDir+"\". [KO]")
 	End if 
 	
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"empty key path for key type : \""+$vt_keyType+"\", key dir : \""+$vt_keyDir+"\". [KO]")
+	acme__log (2;Current method name:C684;"empty key path for key type : \""+$vt_keyType+"\", key dir : \""+$vt_keyDir+"\". [KO]")
 End if 
 
 $0:=$vx_key

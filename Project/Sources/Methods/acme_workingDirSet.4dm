@@ -34,10 +34,26 @@ If (Count parameters:C259>0)
 			$vt_workingDir:=$vt_workingDir+Folder separator:K24:12
 		End if 
 		
-		If (Not:C34(TXT_isEqualStrict (<>vt_ACME_workingDir;$vt_workingDir)))
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"setting \"workingDir\" : \""+$vt_workingDir+"\"")
-			<>vt_ACME_workingDir:=$vt_workingDir
+		If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
+			
+			If (Not:C34(TXT_isEqualStrict (Storage:C1525.acme.config.workingDir;$vt_workingDir)))
+				
+				Use (Storage:C1525.acme)  // locking "Storage.acme" or "Storage.acme.config" is juste the same
+					Storage:C1525.acme.config.workingDir:=$vt_workingDir
+				End use 
+				
+			End if 
+		Else 
+			
+			  // unfortunately, the thread-safe compiler directive do not work with interprocess variables (v18.0)...
+			  //%T-
+			If (Not:C34(TXT_isEqualStrict (<>vt_ACME_workingDir;$vt_workingDir)))
+				acme__log (4;Current method name:C684;"setting \"workingDir\" : \""+$vt_workingDir+"\"")
+				<>vt_ACME_workingDir:=$vt_workingDir
+			End if 
+			  //%T+
 		End if 
+		
 	End if 
 	
 End if 

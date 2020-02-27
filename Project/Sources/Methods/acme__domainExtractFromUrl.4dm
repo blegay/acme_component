@@ -31,7 +31,7 @@ $vt_regex:="^https?://(.*?)/.*$"
 
 $vb_ok:=TXT_regexGetMatchingGroup ($vt_regex;$vt_directoryUrl;1;$vp_domainPtr)
 If (Not:C34($vb_ok))
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"domain not found in url \""+$vt_directoryUrl+"\" with regex \""+$vt_regex+"\". [KO]")
+	acme__log (2;Current method name:C684;"domain not found in url \""+$vt_directoryUrl+"\" with regex \""+$vt_regex+"\". [KO]")
 End if 
 
 $0:=$vb_ok

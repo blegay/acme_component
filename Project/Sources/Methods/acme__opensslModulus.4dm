@@ -37,10 +37,7 @@ $vp_inPtr:=$2
   // openssl x509 -noout -modulus -in cert.pem
 
 C_TEXT:C284($vt_args)
-$vt_args:=$vt_type+" "+\
-" -noout "+\
-" -modulus "+\
-" -inform "+Choose:C955(Type:C295($vp_inPtr->)=Is BLOB:K8:12;"DER";"PEM")
+$vt_args:=$vt_type+" "+" -noout "+" -modulus "+" -inform "+Choose:C955(Type:C295($vp_inPtr->)=Is BLOB:K8:12;"DER";"PEM")
 
 acme__opensslConfigDefault 
 
@@ -49,9 +46,9 @@ $vt_err:=""
 
 If (acme__openSslCmd ($vt_args;$vp_inPtr;->$vx_modulus;->$vt_err))
 	  //$vb_ok:=Vrai
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"openssl "+$vt_type+" modulus (md5 : "+Generate digest:C1147($vx_modulus;MD5 digest:K66:1)+"). [OK]")
+	acme__log (4;Current method name:C684;"openssl "+$vt_type+" modulus (md5 : "+Generate digest:C1147($vx_modulus;MD5 digest:K66:1)+"). [OK]")
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"openssl "+$vt_type+" modulus ("+$vt_err+"). [KO]")
+	acme__log (2;Current method name:C684;"openssl "+$vt_type+" modulus ("+$vt_err+"). [KO]")
 	ASSERT:C1129(False:C215;$vt_err)
 End if 
 

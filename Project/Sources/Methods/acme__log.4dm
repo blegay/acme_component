@@ -1,7 +1,7 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme__moduleDebugDateTimeLine
+  //@name : acme__log
   //@scope : public
   //@deprecated : no
   //@description : This method will send debug to a log file using the optional "log4D_component" 
@@ -9,7 +9,7 @@
   //@parameter[1-IN-level-LONGINT] : level (1-9)
   //@parameter[2-IN-debugMessage-TEXT] : debug message
   //@notes :
-  //@example : acme__moduleDebugDateTimeLine 
+  //@example : acme__log
   //@see : 
   //@version : 1.00.00
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2008
@@ -29,9 +29,11 @@ If (Count parameters:C259>2)
 	C_TEXT:C284($vt_moduleCode)
 	$vt_moduleCode:="acme"
 	
-	If (Length:C16(<>vt_ACME_dbgMethodName)>0)
-		EXECUTE METHOD:C1007(<>vt_ACME_dbgMethodName;*;$vt_moduleCode;$vl_level;$vt_methodName;$vt_debugMessage)
-	End if 
+	  //If (Length(<>vt_ACME_dbgMethodName)>0)  // "log4D_component" / "dbg_component" is installed
+	  //EXECUTE METHOD(<>vt_ACME_dbgMethodName;*;$vt_moduleCode;$vl_level;$vt_methodName;$vt_debugMessage)
+	  //Else   // use the "acme__logWorker" method as a worker
+	CALL WORKER:C1389("acme_logWorker";"acme__logWorker";$vt_moduleCode;$vl_level;$vt_methodName;$vt_debugMessage)
+	  //End if 
 	
 	If ($vl_level<=2)
 		acme__logEvent ("ERROR : - "+$vt_moduleCode+" - "+String:C10($vl_level;"00")+" - "+$vt_methodName+" ==> "+$vt_debugMessage)

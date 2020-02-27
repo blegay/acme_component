@@ -86,9 +86,9 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 	$vb_wildcard:=False:C215
 	If (OB Is defined:C1231($vo_authObj;"wildcard"))
 		$vb_wildcard:=OB Get:C1224($vo_authObj;"wildcard";Is boolean:K8:9)
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"wildcard : "+Choose:C955($vb_wildcard;"true";"false"))
+		acme__log (4;Current method name:C684;"wildcard : "+Choose:C955($vb_wildcard;"true";"false"))
 	Else 
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"no \"wildcard\" property")
+		acme__log (4;Current method name:C684;"no \"wildcard\" property")
 	End if 
 	  //<Modif>
 	
@@ -154,7 +154,7 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 		$vt_challengeFilePath:=$vt_challengeDirPath+acme__tokenToFilenameSafe ($vt_token)
 		UTL_textToFile ($vt_challengeFilePath;$vt_challengeResponse)
 		
-		acme__moduleDebugDateTimeLine (4;Current method name:C684;"challengeResponse file \""+$vt_challengeFilePath+"\" created, file content : "+$vt_challengeResponse)
+		acme__log (4;Current method name:C684;"challengeResponse file \""+$vt_challengeFilePath+"\" created, file content : "+$vt_challengeResponse)
 		
 		If (False:C215)  // for debugging
 			SHOW ON DISK:C922($vt_challengeFilePath)
@@ -163,16 +163,16 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 		  // start 4D web server if necessary
 		  // database method "On web connexion" calling "acme_onWeConnection"
 		If (Not:C34(WEB Is server running:C1313))
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"starting web server...")
+			acme__log (4;Current method name:C684;"starting web server...")
 			acme__notify ("4D http server : starting...")
 			WEB START SERVER:C617
 			ASSERT:C1129(ok=1;"web server failed to start")
-			acme__moduleDebugDateTimeLine (Choose:C955(ok=1;4;2);Current method name:C684;"web server started. "+Choose:C955(ok=1;"[OK]";"[KO]"))
+			acme__log (Choose:C955(ok=1;4;2);Current method name:C684;"web server started. "+Choose:C955(ok=1;"[OK]";"[KO]"))
 			
 			acme_logHttpServerInfos 
 			
 		Else 
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"web server already running...")
+			acme__log (4;Current method name:C684;"web server already running...")
 		End if 
 		
 		  // get the CA to do the challenge

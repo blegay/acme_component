@@ -123,9 +123,20 @@ If (Length:C16($vt_pem)>0)
 			  // get the text without the tags (to check it is "clean")
 			$vt_pemDataPure:=Substring:C12($vt_pem;$tl_pos{0}+$tl_len{0};$vl_pos-$tl_pos{0}-$tl_len{0})
 			
+			  // -----BEGIN RSA PRIVATE KEY-----
+			  // Proc-Type: 4,ENCRYPTED
+			  // DEK-Info: AES-256-CBC,D60C7F6
+			  // 
+			  // kDVqIxEbnN/jQp6429HeILy3vYqOWYUuKDlclHxC753JKitPn3Dfhg4g918osVqR
+			  // ...
+			  // 1Zxh2TRysMLLsiDmqxjMqLBU1RtZWrLJXAsGPtznTpPIEVsjSZbG8fe6/Q2pi1yW
+			  // -----END RSA PRIVATE KEY-----
+			
+			
 			If (Length:C16($vt_pemDataPure)>0)  // make sure the pem data is "clean"
 				C_TEXT:C284($vt_regexCheck)
-				$vt_regexCheck:="(?m)^[-A-Za-z0-9+/\n]+$"
+				$vt_regexCheck:="(?m)^(?:[-A-Za-z0-9+/ :,\n]+\n\n)?[-A-Za-z0-9+/\n]+$"
+				  //$vt_regexCheck:="(?m)^[-A-Za-z0-9+/\n]+$"
 				
 				If (Match regex:C1019($vt_regexCheck;$vt_pemDataPure;1;*))
 					

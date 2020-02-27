@@ -61,19 +61,13 @@ Else
 End if 
 
 C_TEXT:C284($vt_args)
-$vt_args:=$vt_type+" "+\
-" -noout "+\
-" -"+$vt_param+" "+\
-" -inform "+$vt_inform
+$vt_args:=$vt_type+" "+" -noout "+" -"+$vt_param+" "+" -inform "+$vt_inform
 
 acme__opensslConfigDefault 
 
 If (False:C215)
 	C_TEXT:C284($vt_args)
-	$vt_args:=$vt_type+" "+\
-		" -noout "+\
-		" -text "+\
-		" -inform "+Choose:C955(Type:C295($vp_inPtr->)=Is BLOB:K8:12;"DER";"PEM")
+	$vt_args:=$vt_type+" "+" -noout "+" -text "+" -inform "+Choose:C955(Type:C295($vp_inPtr->)=Is BLOB:K8:12;"DER";"PEM")
 End if 
 
 C_TEXT:C284($vt_err)
@@ -81,9 +75,9 @@ $vt_err:=""
 
 If (acme__openSslCmd ($vt_args;$vp_inPtr;->$vt_text;->$vt_err))
 	  //$vb_ok:=Vrai
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"openssl "+$vt_type+" text \r"+$vt_text+"\r [OK]")
+	acme__log (4;Current method name:C684;"openssl "+$vt_type+" text \r"+$vt_text+"\r [OK]")
 Else 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"openssl "+$vt_type+" text ("+$vt_err+"). [KO]")
+	acme__log (2;Current method name:C684;"openssl "+$vt_type+" text ("+$vt_err+"). [KO]")
 	ASSERT:C1129(False:C215;$vt_err)
 End if 
 

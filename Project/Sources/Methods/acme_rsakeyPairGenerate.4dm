@@ -44,16 +44,14 @@ If (True:C214)  //(Tester chemin acces($vt_privateKeyPath)#Est un document)  // 
 	C_LONGINT:C283($vl_size)
 	$vl_size:=2048
 	
-	acme__moduleDebugDateTimeLine (4;Current method name:C684;"creating an rsa "+String:C10($vl_size)+"bits key pair in \""+$vt_dirPath+"\"...")
+	acme__log (4;Current method name:C684;"creating an rsa "+String:C10($vl_size)+"bits key pair in \""+$vt_dirPath+"\"...")
 	
 	  //acme__moduleDebugDateTimeLine (4;Nom méthode courante;"generating key pair ("+Chaîne($vl_size)+" bits)...")
 	If (acme__keyPairRsaGenerate (->$vx_keyPrivBlob;->$vx_keyPubBlob;$vl_size))
 		
 		  // if the files already exist, archive them
 		C_TEXT:C284($vt_archiveDir)
-		$vt_archiveDir:=$vt_dirPath+\
-			"archives"+Folder separator:K24:12+\
-			acme__timestamp +Folder separator:K24:12
+		$vt_archiveDir:=$vt_dirPath+"archives"+Folder separator:K24:12+acme__timestamp +Folder separator:K24:12
 		
 		acme__archiveFile ($vt_privateKeyPath;$vt_archiveDir)
 		acme__archiveFile ($vt_publicKeyPath;$vt_archiveDir)

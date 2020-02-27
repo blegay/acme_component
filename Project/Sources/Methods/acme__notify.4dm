@@ -30,4 +30,4 @@ $vt_title:="acme"
 C_LONGINT:C283($vl_delaySecs)
 $vl_delaySecs:=20
 
-DISPLAY NOTIFICATION:C910($vt_title;$vt_message;$vl_delaySecs)
+DISPLAY NOTIFICATION:C910($vt_title;$vt_message;$vl_delaySecs)  // not "thread-safe" compatible (in v18.0) #thread-safe : todo

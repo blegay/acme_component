@@ -35,6 +35,6 @@ Else
 	$vt_activeCertificateDirPath:=Get 4D folder:C485(Database folder:K5:14;*)
 End if 
 
-acme__moduleDebugDateTimeLine (4;Current method name:C684;"active certificates dir path : \""+$vt_activeCertificateDirPath+"\"")
+acme__log (4;Current method name:C684;"active certificates dir path : \""+$vt_activeCertificateDirPath+"\"")
 
 $0:=$vt_activeCertificateDirPath

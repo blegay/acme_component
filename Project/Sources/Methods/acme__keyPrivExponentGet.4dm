@@ -34,9 +34,7 @@ SET BLOB SIZE:C606($vx_private;0)
 DOCUMENT TO BLOB:C525($vt_privateKeyPath;$vx_private)
 
 C_TEXT:C284($vt_args)
-$vt_args:="rsa"+\
-" -noout"+\
-" -text"
+$vt_args:="rsa"+" -noout"+" -text"
 
 acme__opensslConfigDefault 
 
@@ -71,9 +69,9 @@ If (acme__openSslCmd ($vt_args;->$vx_private;->$vt_out;->$vt_err))
 			End if 
 		Until ($vb_done)
 		
-		acme__moduleDebugDateTimeLine (6;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" found exponent value (\""+$vt_regex+"\") : "+$vt_exponent+" success. [OK]")
+		acme__log (6;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" found exponent value (\""+$vt_regex+"\") : "+$vt_exponent+" success. [OK]")
 	Else 
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" exponent value (\""+$vt_regex+"\") not found in "+$vt_out+". [KO]")
+		acme__log (2;Current method name:C684;"private key \""+$vt_privateKeyPath+"\" exponent value (\""+$vt_regex+"\") not found in "+$vt_out+". [KO]")
 	End if 
 	
 End if 

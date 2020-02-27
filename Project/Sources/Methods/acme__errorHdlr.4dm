@@ -33,7 +33,7 @@ $vt_errorFormula:=Error formula  // 4D v15 R4+
 vl_ACME_error:=$vl_error
 
 If ($vl_error#0)
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"error : "+String:C10($vl_error)+\
+	acme__log (2;Current method name:C684;"error : "+String:C10($vl_error)+\
 		", method : \""+$vt_errorMethod+"\""+\
 		", error line : "+String:C10($vl_errorLine)+\
 		", error formula : \""+$vt_errorFormula+"\"")
@@ -48,7 +48,7 @@ GET LAST ERROR STACK:C1015($tl_errorCodes;$tt_intCompArray;$tt_errorText)
 C_LONGINT:C283($vl_errIndex;$vl_errCount)
 $vl_errCount:=Size of array:C274($tl_errorCodes)
 For ($vl_errIndex;1;$vl_errCount)
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;String:C10($vl_errIndex)+" / "+String:C10($vl_errCount)+\
+	acme__log (2;Current method name:C684;String:C10($vl_errIndex)+" / "+String:C10($vl_errCount)+\
 		", error : "+String:C10($tl_errorCodes{$vl_errIndex})+\
 		", internal componnent : "+String:C10($vl_errorLine)+\
 		", error text : \""+$tt_errorText{$vl_errIndex}+"\"")

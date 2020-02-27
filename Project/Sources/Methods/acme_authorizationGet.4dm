@@ -142,7 +142,7 @@ If ($vl_status=0)  // server did not respond
 	  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 	C_LONGINT:C283($vl_networkError)
 	$vl_networkError:=acme__errorLastGet 
-	acme__moduleDebugDateTimeLine (2;Current method name:C684;"method : "+HTTP GET method:K71:1+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+	acme__log (2;Current method name:C684;"method : "+HTTP GET method:K71:1+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 	
 End if 
 acme__errorHdlrAfter ($vt_errorHandler)
@@ -221,13 +221,13 @@ Case of
 			  //   "status": "valid"
 			  // }
 			
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+			acme__log (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
 				", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
 		Else 
-			acme__moduleDebugDateTimeLine (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+			acme__log (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
@@ -246,7 +246,7 @@ Case of
 			OB SET:C1220($vo_httpResponse;"responseBody";$vt_json)
 		End if 
 		
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+		acme__log (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
 			", status : "+String:C10($vl_status)+\
 			", duration : "+UTL_durationMsDebug ($vl_ms)+\
 			", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\

@@ -1,4 +1,4 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"preemptive":"capable"}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_sslCipherListGet
@@ -18,9 +18,23 @@
 
 C_TEXT:C284($0;$vt_cipherList)
 
-C_REAL:C285($vr_result)
-$vr_result:=Get database parameter:C643(SSL cipher list:K37:54;$vt_cipherList)
-acme__moduleDebugDateTimeLine (Choose:C955((ok=1);4;2);Current method name:C684;"cipher list : \""+$vt_cipherList+"\" "+Choose:C955((ok=1);"[OK]";"[KO]"))
+If (ENV_isv17OrAbove )  // "Get database parameter" is not "thread-safe" compatible (in v18.0)
+	
+	C_OBJECT:C1216($vo_webServerInfos)
+	$vo_webServerInfos:=WEB Get server info:C1531
+	
+	$vt_cipherList:=$vo_webServerInfos.security.cipherSuite
+	
+Else 
+	
+	  //%T-
+	C_REAL:C285($vr_databaseParamResult)
+	$vr_databaseParamResult:=Get database parameter:C643(SSL cipher list:K37:54;$vt_cipherList)  // not "thread-safe" compatible (in v18.0) #thread-safe : OK
+	  //%T+
+	
+End if 
+
+acme__log (Choose:C955((ok=1);4;2);Current method name:C684;"cipher list : \""+$vt_cipherList+"\" "+Choose:C955((ok=1);"[OK]";"[KO]"))
 
 $0:=$vt_cipherList
 

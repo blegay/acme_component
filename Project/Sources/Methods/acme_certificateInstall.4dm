@@ -63,7 +63,7 @@ If ($vb_certFileOk & $vt_privateKeyFileOk)
 		ASSERT:C1129($vb_ok;"error copying file \""+$vt_privateKeyPath+"\" to \""+$vt_privKeyDest+"\"")
 		
 		If ($vb_ok)
-			acme__moduleDebugDateTimeLine (4;Current method name:C684;"new certificates installed. [OK]")
+			acme__log (4;Current method name:C684;"new certificates installed. [OK]")
 			acme__notify ("4D http server : new certificates installed !")
 		End if 
 		
@@ -72,10 +72,10 @@ If ($vb_certFileOk & $vt_privateKeyFileOk)
 Else 
 	
 	If (Not:C34($vb_certFileOk))
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"certificate file \""+$vt_certPath+"\" not found. [KO]")
+		acme__log (2;Current method name:C684;"certificate file \""+$vt_certPath+"\" not found. [KO]")
 	End if 
 	If (Not:C34($vt_privateKeyFileOk))
-		acme__moduleDebugDateTimeLine (2;Current method name:C684;"private key file \""+$vt_privateKeyPath+"\" not found. [KO]")
+		acme__log (2;Current method name:C684;"private key file \""+$vt_privateKeyPath+"\" not found. [KO]")
 	End if 
 	
 End if 
