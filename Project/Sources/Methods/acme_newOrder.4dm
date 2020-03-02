@@ -192,9 +192,7 @@ If ($vl_nbParam>1)
 	End if 
 	acme__errorHdlrAfter ($vt_errorHandler)
 	
-	  //<Modif> Bruno LEGAY (BLE) (14/02/2019)
 	acme__nonceRefresh ($vl_status;->$tt_headerKey;->$tt_headerValue)
-	  //<Modif>
 	
 	  // save the request headers into an object
 	C_OBJECT:C1216($vo_responseHeaders)
@@ -212,89 +210,101 @@ If ($vl_nbParam>1)
 			C_TEXT:C284($vt_locationUrl)
 			$vt_locationUrl:=acme__httpHeaderGetValForKey (->$tt_headerKey;->$tt_headerValue;"Location")
 			
-			C_TEXT:C284($vt_id)
-			$vt_id:=acme__urlLocationIdGet ($vt_locationUrl)
-			$vp_orderIdPtr->:=$vt_id
 			
-			C_TEXT:C284($vt_contentType)
-			$vt_contentType:=acme__httpHeaderGetValForKey (->$tt_headerKey;->$tt_headerValue;"Content-Type")
-			If ($vt_contentType="application/json")
-				  //$vb_ok:=Vrai
+			C_TEXT:C284($vt_orderStatus)
+			$vt_orderStatus:=acme__orderStatusGet ($vt_locationUrl)
+			If (($vt_orderStatus="pending") | ($vt_orderStatus="ready") | ($vt_orderStatus="valid"))
 				
-				C_OBJECT:C1216($vo_responseBody)
-				$vo_responseBody:=OB_jsonBlobParse (->$vx_responseBody)
+				C_TEXT:C284($vt_id)
+				$vt_id:=acme__urlLocationIdGet ($vt_locationUrl)
+				$vp_orderIdPtr->:=$vt_id
 				
-				$vp_orderObjectPtr->:=$vo_responseBody
-				
-				
-				C_TEXT:C284($vt_orderDir)
-				$vt_orderDir:=acme_orderDirPathGet ($vt_id)
-				  //$vt_orderDir:=$vt_workingDir+"_orders"+Séparateur dossier+$vt_id+Séparateur dossier
-				  //$vt_orderDir:=$vt_accountKeyDir+"_orders"+Séparateur dossier+$vt_id+Séparateur dossier
-				  // create the order directory
-				CREATE FOLDER:C475($vt_orderDir;*)
-				C_BOOLEAN:C305($vb_direCreated)
-				$vb_direCreated:=(ok=1)
-				ASSERT:C1129($vb_direCreated;"failed to create \""+$vt_orderDir+"\" directory")
-				acme__log (Choose:C955($vb_direCreated;4;2);Current method name:C684;"order dir : \""+$vt_orderDir+". "+Choose:C955($vb_direCreated;"[OK]";"[KO]"))
-				
-				  // generate an rsa key pair in the order dir
-				acme_rsakeyPairGenerate ($vt_orderDir)
-				
-				UTL_textToFile ($vt_orderDir+$vt_id+".json";JSON Stringify:C1217($vo_responseBody;*))
-				
-				  // before getting the authorization
-				  // we need to make sure we have stop HSTS (redirection "http://" to "https://")
-				  // otherwise we may not receive the challenge from Let's Encrypt®
-				  // this means the site should have a traditional "http:" => "https://" redirect in the meantime
-				acme__webHstsStop 
-				
-				  // order has been accepted, we need to proceed to the autorization
-				  // using the challenges
-				$vb_ok:=(acme_orderAuthorisationProcess ($vo_responseBody))
-				
-				C_TEXT:C284($vt_timestamp)
-				$vt_timestamp:=acme__timestamp 
-				BLOB TO DOCUMENT:C526($vt_orderDir+$vt_timestamp+"_httpResponse.json";$vx_responseBody)
-				
-				If (True:C214)
-					  // dump the status, the request header and body and the response headers and body to an object
-					C_OBJECT:C1216($vo_httpResponse)
-					OB SET:C1220($vo_httpResponse;"method";HTTP POST method:K71:2)
-					OB SET:C1220($vo_httpResponse;"url";$vt_url)
-					OB SET:C1220($vo_httpResponse;"status";$vl_status)
-					OB SET:C1220($vo_httpResponse;"requestHeaders";$vo_requestHeaders)
-					OB SET:C1220($vo_httpResponse;"requestBody";$vo_requestBody)
-					OB SET:C1220($vo_httpResponse;"responseHeaders";$vo_responseHeaders)
-					OB SET:C1220($vo_httpResponse;"responseBody";$vo_responseBody)
+				C_TEXT:C284($vt_contentType)
+				$vt_contentType:=acme__httpHeaderGetValForKey (->$tt_headerKey;->$tt_headerValue;"Content-Type")
+				If ($vt_contentType="application/json")
+					  //$vb_ok:=Vrai
 					
-					UTL_textToFile ($vt_orderDir+$vt_timestamp+"_httpRequest.json";JSON Stringify:C1217($vo_httpResponse;*))
-					If (False:C215)
-						SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vo_httpResponse;*))
+					C_OBJECT:C1216($vo_responseBody)
+					$vo_responseBody:=OB_jsonBlobParse (->$vx_responseBody)
+					
+					$vp_orderObjectPtr->:=$vo_responseBody
+					
+					
+					C_TEXT:C284($vt_orderDir)
+					$vt_orderDir:=acme_orderDirPathGet ($vt_id)
+					  //$vt_orderDir:=$vt_workingDir+"_orders"+Séparateur dossier+$vt_id+Séparateur dossier
+					  //$vt_orderDir:=$vt_accountKeyDir+"_orders"+Séparateur dossier+$vt_id+Séparateur dossier
+					  // create the order directory
+					CREATE FOLDER:C475($vt_orderDir;*)
+					C_BOOLEAN:C305($vb_direCreated)
+					$vb_direCreated:=(ok=1)
+					ASSERT:C1129($vb_direCreated;"failed to create \""+$vt_orderDir+"\" directory")
+					acme__log (Choose:C955($vb_direCreated;4;2);Current method name:C684;"order dir : \""+$vt_orderDir+". "+Choose:C955($vb_direCreated;"[OK]";"[KO]"))
+					
+					  // generate an rsa key pair in the order dir
+					acme_rsakeyPairGenerate ($vt_orderDir)
+					
+					UTL_textToFile ($vt_orderDir+$vt_id+".json";JSON Stringify:C1217($vo_responseBody;*))
+					
+					  // before getting the authorization
+					  // we need to make sure we have stop HSTS (redirection "http://" to "https://")
+					  // otherwise we may not receive the challenge from Let's Encrypt®
+					  // this means the site should have a traditional "http:" => "https://" redirect in the meantime
+					acme__webHstsStop 
+					
+					  // order has been accepted, we need to proceed to the autorization
+					  // using the challenges
+					$vb_ok:=(acme_orderAuthorisationProcess ($vo_responseBody))
+					
+					C_TEXT:C284($vt_timestamp)
+					$vt_timestamp:=acme__timestamp 
+					BLOB TO DOCUMENT:C526($vt_orderDir+$vt_timestamp+"_httpResponse.json";$vx_responseBody)
+					
+					If (True:C214)
+						  // dump the status, the request header and body and the response headers and body to an object
+						C_OBJECT:C1216($vo_httpResponse)
+						OB SET:C1220($vo_httpResponse;"method";HTTP POST method:K71:2)
+						OB SET:C1220($vo_httpResponse;"url";$vt_url)
+						OB SET:C1220($vo_httpResponse;"status";$vl_status)
+						OB SET:C1220($vo_httpResponse;"requestHeaders";$vo_requestHeaders)
+						OB SET:C1220($vo_httpResponse;"requestBody";$vo_requestBody)
+						OB SET:C1220($vo_httpResponse;"responseHeaders";$vo_responseHeaders)
+						OB SET:C1220($vo_httpResponse;"responseBody";$vo_responseBody)
+						
+						UTL_textToFile ($vt_orderDir+$vt_timestamp+"_httpRequest.json";JSON Stringify:C1217($vo_httpResponse;*))
+						If (False:C215)
+							SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vo_httpResponse;*))
+						End if 
+						
+						CLEAR VARIABLE:C89($vo_httpResponse)
 					End if 
 					
-					CLEAR VARIABLE:C89($vo_httpResponse)
+					C_LONGINT:C283($vl_nbSecondsMax)
+					$vl_nbSecondsMax:=120  // wait two minutes 
+					acme_orderAuthorisationWait ($vo_responseBody;$vl_nbSecondsMax)
+					
+					acme__log (4;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+\
+						", duration : "+UTL_durationMsDebug ($vl_ms)+\
+						", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
+						", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+\
+						", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+\
+						", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
+				Else 
+					acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+\
+						", status : "+String:C10($vl_status)+\
+						", duration : "+UTL_durationMsDebug ($vl_ms)+\
+						", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
+						", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+\
+						", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+\
+						", unexpected \"Content-Type\": \""+$vt_contentType+"\". [KO]")
 				End if 
 				
-				C_LONGINT:C283($vl_nbSecondsMax)
-				$vl_nbSecondsMax:=120  // wait two minutes 
-				acme_orderAuthorisationWait ($vo_responseBody;$vl_nbSecondsMax)
 				
-				acme__log (4;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+\
-					", duration : "+UTL_durationMsDebug ($vl_ms)+\
-					", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
-					", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+\
-					", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+\
-					", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
 			Else 
-				acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+\
-					", status : "+String:C10($vl_status)+\
-					", duration : "+UTL_durationMsDebug ($vl_ms)+\
-					", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+\
-					", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+\
-					", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+\
-					", unexpected \"Content-Type\": \""+$vt_contentType+"\". [KO]")
+				acme__log (2;Current method name:C684;"order url : \""+$vt_locationUrl+"\", unexpected status : \""+$vt_orderStatus+"\". [KO]")
 			End if 
+			
+			
 			
 		Else 
 			  //: (($vl_status>=400) & ($vl_status<500))

@@ -170,7 +170,7 @@ If (Size of array:C274($tt_authUrl)>0)
 	Until ($vb_exit)
 	
 	acme__log (Choose:C955($vb_ok;4;2);Current method name:C684;"pending : "+String:C10($vl_pendingCount)+\
-		", invalid : "+String:C10($vl_validCount)+\
+		", valid : "+String:C10($vl_validCount)+\
 		", invalid : "+String:C10($vl_invalidCount)+\
 		", deactivated : "+String:C10($vl_deactivatedCount)+\
 		", expired : "+String:C10($vl_expiredCount)+\

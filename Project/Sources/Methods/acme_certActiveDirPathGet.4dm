@@ -32,7 +32,13 @@ If (Application type:C494=4D Remote mode:K5:5)
 	  //$vt_activeCertificateDirPath:=FS_pathToParent (Application file)
 Else 
 	  //  - with 4D in local mode or 4D Server, these files must be placed next to the database structure file
-	$vt_activeCertificateDirPath:=Get 4D folder:C485(Database folder:K5:14;*)
+	  //$vt_activeCertificateDirPath:=Get 4D folder(Database folder;*)
+	  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v18:acme_component:source:acme_component.4dbase:acme_component:"
+	
+	  // in v18, project mode, the certificates are not in the folder returned by Get 4D folder(Database folder;*)
+	  // but in the same folder as the ".4DProject" file
+	$vt_activeCertificateDirPath:=FS_pathToParent (Structure file:C489(*))
+	  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v18:acme_component:source:acme_component.4dbase:acme_component:Project:"
 End if 
 
 acme__log (4;Current method name:C684;"active certificates dir path : \""+$vt_activeCertificateDirPath+"\"")

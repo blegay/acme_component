@@ -66,7 +66,8 @@ If ($vl_nbParam>0)
 	  //  ".well-known/acme-challenge/5Gvs0QcIUUQpNWDBJ5jbY0s-qIj-mYCCromNHPq51B4"
 	  //  ".well-known/acme-challenge/wUDZVYkobBj40sabCVGdKuD6JYH9IzWatSeDfb1DUAM"
 	  //  ".well-known/acme-challenge/Qp1ncKwBMKP2RfhyGF4gViD5wJQigIriAKv1vp70i04"
-	
+	  //  ".well-known/acme-challenge/0RD11_kwxNqSEpSxoaUPAE1gleKxOpySzWLsnTzVVn0"
+	  //  ".well-known/acme-challenge/-eqdzwF74M0bbfSMGkYJDClrT1gAxZDBxO-plGVGyTI"
 	C_TEXT:C284($vt_regex)
 	
 	C_LONGINT:C283($vl_length)

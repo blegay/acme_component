@@ -44,12 +44,26 @@ For ($i;1;Size of array:C274($tt_type))
 	C_TEXT:C284($vt_type;$vt_pemData)
 	$vt_type:=$tt_type{$i}
 	$vt_pemData:=$tt_pemData{$i}
+	
+	  // make everything "\n"
+	C_TEXT:C284($vt_lineSepOriginal)
+	$vt_lineSepOriginal:=TXT_lineSepGet ($vt_pemData)
+	If ($vt_lineSepOriginal#"\n")
+		$vt_pemData:=Replace string:C233($vt_pemData;$vt_lineSepOriginal;"\n";*)
+	End if 
+	
 	Case of 
 		: (($vt_type="X509 CERTIFICATE") | ($vt_type="CERTIFICATE"))
 			$vl_certificateIndex:=$vl_certificateIndex+1
 			
+			C_TEXT:C284($vt_certInfos)
+			$vt_certInfos:=acme_certToText (->$vt_pemData)
+			If ($vt_lineSepOriginal#"\n")
+				$vt_certInfos:=Replace string:C233($vt_certInfos;"\n";$vt_lineSepOriginal;*)
+			End if 
+			
 			$vt_text:=$vt_text+"Certificate "+String:C10($vl_certificateIndex)+" / "+String:C10($vl_certificateTotalCount)+$vt_lineSep
-			$vt_text:=$vt_text+acme_certToText (->$vt_pemData)
+			$vt_text:=$vt_text+$vt_certInfos
 			
 			  //C_TEXT($vt_subjectHash;$vt_issuerHash)
 			  //$vt_subjectHash:=acme_certToText (->$vt_pemData;"subject_hash")  // "f19a1d82\n"

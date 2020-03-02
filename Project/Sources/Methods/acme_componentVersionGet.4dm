@@ -61,14 +61,24 @@ C_TEXT:C284($0;$vt_componentVersion)
   //    - proxy auth ?
   //<Modif>
 
-  //<Modif> Bruno LEGAY (BLE) (11/02/2020)
-  // do a POST as GET to send a jws
-  // https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
-  // https://tools.ietf.org/html/rfc8555#section-6.3
+  //<Modif> Bruno LEGAY (BLE) (03/03/2020)
+  //    - acme_certActiveDirPathGet : fix value returned when used in "Project" mode
+  //    - acme_certChainToText : fix problems with end of line character
+  //    - acme_newOrder : added a check to wait for the order to be in the expected state 
+  //    - acme_orderGet : added
 $vt_componentVersion:="0.90.13"
   //<Modif>
 
+
 If (False:C215)
+	
+	
+	  //<Modif> Bruno LEGAY (BLE) (11/02/2020)
+	  // do a POST as GET to send a jws
+	  // https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
+	  // https://tools.ietf.org/html/rfc8555#section-6.3
+	  //$vt_componentVersion:="0.90.13"
+	  //<Modif>
 	
 	  //<Modif> Bruno LEGAY (BLE) (27/01/2020)
 	  //    - loop with delay = 2 mins "HTTP Request" returns 0 in acme__nonceGet and acme__directoryUrlGet

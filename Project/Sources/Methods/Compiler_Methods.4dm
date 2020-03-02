@@ -670,3 +670,12 @@ C_BOOLEAN:C305(acme__execbitForceSub;$0)
 
   //ENV__isComponent
 C_BOOLEAN:C305(ENV__isComponent ;$0)
+
+  //acme__orderIsReady
+C_TEXT:C284(acme__orderStatusGet ;$0)
+C_TEXT:C284(acme__orderStatusGet ;$1)
+
+  //acme_orderGet
+C_LONGINT:C283(acme_orderGet ;$0)
+C_TEXT:C284(acme_orderGet ;$1)
+C_POINTER:C301(acme_orderGet ;$2)
