@@ -5,11 +5,11 @@
   //@scope : public
   //@deprecated : no
   //@description : This function returns the component version 
-  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "0.90.15")
+  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "0.90.16")
   //@notes :
   //@example : acme_componentVersionGet 
   //@see : 
-  //@version : 0.90.15
+  //@version : 0.90.16
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
   //@history : 
   // CREATION : Bruno LEGAY (BLE) - 04/12/2018, 23:39:22 - v0.90.00
@@ -55,6 +55,9 @@
   //  - acme_newOrder : added a check to wait for the order to be in the expected state 
   //  - acme_orderGet : added
   // MODIFICATION : Bruno LEGAY (BLE) - 05/03/2020, 13:29:07 - v0.90.15
+  //  - added acme_termsOfServiceUrlGet
+  // MODIFICATION : Bruno LEGAY (BLE) - 05/03/2020, 18:46:01 - v0.90.16
+  //  - added acme_certificateOrderAndInstall
   //@xdoc-end
   //================================================================================
 
@@ -68,11 +71,17 @@ C_TEXT:C284($0;$vt_componentVersion)
   //<Modif>
 
   //<Modif> Bruno LEGAY (BLE) (05/03/2020)
-  //    - added acme_termsOfServiceUrlGet
-$vt_componentVersion:="0.90.15"
+  //    - added acme_certificateOrderAndInstall
+$vt_componentVersion:="0.90.16"
   //<Modif>
 
 If (False:C215)
+	
+	  //<Modif> Bruno LEGAY (BLE) (05/03/2020)
+	  //    - added acme_termsOfServiceUrlGet
+	  // $vt_componentVersion:="0.90.15"
+	  //<Modif>
+	
 	  //<Modif> Bruno LEGAY (BLE) (03/03/2020)
 	  //    - acme_certActiveDirPathGet : fix value returned when used in "Project" mode
 	  //    - acme_certChainToText : fix problems with end of line character
@@ -80,7 +89,6 @@ If (False:C215)
 	  //    - acme_orderGet : added
 	  // $vt_componentVersion:="0.90.14"
 	  //<Modif>
-	
 	
 	  //<Modif> Bruno LEGAY (BLE) (11/02/2020)
 	  // do a POST as GET to send a jws

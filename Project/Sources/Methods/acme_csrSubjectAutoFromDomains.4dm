@@ -35,25 +35,25 @@ C_POINTER:C301($1;$vp_domainListPtr)
 ASSERT:C1129(Count parameters:C259>0;"Requires 1 parameter")
 ASSERT:C1129((Type:C295($1->)=Is text:K8:3) | (Type:C295($1->)=Text array:K8:16);"$1 should be a text or text array pointer")
 
-C_LONGINT:C283($vl_nbParam)
-$vl_nbParam:=Count parameters:C259
+  //C_LONGINT($vl_nbParam)
+  //$vl_nbParam:=Count parameters
 
-If ($vl_nbParam>0)
-	$vp_domainListPtr:=$1
-	
-	C_TEXT:C284($vt_commonName)
-	Case of 
-		: (Type:C295($vp_domainListPtr->)=Is text:K8:3)
-			$vt_commonName:=$vp_domainListPtr->
-			
-		: (Type:C295($vp_domainListPtr->)=Text array:K8:16)
-			If (Size of array:C274($vp_domainListPtr->)>0)
-				$vt_commonName:=$vp_domainListPtr->{1}
-			End if 
-	End case 
-	
-	OB SET:C1220($vb_subjectObject;"CN";$vt_commonName)
-	
-End if 
+  //If ($vl_nbParam>0)
+$vp_domainListPtr:=$1
+
+C_TEXT:C284($vt_commonName)
+Case of 
+	: (Type:C295($vp_domainListPtr->)=Is text:K8:3)
+		$vt_commonName:=$vp_domainListPtr->
+		
+	: (Type:C295($vp_domainListPtr->)=Text array:K8:16)
+		If (Size of array:C274($vp_domainListPtr->)>0)
+			$vt_commonName:=$vp_domainListPtr->{1}
+		End if 
+End case 
+
+OB SET:C1220($vb_subjectObject;"CN";$vt_commonName)
+
+  //End if 
 
 $0:=$vb_subjectObject

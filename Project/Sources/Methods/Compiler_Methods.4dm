@@ -687,3 +687,7 @@ C_TEXT:C284(acme_directoryMetaPropertyGet ;$1)
   //acme_csrSubjectAutoFromDomains
 C_OBJECT:C1216(acme_csrSubjectAutoFromDomains ;$0)
 C_POINTER:C301(acme_csrSubjectAutoFromDomains ;$1)
+
+  //acme_certificateOrderAndInstall
+C_BOOLEAN:C305(acme_certificateOrderAndInstall ;$0)
+C_POINTER:C301(acme_certificateOrderAndInstall ;$1)
