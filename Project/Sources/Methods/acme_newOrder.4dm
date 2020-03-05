@@ -229,7 +229,6 @@ If ($vl_nbParam>1)
 					
 					$vp_orderObjectPtr->:=$vo_responseBody
 					
-					
 					C_TEXT:C284($vt_orderDir)
 					$vt_orderDir:=acme_orderDirPathGet ($vt_id)
 					  //$vt_orderDir:=$vt_workingDir+"_orders"+Séparateur dossier+$vt_id+Séparateur dossier
@@ -299,12 +298,9 @@ If ($vl_nbParam>1)
 						", unexpected \"Content-Type\": \""+$vt_contentType+"\". [KO]")
 				End if 
 				
-				
 			Else 
 				acme__log (2;Current method name:C684;"order url : \""+$vt_locationUrl+"\", unexpected status : \""+$vt_orderStatus+"\". [KO]")
 			End if 
-			
-			
 			
 		Else 
 			  //: (($vl_status>=400) & ($vl_status<500))

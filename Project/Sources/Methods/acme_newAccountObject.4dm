@@ -1,4 +1,4 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"invisible":false}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_newAccountObject
@@ -6,14 +6,14 @@
   //@deprecated : no
   //@description : This function inializes a new account object
   //@parameter[0-OUT-newAccountObject-OBJET] : new account object
-  //@parameter[1-IN-contactListPtr-POINTER] : text or text array containing emails of contacts in a mailto form (e.g. "mailto:john@example.com")
+  //@parameter[1-IN-contactListPtr-POINTER] : text or text array containing emails of contacts (e.g. "john@example.com")
   //@parameter[2-IN-termsOfServiceAgreed-BOOLEAN] : set to TRUE to say that the "terms of service are agreed", set to FALSE otherwise
   //@notes : 
   //@example : 
   //
   //ARRAY TEXT($tt_contacts;2)
-  //$tt_contacts{1}:="mailto:blegay@example.com"
-  //$tt_contacts{2}:="mailto:jlaclavere@example.com"
+  //$tt_contacts{1}:="blegay@example.com"
+  //$tt_contacts{2}:="jlaclavere@example.com"
   //
   //$vo_payload:=acme_newAccountObject (->$tt_contacts;True)
   //ARRAY TEXT($tt_contacts;0)
@@ -22,7 +22,7 @@
   // // OR
   //
   //C_TEXT($vt_contact)
-  //$vt_contact:="mailto:blegay@example.com"
+  //$vt_contact:="blegay@example.com"
   //$vo_payload:=acme_newAccountObject (->$tt_contacts;True)
   //acme_newAccount ($vo_payload)
   //
@@ -41,7 +41,7 @@ C_BOOLEAN:C305($2;$vb_termsOfServiceAgreed)
   //C_TEXTE($4;$vt_directoryUrl)
 
 ASSERT:C1129(Count parameters:C259>1;"Requires 2 parameter")
-ASSERT:C1129((Type:C295($1->)=Text array:K8:16) | (Type:C295($1->)=Is text:K8:3);"$1 should be a text or text array pointer")
+ASSERT:C1129((Type:C295($1->)=Is text:K8:3) | (Type:C295($1->)=Text array:K8:16);"$1 should be a text or text array pointer")
 
 C_LONGINT:C283($vl_nbParam)
 $vl_nbParam:=Count parameters:C259
@@ -85,6 +85,18 @@ If ($vl_nbParam>1)
 			COPY ARRAY:C226($vp_contactListPtr->;$tt_contacts)
 			  //%W+518.1
 	End case 
+	
+	C_LONGINT:C283($vl_contactIndex)
+	For ($vl_contactIndex;Size of array:C274($tt_contacts);1;-1)
+		Case of 
+			: (Length:C16($tt_contacts{$vl_contactIndex})=0)
+				DELETE FROM ARRAY:C228($tt_contacts;$vl_contactIndex;1)
+				
+			: (Substring:C12($tt_contacts{$vl_contactIndex};1;7)#"mailto:")
+				$tt_contacts{$vl_contactIndex}:="mailto:"+$tt_contacts{$vl_contactIndex}
+		End case 
+	End for 
+	
 	OB SET ARRAY:C1227($vb_newAccountObject;"contact";$tt_contacts)
 	OB SET:C1220($vb_newAccountObject;"termsOfServiceAgreed";$vb_termsOfServiceAgreed)
 	

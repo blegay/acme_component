@@ -1,4 +1,4 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"invisible":false}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_newOrderObject
@@ -54,7 +54,7 @@ C_POINTER:C301($1;$vp_domainListPtr)
   //C_TEXTE($3;$vt_directoryUrl)
 
 ASSERT:C1129(Count parameters:C259>0;"Requires 1 parameter")
-ASSERT:C1129((Type:C295($1->)=Text array:K8:16) | (Type:C295($1->)=Is text:K8:3);"$1 should be a text or text array pointer")
+ASSERT:C1129((Type:C295($1->)=Is text:K8:3) | (Type:C295($1->)=Text array:K8:16);"$1 should be a text or text array pointer")
 
 C_LONGINT:C283($vl_nbParam)
 $vl_nbParam:=Count parameters:C259

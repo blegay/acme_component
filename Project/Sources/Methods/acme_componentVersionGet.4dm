@@ -1,15 +1,15 @@
-//%attributes = {"shared":true,"preemptive":"capable"}
+//%attributes = {"shared":true,"preemptive":"capable","invisible":false}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_componentVersionGet
   //@scope : public
   //@deprecated : no
   //@description : This function returns the component version 
-  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "0.90.13")
+  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "0.90.15")
   //@notes :
   //@example : acme_componentVersionGet 
   //@see : 
-  //@version : 0.90.13
+  //@version : 0.90.15
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
   //@history : 
   // CREATION : Bruno LEGAY (BLE) - 04/12/2018, 23:39:22 - v0.90.00
@@ -49,6 +49,12 @@
   //  - do a POST as GET to send a jws
   //     https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
   //     https://tools.ietf.org/html/rfc8555#section-6.3
+  // MODIFICATION : Bruno LEGAY (BLE) - 03/03/2020, 00:22:30 - v0.90.14
+  //  - acme_certActiveDirPathGet : fix value returned when used in "Project" mode
+  //  - acme_certChainToText : fix problems with end of line character
+  //  - acme_newOrder : added a check to wait for the order to be in the expected state 
+  //  - acme_orderGet : added
+  // MODIFICATION : Bruno LEGAY (BLE) - 05/03/2020, 13:29:07 - v0.90.15
   //@xdoc-end
   //================================================================================
 
@@ -61,16 +67,19 @@ C_TEXT:C284($0;$vt_componentVersion)
   //    - proxy auth ?
   //<Modif>
 
-  //<Modif> Bruno LEGAY (BLE) (03/03/2020)
-  //    - acme_certActiveDirPathGet : fix value returned when used in "Project" mode
-  //    - acme_certChainToText : fix problems with end of line character
-  //    - acme_newOrder : added a check to wait for the order to be in the expected state 
-  //    - acme_orderGet : added
-$vt_componentVersion:="0.90.13"
+  //<Modif> Bruno LEGAY (BLE) (05/03/2020)
+  //    - added acme_termsOfServiceUrlGet
+$vt_componentVersion:="0.90.15"
   //<Modif>
 
-
 If (False:C215)
+	  //<Modif> Bruno LEGAY (BLE) (03/03/2020)
+	  //    - acme_certActiveDirPathGet : fix value returned when used in "Project" mode
+	  //    - acme_certChainToText : fix problems with end of line character
+	  //    - acme_newOrder : added a check to wait for the order to be in the expected state 
+	  //    - acme_orderGet : added
+	  // $vt_componentVersion:="0.90.14"
+	  //<Modif>
 	
 	
 	  //<Modif> Bruno LEGAY (BLE) (11/02/2020)

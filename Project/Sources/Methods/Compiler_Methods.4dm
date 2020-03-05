@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
 
 
   //UTL_initAuto
@@ -657,7 +657,7 @@ C_TEXT:C284(acme_directoryGet ;$1)
 C_TEXT:C284(acme_directoryGet ;$2)
 
   //ENV_ispre-emptive
-C_BOOLEAN:C305(ENV_ispre-emptive;$0)
+C_BOOLEAN:C305(ENV_isPreemptive ;$0)
 
   //ENV_isv17OrAbove
 C_BOOLEAN:C305(ENV_isv17OrAbove ;$0)
@@ -666,7 +666,7 @@ C_BOOLEAN:C305(ENV_isv17OrAbove ;$0)
 C_BOOLEAN:C305(ENV_isPreemptive ;$0)
 
   //acme__execbitForceSub
-C_BOOLEAN:C305(acme__execbitForceSub;$0)
+  //C_BOOLEAN(acme__execbitForceSub;$0)
 
   //ENV__isComponent
 C_BOOLEAN:C305(ENV__isComponent ;$0)
@@ -679,3 +679,11 @@ C_TEXT:C284(acme__orderStatusGet ;$1)
 C_LONGINT:C283(acme_orderGet ;$0)
 C_TEXT:C284(acme_orderGet ;$1)
 C_POINTER:C301(acme_orderGet ;$2)
+
+  //acme_termsOfServiceUrlGet
+C_TEXT:C284(acme_directoryMetaPropertyGet ;$0)
+C_TEXT:C284(acme_directoryMetaPropertyGet ;$1)
+
+  //acme_csrSubjectAutoFromDomains
+C_OBJECT:C1216(acme_csrSubjectAutoFromDomains ;$0)
+C_POINTER:C301(acme_csrSubjectAutoFromDomains ;$1)
