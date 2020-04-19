@@ -108,7 +108,6 @@ If (Length:C16($vt_nonce)=0)
 			
 			acme__log (6;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", nonce : \""+$vt_nonce+"\". [OK]")
 		Else 
-			ASSERT:C1129(False:C215;"HEAD on \""+$vt_url+"\" failed, status : "+String:C10($vl_status))
 			acme__log (2;Current method name:C684;"method : "+HTTP HEAD method:K71:3+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+". [KO]")
 		End if 
 		

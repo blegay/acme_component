@@ -58,6 +58,9 @@
   //  - added acme_termsOfServiceUrlGet
   // MODIFICATION : Bruno LEGAY (BLE) - 05/03/2020, 18:46:01 - v0.90.16
   //  - added acme_certificateOrderAndInstall
+  // MODIFICATION : CREATION : Bruno LEGAY (BLE) - 20/04/2020, 00:27:19 - v1.00.00
+  //    - first official release
+  //    - in acme__nonceGet do not display ASSERT when HTTP GET returns 0 with error 30 (this happens sometimes)
   //@xdoc-end
   //================================================================================
 
@@ -70,12 +73,18 @@ C_TEXT:C284($0;$vt_componentVersion)
   //    - proxy auth ?
   //<Modif>
 
-  //<Modif> Bruno LEGAY (BLE) (05/03/2020)
-  //    - added acme_certificateOrderAndInstall
-$vt_componentVersion:="0.90.16"
+  //<Modif> Bruno LEGAY (BLE) (20/04/2020)
+$vt_componentVersion:="1.00.00"
+  //    - first official release
+  //    - in acme__nonceGet do not display ASSERT when HTTP GET returns 0 with error 30 (this happens sometimes)
   //<Modif>
 
 If (False:C215)
+	
+	  //<Modif> Bruno LEGAY (BLE) (05/03/2020)
+	  //    - added acme_certificateOrderAndInstall
+	  // $vt_componentVersion:="0.90.16"
+	  //<Modif>
 	
 	  //<Modif> Bruno LEGAY (BLE) (05/03/2020)
 	  //    - added acme_termsOfServiceUrlGet

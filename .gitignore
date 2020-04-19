@@ -2,7 +2,9 @@
 /Project/Sources/Methods/Méthode *
 /Project/Sources/Methods/_cert_*
 /DossierWeb
-/userPreferences.Bruno LEGAY
+/userPreferences.*
 /letsencrypt
 /Project/DerivedData/CompiledCode
 dhparams.pem
+cert.pem
+key.pem
