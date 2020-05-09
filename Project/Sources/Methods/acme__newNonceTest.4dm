@@ -1,7 +1,7 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : newNonceTest
+  //@name : acme__newNonceTest
   //@scope : private
   //@deprecated : no
   //@description : This method/function returns 
@@ -12,7 +12,7 @@
   //@parameter[4-OUT-paramName-POINTER] : ParamDescription (modified)
   //@parameter[5-IN-paramName-LONGINT] : ParamDescription (optional, default value : 1)
   //@notes : 
-  //@example : newNonceTest
+  //@example : acme__newNonceTest
   //@see : 
   //@version : 1.00.00
   //@author : 

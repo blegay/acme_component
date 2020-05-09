@@ -1,12 +1,12 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme_newAccountTest
+  //@name : acme__newAccountTest
   //@scope : public
   //@deprecated : no
   //@description : This method/function returns 
   //@notes : 
-  //@example : acme_newAccountTest
+  //@example : acme__newAccountTest
   //@see : 
   //@version : 1.00.00
   //@author : 

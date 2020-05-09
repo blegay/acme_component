@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"preemptive":"capable"}
+//%attributes = {"invisible":true,"preemptive":"capable","shared":false}
 
 C_TEXT:C284($0;$vt_lineSep)
 C_TEXT:C284($1;$vt_text)

@@ -1,4 +1,4 @@
-//%attributes = {}
+//%attributes = {"shared":true,"invisible":false}
 
 C_TEXT:C284($0;$vt_url)
 C_TEXT:C284($1;$vt_serviceKey)

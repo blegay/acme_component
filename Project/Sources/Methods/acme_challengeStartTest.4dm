@@ -1,12 +1,12 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":false,"shared":true}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme_testChallengeStart
+  //@name : acme_challengeStartTest
   //@scope : public
   //@deprecated : no
   //@description : This method/function returns 
   //@notes : 
-  //@example : acme_testChallengeStart
+  //@example : acme_challengeStartTest
   //@see : 
   //@version : 1.00.00
   //@author : 

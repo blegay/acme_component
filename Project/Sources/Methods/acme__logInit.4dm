@@ -1,12 +1,12 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme_logInit
+  //@name : acme__logInit
   //@scope : private
   //@deprecated : no
   //@description : This method itializes the log/dbg component 
   //@notes : 
-  //@example : acme_logInit
+  //@example : acme__logInit
   //@see : 
   //@version : 1.00.00
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018

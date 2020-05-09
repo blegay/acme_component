@@ -1,7 +1,7 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme_urlLocationIdGet
+  //@name : acme__urlLocationIdGet
   //@scope : private
   //@deprecated : no
   //@description : This function returns the last part of a "Location" http response header url
@@ -9,8 +9,8 @@
   //@parameter[1-IN-url-TEXT] : location url
   //@notes : 
   //@example : 
-  // acme_urlLocationIdGet ("https://acme-staging-v02.api.letsencrypt.org/acme/order/12345") => "12345"
-  // acme_urlLocationIdGet ("https://acme-staging-v02.api.letsencrypt.org/acme/order/12345/6789") => "6789"
+  // acme__urlLocationIdGet ("https://acme-staging-v02.api.letsencrypt.org/acme/order/12345") => "12345"
+  // acme__urlLocationIdGet ("https://acme-staging-v02.api.letsencrypt.org/acme/order/12345/6789") => "6789"
   //@see : 
   //@version : 1.00.00
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018

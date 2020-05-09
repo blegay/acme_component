@@ -1,4 +1,4 @@
-//%attributes = {}
+//%attributes = {"shared":true,"invisible":false}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_logHttpServerInfos

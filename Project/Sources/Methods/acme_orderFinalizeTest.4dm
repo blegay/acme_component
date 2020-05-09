@@ -1,12 +1,12 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"invisible":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme_testOrderFinalize
+  //@name : acme_orderFinalizeTest
   //@scope : public
   //@deprecated : no
   //@description : This method/function returns 
   //@notes : 
-  //@example : acme_testOrderFinalize
+  //@example : acme_orderFinalizeTest
   //@see : 
   //@version : 1.00.00
   //@author : 

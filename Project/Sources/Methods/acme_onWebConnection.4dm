@@ -1,7 +1,7 @@
-//%attributes = {"shared":true,"preemptive":"capable"}
+//%attributes = {"shared":true,"preemptive":"capable","invisible":false}
   //================================================================================
   //@xdoc-start : en
-  //@name :  
+  //@name : acme_onWebConnection
   //@scope : public
   //@deprecated : no
   //@description : This method method will handle a web connection from an ACME / CA server (and return the predefined challenge response)

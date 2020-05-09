@@ -1,4 +1,4 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"invisible":false}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_certToText

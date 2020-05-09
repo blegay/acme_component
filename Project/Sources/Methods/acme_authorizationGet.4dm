@@ -1,7 +1,7 @@
-//%attributes = {"shared":true}
+//%attributes = {"shared":true,"invisible":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : amce_authorizationGet
+  //@name : acme_authorizationGet
   //@scope : public
   //@deprecated : no
   //@description : This function retrieves the authorization object

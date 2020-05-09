@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
 
 C_TEXT:C284($vt_pem)
 

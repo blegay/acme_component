@@ -1,7 +1,7 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme_jwsObjectSign
+  //@name : acme__jwsObjectSign
   //@scope : private
   //@deprecated : no
   //@description : This method will sign a object with two properties "protected" and "payload" using a private key
@@ -11,7 +11,7 @@
   //@parameter[3-IN-privateKeyPath-TEXT] : private key path
   //@parameter[4-IN-openSslAlgorithm-TEXT] : openssl algorithm (optional, default "sha256")
   //@notes : 
-  //@example : acme_jwsObjectSign
+  //@example : acme__jwsObjectSign
   //@see : 
   //@version : 1.00.00
   //@author : 

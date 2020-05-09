@@ -1,7 +1,7 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
   //================================================================================
   //@xdoc-start : en
-  //@name : acme_csrReqConfObjectToTextSub
+  //@name : acme__csrReqConfObjectToTextSub
   //@scope : private
   //@deprecated : no
   //@description : This method/function returns 
@@ -9,7 +9,7 @@
   //@parameter[1-IN-csrReqConfObject-OBJECT] : csr request conf object
   //@parameter[2-IN-endLine-TEXT] : end of line character ("\r\n" or "\n")
   //@notes : 
-  //@example : acme_csrReqConfObjectToTextSub
+  //@example : acme__csrReqConfObjectToTextSub
   //@see : 
   //@version : 1.00.00
   //@author : 

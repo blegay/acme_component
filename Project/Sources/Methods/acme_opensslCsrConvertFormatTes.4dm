@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":false,"shared":true}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_opensslCsrConvertFormatTes

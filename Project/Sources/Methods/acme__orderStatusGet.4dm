@@ -1,15 +1,15 @@
-//%attributes = {"invisible":true}
+//%attributes = {"invisible":true,"shared":false}
 
   //================================================================================
   //@xdoc-start : en
-  //@name : $vt_orderUrl
+  //@name : acme__orderStatusGet
   //@scope : public
   //@deprecated : no
   //@description : This function returns the order status ("pending", "ready",  "processing", "valid", "invalid")
   //@parameter[0-OUT-status-TEXT] : order status
   //@parameter[1-IN-locationUrl-TEXT] : location url
   //@notes :
-  //@example : $vt_orderUrl 
+  //@example : acme__orderStatusGet 
   //@see : 
   //@version : 1.00.00
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2008
