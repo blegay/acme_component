@@ -6,6 +6,8 @@
   //@deprecated : no
   //@description : This method will restart the web server
   //@notes : if the web server is not running, it will be started
+  // If no certificates are installed, only http server starts
+  // If certificates are installed, http+https server start and HSTS is activated automatically
   //@example : 
   //
   // acme_webServerStart

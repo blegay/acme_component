@@ -28,7 +28,7 @@ If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
 		
 		  // execBitForced is only required on OS X, so on Windows let's say it is already forced...
 		C_BOOLEAN:C305($vb_execBitForced)
-		$vb_execBitForced:=Choose:C955(ENV_onWindows ;False:C215;True:C214)
+		$vb_execBitForced:=Choose:C955(ENV_onWindows ;True:C214;False:C215)
 		
 		  // set the values for the acme config in a shared object
 		C_OBJECT:C1216($vo_acmeConfig)
