@@ -30,9 +30,13 @@ $vt_privateKeyPath:=$1
 C_BLOB:C604($vx_private)
 SET BLOB SIZE:C606($vx_private;0)
 DOCUMENT TO BLOB:C525($vt_privateKeyPath;$vx_private)
+ASSERT:C1129(ok=1;"File \""+$vt_privateKeyPath+"\" not loaded")
+acme__log (4;Current method name:C684;"file \""+$vt_privateKeyPath+"\" loaded size : "+String:C10(BLOB size:C605($vx_private)))
 
 C_TEXT:C284($vt_args)
-$vt_args:="rsa"+" -noout"+" -modulus"
+$vt_args:="rsa"+\
+" -noout"+\
+" -modulus"
 
 acme__opensslConfigDefault 
 

@@ -66,17 +66,9 @@ $vb_ok:=(ok=1)
 $vl_ms:=UTL_durationDifference ($vl_ms;Milliseconds:C459)
 
 C_TEXT:C284($vt_inDebug;$vt_outDebug;$vt_errDebug)
-If ((Type:C295($vp_inPtr->)=Is text:K8:3))
-	$vt_inDebug:=$vp_inPtr->
-End if 
-
-If ((Type:C295($vp_outPtr->)=Is text:K8:3))
-	$vt_outDebug:=$vp_outPtr->
-End if 
-
-If ((Type:C295($vp_errPtr->)=Is text:K8:3))
-	$vt_errDebug:=$vp_errPtr->
-End if 
+$vt_inDebug:=acme__varPtrDebug ($vp_inPtr)
+$vt_outDebug:=acme__varPtrDebug ($vp_outPtr)
+$vt_errDebug:=acme__varPtrDebug ($vp_errPtr)
 
 If ($vb_ok)
 	acme__log (4;Current method name:C684;"cmd \""+$vt_openSslCmd+"\""+", in : \""+$vt_inDebug+"\""+", out : \""+$vt_outDebug+"\""+", err : \""+$vt_errDebug+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+" success. [OK]")

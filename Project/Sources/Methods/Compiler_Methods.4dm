@@ -691,3 +691,7 @@ C_POINTER:C301(acme_csrSubjectAutoFromDomains ;$1)
   //acme_certificateOrderAndInstall
 C_BOOLEAN:C305(acme_certificateOrderAndInstall ;$0)
 C_POINTER:C301(acme_certificateOrderAndInstall ;$1)
+
+  //acme__varPtrDebug
+C_TEXT:C284(acme__varPtrDebug ;$0)
+C_POINTER:C301(acme__varPtrDebug ;$1)

@@ -131,7 +131,7 @@ Else
 	$vt_privateKeyPath:=acme__keysKeyPairFilepathGet ("private";$vt_accountKeyDir)
 	ASSERT:C1129(Test path name:C476($vt_privateKeyPath)=Is a document:K24:1;"private key file \""+$vt_privateKeyPath+"\" not found")
 	
-	acme__log (4;Current method name:C684;"account does not exist, files \""+$vt_accountFilePath+"\" and \""+$vt_accountFilePath+"\" not found. Calculating modulus and exponent from private key file \""+$vt_privateKeyPath+"\" and setting \"jwk\" property")
+	acme__log (4;Current method name:C684;"account does not exist, files \""+$vt_accountFilePath+"\" and \""+$vt_httpRequestFilePath+"\" not found. Calculating modulus and exponent from private key file \""+$vt_privateKeyPath+"\" and setting \"jwk\" property")
 	
 	  // create a jwk object with private key modulus and exponent
 	C_OBJECT:C1216($vo_jwk)

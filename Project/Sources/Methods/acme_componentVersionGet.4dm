@@ -65,6 +65,8 @@
   //  - fixed folder location for Engined app in acme_certActiveDirPathGet (the fix is commented out until it is properly tested/validated)
   // MODIFICATION : Bruno LEGAY (BLE) - 01/10/2020, 22:55:49 - v1.00.02
   //  - fixed bug with execBitForced (execution bit was not set when calling openssl on a MacOS X client). Fix suggested by Stanislas Caron
+  // MODIFICATION : Bruno LEGAY (BLE) - 09/10/2020, 19:11:12 - v1.00.03
+  //  - fixing a bug with getting modulus from "key.pem" from "account" dir (reported by Armin Deeg)
   //@xdoc-end
   //================================================================================
 
@@ -78,11 +80,17 @@ C_TEXT:C284($0;$vt_componentVersion)
   //<Modif>
 
   //<Modif> Bruno LEGAY (BLE) (01/10/2020)
-  // fixed bug with execBitForced (execution bit was not set when calling openssl on a MacOS X client)
-  //$vt_componentVersion:="1.00.02"
+  // fixing a bug with getting modulus from "key.pem" from "account" dir (reported by Armin Deeg)
+$vt_componentVersion:="1.00.03"
   //<Modif>
 
 If (False:C215)
+	
+	  //<Modif> Bruno LEGAY (BLE) (01/10/2020)
+	  // fixed bug with execBitForced (execution bit was not set when calling openssl on a MacOS X client)
+	  //$vt_componentVersion:="1.00.02"
+	  //<Modif>
+	
 	  //<Modif> Bruno LEGAY (BLE) (29/07/2020)
 	  // fixed folder location for Engined app in acme_certActiveDirPathGet (the fix is commented out until it is properly tested/validated). Fix suggested by Stanislas Caron
 	  //$vt_componentVersion:="1.00.01"
