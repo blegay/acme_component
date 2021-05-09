@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_certCheckEnd
@@ -11,11 +11,11 @@
   //@notes : this function uses openssl x509 "checkend" feature
   //@example : acme_certCheckEnd
   //
-  // C_TEXT($vt_key;$vt_cert)
-  // If (acme_certCurrentGet (->$vt_key;->$vt_cert))
+  // C_TEXT($vt_cert)
+  // If (acme_certCurrentGet (->$vt_cert))
   //    C_LONGINT($vl_nbDays;$vl_secs)
-  //    $vl_nbDays:=30
-  //    $vl_secs:=$vl_nbDays*86400 // 86400 = 24 x 60 x 60
+  //    $vl_nbDays:=30 
+  //    $vl_secs:=$vl_nbDays*86400 // 86400 = 24 x 60 x 60 
   //    If (acme_certCheckEnd ($vt_cert;$vl_secs))
   //      // Do something here because the certificate will expire in the next $vl_nbDays days
   //    Else
