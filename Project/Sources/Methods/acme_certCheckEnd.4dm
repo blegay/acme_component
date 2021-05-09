@@ -31,14 +31,14 @@
   //@xdoc-end
   //================================================================================
 
-C_BOOLEAN:C305($0;$vb_invalid)
+C_BOOLEAN:C305($0;$vb_willExpire)
 C_TEXT:C284($1;$vt_cert)
 C_LONGINT:C283($2;$vl_nbSeconds)
 
 ASSERT:C1129(Count parameters:C259>0;"requires 1 parameter")
 ASSERT:C1129(Length:C16($1)>0;"cert is empty")
 
-$vb_invalid:=True:C214
+$vb_willExpire:=True:C214
 If (Count parameters:C259>0)
 	$vt_cert:=$1
 	
@@ -87,12 +87,12 @@ If (Count parameters:C259>0)
 			  // C:\Users\SRV-4D>"C:\Users\SRV-4D\Documents\INP-4D\prod\app\Components\acme_component.4dbase\Resources\openssl\win32\openssl.exe" x509  -noout  -checkend 1000  -inform PEM -in C:\Users\SRV-4D\Desktop\cert_test.pem & echo %errorlevel%
 			  // WARNING: can't open config file: /usr/local/ssl/openssl.cnf
 			  // 0
-			  // $vb_invalid => Faux
+			  // $vb_willExpire => Faux
 			
 			  // C:\Users\SRV-4D>"C:\Users\SRV-4D\Documents\INP-4D\prod\app\Components\acme_component.4dbase\Resources\openssl\win32\openssl.exe" x509  -noout  -checkend 10000000  -inform PEM -in C:\Users\SRV-4D\Desktop\cert_test.pem & echo %errorlevel%
 			  // WARNING: can't open config file: /usr/local/ssl/openssl.cnf
 			  // 1
-			  // $vb_invalid => Vrai
+			  // $vb_willExpire => Vrai
 			
 			C_BOOLEAN:C305($vb_ok)
 			C_TEXT:C284($vt_out;$vt_err)
@@ -100,10 +100,10 @@ If (Count parameters:C259>0)
 			
 			acme__log (4;Current method name:C684;"bat file :\r"+$vt_bat+"\rout : \""+Replace string:C233(Replace string:C233($vt_out;"";"<LF>";*);"";"<CR>";*)+"\"\rerr : \""+Replace string:C233(Replace string:C233($vt_err;"";"<LF>";*);"";"<CR>";*))
 			If ($vb_ok)
-				$vb_invalid:=(Replace string:C233($vt_out;"\r\n";"";*)="1")
-				acme__log (4;Current method name:C684;"nb seconds : "+String:C10($vl_nbSeconds)+", windows (execute bat ok), out : \""+Replace string:C233($vt_out;"\r\n";"";*)+"\" => "+Choose:C955($vb_invalid;"invalid";"valid"))
+				$vb_willExpire:=(Replace string:C233($vt_out;"\r\n";"";*)="1")
+				acme__log (4;Current method name:C684;"nb seconds : "+String:C10($vl_nbSeconds)+", windows (execute bat ok), out : \""+Replace string:C233($vt_out;"\r\n";"";*)+"\" => "+Choose:C955($vb_willExpire;"invalid";"valid"))
 			Else 
-				$vb_invalid:=True:C214
+				$vb_willExpire:=True:C214
 				acme__log (4;Current method name:C684;"nb seconds : "+String:C10($vl_nbSeconds)+", windows (execute bat ko) => invalid")
 			End if 
 			
@@ -133,9 +133,10 @@ If (Count parameters:C259>0)
 			
 			C_TEXT:C284($vt_args)
 			$vt_args:="x509 "+\
-				" -noout "+\
 				" -checkend "+String:C10($vl_nbSeconds)+\
 				" -inform "+$vt_inform
+			
+			  //" -noout " => "Certificate will not expire" or "Certificate will expire" output
 			
 			C_TEXT:C284($vt_in;$vt_out;$vt_err)
 			$vt_in:=$vt_cert
@@ -146,18 +147,34 @@ If (Count parameters:C259>0)
 			
 			  // MacBook-Pro-Bruno-5:~ ble$ '/Users/ble/Documents/Projets/BaseRef_v15/acme_component/source/acme_component.4dbase/Resources/openssl/osx/openssl' x509  -noout  -checkend 1000  -inform PEM  -in /Users/ble/Documents/Projets/BaseRef_v15/acme_component/source/test/20190424-cert/cert.pem
 			  // MacBook-Pro-Bruno-5:~ ble$ echo $?
-			  // 0 (no error, $vb_invalid = False)
+			  // 0 (no error, $vb_willExpire = False)
 			  // MacBook-Pro-Bruno-5:~ ble$ '/Users/ble/Documents/Projets/BaseRef_v15/acme_component/source/acme_component.4dbase/Resources/openssl/osx/openssl' x509  -noout  -checkend 10000000  -inform PEM  -in /Users/ble/Documents/Projets/BaseRef_v15/acme_component /source/test/20190424-cert/cert.pem
 			  // MacBook-Pro-Bruno-5:~ ble$ echo $?
-			  // 1 ($vb_invalid = True)
+			  // 1 ($vb_willExpire = True)
 			
 			C_BOOLEAN:C305($vb_ok)
 			$vb_ok:=acme__openSslCmd ($vt_args;->$vt_in;->$vt_out;->$vt_err)
 			If ($vb_ok)
-				$vb_invalid:=False:C215  // the certificat will expire  in the next $vl_nbSeconds second
+				$vt_out:=Replace string:C233($vt_out;"\n";"";*)
+				$vt_out:=Replace string:C233($vt_out;"\r";"";*)
+				
+				  //out : "Certificate will not expire"
+				  //out : "Certificate will expire"
+				Case of 
+					: ($vt_out="Certificate will expire")
+						$vb_willExpire:=True:C214  // the certificat will expire  in the next $vl_nbSeconds second
+						
+					: ($vt_out="Certificate will not expire")
+						$vb_willExpire:=False:C215
+						
+					Else 
+						$vb_willExpire:=True:C214
+						ASSERT:C1129(False:C215;"unexpected value \""+$vt_out+"\"")
+				End case 
+				
 				acme__log (4;Current method name:C684;"nb seconds : "+String:C10($vl_nbSeconds)+", os x (lpe ok) => valid")
 			Else 
-				$vb_invalid:=True:C214
+				$vb_willExpire:=True:C214
 				acme__log (4;Current method name:C684;"nb seconds : "+String:C10($vl_nbSeconds)+", os x (lpe ko) => invalid")
 			End if 
 			
@@ -165,4 +182,4 @@ If (Count parameters:C259>0)
 		
 	End if 
 End if 
-$0:=$vb_invalid
+$0:=$vb_willExpire
