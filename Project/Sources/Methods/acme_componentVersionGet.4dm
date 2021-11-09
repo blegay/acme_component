@@ -81,6 +81,8 @@
   //  - added acme__opensslConfigDefault call in acme__opensslCsrNew
   //  - notifications are disabled if application is headless or running as service
   //  - disabled assertions check in "err" stream in acme__openSslCmd
+  //  MODIFICATION : Bruno LEGAY (BLE) - 29/09/2021, 10:19:15 - 2.00.03
+  //  - acme__openSslCmd : use blob parameters to LAUNCH EXTERNAL PROCESS
   //@xdoc-end
   //================================================================================
 
@@ -93,16 +95,21 @@ C_TEXT:C284($0;$vt_componentVersion)
   //    - proxy auth ?
   //<Modif>
 
-  //<Modif> Bruno LEGAY (BLE) (21/07/2021)
-  // added acme_assertionGet / acme_assertionSet
-  // added code to detect headless/running as service (if so no assertions)
-  // added acme__opensslConfigDefault call in acme__opensslCsrNew
-  // notifications are disabled if application is headless or running as service
-  // disabled assertions check in "err" stream in acme__openSslCmd
-$vt_componentVersion:="2.00.02"
+  //<Modif> Bruno LEGAY (BLE) (29/09/2021)
+  // acme__openSslCmd : use blob parameters to LAUNCH EXTERNAL PROCESS
+$vt_componentVersion:="2.00.03"
   //<Modif>
 
 If (False:C215)
+	
+	  //<Modif> Bruno LEGAY (BLE) (21/07/2021)
+	  // added acme_assertionGet / acme_assertionSet
+	  // added code to detect headless/running as service (if so no assertions)
+	  // added acme__opensslConfigDefault call in acme__opensslCsrNew
+	  // notifications are disabled if application is headless or running as service
+	  // disabled assertions check in "err" stream in acme__openSslCmd
+	  // $vt_componentVersion:="2.00.02"
+	  //<Modif>
 	
 	  //<Modif> Bruno LEGAY (BLE) (09/05/2021)
 	  // fixed bug in acme_certCheckEnd, on OS X with 4D v17+ (change of behavior in LEP)

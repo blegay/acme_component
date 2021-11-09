@@ -54,8 +54,31 @@ Case of
 		
 		  // in v18, project mode, the certificates are not in the folder returned by Get 4D folder(Database folder;*)
 		  // but in the same folder as the ".4DProject" file
-		$vt_activeCertificateDirPath:=FS_pathToParent (Structure file:C489(*))
-		  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v18:acme_component:source:acme_component.4dbase:acme_component:Project:"
+		
+		  // In 4D  v19 documentation and a test in 4D v18.3 project mode, the certificates, must be at the same level 
+		  //   - with 4D in local mode or 4D Server, these files must be placed next to the project folder
+		  //   - with 4D in remote mode, these files must be located in the client database folder on the remote machine (for more information about the location of this folder, see the Get 4D folder command).
+		  // https://developer.4d.com/docs/en/Admin/tls.html#installation-and-activation
+		
+		C_TEXT:C284($vt_stuctureFilePath)
+		$vt_stuctureFilePath:=Structure file:C489(*)
+		
+		acme__log (4;Current method name:C684;"structure file path : \""+$vt_stuctureFilePath+"\"")
+		
+		  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v17:acme_component:source:acme_component.4dbase:acme_component.4DB"
+		  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v18:acme_component:source:acme_component.4dbase:acme_component:Project:acme_component.4DProject"
+		
+		If ($vt_stuctureFilePath="@.4DProject")
+			  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v18:acme_component:source:acme_component.4dbase:acme_component:Project:acme_component.4DProject"
+			$vt_activeCertificateDirPath:=FS_pathToParent (FS_pathToParent ($vt_stuctureFilePath))
+			  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v18:acme_component:source:acme_component.4dbase:acme_component:"
+		Else 
+			  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v17:acme_component:source:acme_component.4dbase:acme_component.4DB"
+			$vt_activeCertificateDirPath:=FS_pathToParent ($vt_stuctureFilePath)
+			  // "Macintosh HD:Users:ble:Documents:Projets:BaseRef_v17:acme_component:source:acme_component.4dbase:"
+		End if 
+		
+		  //$vt_activeCertificateDirPath:=FS_pathToParent (Structure file(*))
 End case 
 
 acme__log (4;Current method name:C684;"active certificates dir path : \""+$vt_activeCertificateDirPath+"\"")
