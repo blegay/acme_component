@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__challengeRequest
@@ -158,7 +158,9 @@ If ($vl_nbParam>1)
 					OB SET:C1220($vo_httpResponse;"responseBody";$vo_responseBody)
 					
 					If (False:C215)
+						  //%T-
 						SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vo_httpResponse;*))
+						  //%T+
 					End if 
 					
 					CLEAR VARIABLE:C89($vo_httpResponse)

@@ -21,6 +21,7 @@
 C_TEXT:C284($0;$vt_posix)
 C_TEXT:C284($1;$vt_path)
 C_BOOLEAN:C305($2;$vb_enclose)
+
 ASSERT:C1129(Count parameters:C259>0;"requires 1 parameter")
 
 $vt_posix:=""

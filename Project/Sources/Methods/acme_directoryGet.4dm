@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
 
 C_TEXT:C284($0;$vt_url)
 C_TEXT:C284($1;$vt_serviceKey)

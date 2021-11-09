@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"preemptive":"capable","shared":false}
 
 C_TEXT:C284($vt_pem)
 
@@ -67,6 +67,8 @@ If (True:C214)
 		"-----END CERTIFICATE-----\n"
 End if 
 
-
-SET TEXT TO PASTEBOARD:C523(acme_certChainToText ($vt_pem))
-
+If (False:C215)
+	  //%T-
+	SET TEXT TO PASTEBOARD:C523(acme_certChainToText ($vt_pem))
+	  //%T+
+End if 

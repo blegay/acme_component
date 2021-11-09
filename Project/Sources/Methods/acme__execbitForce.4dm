@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__execbitForce
@@ -22,45 +22,14 @@ C_TEXT:C284($0;$vt_cmdPath)
 ASSERT:C1129(Count parameters:C259>0;"requires 1 parameter")
 ASSERT:C1129(Length:C16($1)>0;"$1 cmd path cannot be empty")
 
-  //Si (Nombre de paramètres>0)
 $vt_cmdPath:=$1
 
-
-acme__init 
-
-C_BOOLEAN:C305($vb_doForce)
-$vb_doForce:=False:C215
-
-If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
+If (Is macOS:C1572)
+	acme__init 
 	
-	If (Not:C34(Storage:C1525.acme.config.execBitForced))
-		$vb_doForce:=True:C214
-		
-		Use (Storage:C1525.acme)  // locking "Storage.acme" or "Storage.acme.config" is juste the same
-			Storage:C1525.acme.config.execBitForced:=True:C214
-		End use 
-		
-	End if 
-	
-Else 
-	  // unfortunately, the thread-safe compiler directive do not work with interprocess variables (v18.0)...
-	  //%T-
-	If (Not:C34(<>vb_ACME_execBitForced))
-		$vb_doForce:=True:C214
-		
-		<>vb_ACME_execBitForced:=True:C214
-	End if 
-	  //%T+
-End if 
-
-If ($vb_doForce)
-	  //C_BOOLEAN(<>vb_ACME_execBitForced)
-	  //If (Not(<>vb_ACME_execBitForced))
-	  //<>vb_ACME_execBitForced:=True
-	
-	If (ENV_onWindows )  // windows
-		
-	Else   // os x
+	C_BOOLEAN:C305($vb_doForce)
+	$vb_doForce:=Not:C34(Bool:C1537(Storage:C1525.acme.config.execBitForced))
+	If ($vb_doForce)
 		
 		C_BOOLEAN:C305($vb_ok)
 		C_TEXT:C284($vt_cmd;$vt_in;$vt_out;$vt_err)
@@ -74,6 +43,7 @@ If ($vb_doForce)
 			SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_HIDE_CONSOLE";"true")  // windows only
 			SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_BLOCKING_EXTERNAL_PROCESS";"true")  // BLOCKING_EXTERNAL_PROCESS is "true" by default
 		End if 
+		
 		SET ENVIRONMENT VARIABLE:C812("_4D_OPTION_CURRENT_DIRECTORY";Get 4D folder:C485(Database folder:K5:14;*))
 		
 		LAUNCH EXTERNAL PROCESS:C811($vt_cmd;$vt_in;$vt_out;$vt_err)
@@ -100,8 +70,13 @@ If ($vb_doForce)
 			
 			acme__log (4;Current method name:C684;"command : \""+$vt_cmd+"\", in : \""+$vt_in+"\", out : \""+$vt_out+"\", err : \""+$vt_err+"\". "+Choose:C955($vb_ok;"[OK]";"[KO]"))
 		End if 
+		
+		acme__log (4;Current method name:C684;"setting \"execBitForced\" to TRUE")
+		
+		Use (Storage:C1525.acme)  // locking "Storage.acme" or "Storage.acme.config" is just the same
+			Storage:C1525.acme.config.execBitForced:=True:C214
+		End use 
+		
 	End if 
 	
 End if 
-
-  //Fin de si 

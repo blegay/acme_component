@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_newAccountObject
@@ -103,7 +103,9 @@ If ($vl_nbParam>1)
 	ARRAY TEXT:C222($tt_contacts;0)
 	
 	If (False:C215)
+		  //%T-
 		SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vb_newAccountObject;*))
+		  //%T+
 	End if 
 	
 End if 

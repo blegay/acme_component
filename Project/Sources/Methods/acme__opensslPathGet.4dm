@@ -18,21 +18,27 @@
   //================================================================================
 
 C_TEXT:C284($0;$vt_openSslPath)
-If (ENV_onWindows )
-	
-	C_BOOLEAN:C305($vb_64bits)
-	$vb_64bits:=ENV_is64bits   // true 4D if 4D is running as a 64 bits app
-	
-	$vt_openSslPath:=Get 4D folder:C485(Current resources folder:K5:16)+"openssl"+Folder separator:K24:12+Choose:C955($vb_64bits;"win64";"win32")+Folder separator:K24:12+"openssl.exe"
-	
-Else 
-	  // use os x default openssl binary
-	  //$vt_openSslPath:="/usr/bin/openssl"
-	$vt_openSslPath:=Get 4D folder:C485(Current resources folder:K5:16)+"openssl"+Folder separator:K24:12+"osx"+Folder separator:K24:12+"openssl"
-	
-End if 
-ASSERT:C1129(Test path name:C476($vt_openSslPath)=Is a document:K24:1)
 
-$vt_openSslPath:=UTL_pathToPosixConvert ($vt_openSslPath)
+If (Storage:C1525.acme#Null:C1517)
+	$vt_openSslPath:=Storage:C1525.acme.config.opensslPath
+Else 
+	
+	If (ENV_onWindows )
+		
+		C_BOOLEAN:C305($vb_64bits)
+		$vb_64bits:=ENV_is64bits   // true 4D if 4D is running as a 64 bits app
+		
+		$vt_openSslPath:=Get 4D folder:C485(Current resources folder:K5:16)+"openssl"+Folder separator:K24:12+Choose:C955($vb_64bits;"win64";"win32")+Folder separator:K24:12+"openssl.exe"
+		
+	Else 
+		  // use os x default openssl binary
+		  //$vt_openSslPath:="/usr/bin/openssl"
+		$vt_openSslPath:=Get 4D folder:C485(Current resources folder:K5:16)+"openssl"+Folder separator:K24:12+"osx"+Folder separator:K24:12+"openssl"
+		
+	End if 
+	ASSERT:C1129(Test path name:C476($vt_openSslPath)=Is a document:K24:1)
+	
+	$vt_openSslPath:=UTL_pathToPosixConvert ($vt_openSslPath)
+End if 
 
 $0:=$vt_openSslPath

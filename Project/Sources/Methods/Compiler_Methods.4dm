@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"preemptive":"incapable","executedOnServer":false,"publishedSql":false,"shared":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
 
 
   //UTL_initAuto
@@ -13,7 +13,10 @@ C_TEXT:C284(acme__log ;$3)
 C_TEXT:C284(acme__log ;$4)
 
   //DBG__dbgInitAuto
+  //%T-
 C_POINTER:C301(DBG__dbgInitAuto ;$1)
+  //%T+
+
 
   //acme_componentVersionGet
 C_TEXT:C284(acme_componentVersionGet ;$0)
@@ -579,7 +582,9 @@ C_TEXT:C284(acme_digestFile ;$1)
 C_TEXT:C284(acme_digestFile ;$2)
 
   //acme_sslCipherListSet
+  //%T+
 C_TEXT:C284(acme_sslCipherListSet ;$1)
+  //%T-
 
   //acme_sslCipherListGet
 C_TEXT:C284(acme_sslCipherListGet ;$0)
@@ -695,3 +700,30 @@ C_POINTER:C301(acme_certificateOrderAndInstall ;$1)
   //acme__varPtrDebug
 C_TEXT:C284(acme__varPtrDebug ;$0)
 C_POINTER:C301(acme__varPtrDebug ;$1)
+
+
+  //acme_sha256Sign
+C_TEXT:C284(acme_sha256Sign ;$0)
+C_POINTER:C301(acme_sha256Sign ;$1)
+C_TEXT:C284(acme_sha256Sign ;$2)
+
+  //acme_pkcs12FileToPem
+C_TEXT:C284(acme_pkcs12FileToPem ;$0)
+C_TEXT:C284(acme_pkcs12FileToPem ;$1)
+C_TEXT:C284(acme_pkcs12FileToPem ;$2)
+
+  //CRC_digestBase64
+C_TEXT:C284(CRC_digestBase64 ;$0)
+C_POINTER:C301(CRC_digestBase64 ;$1)
+C_LONGINT:C283(CRC_digestBase64 ;$2)
+
+  //acme_pemFormatChainToObject
+C_OBJECT:C1216(acme_pemFormatChainToObject ;$0)
+C_TEXT:C284(acme_pemFormatChainToObject ;$1)
+
+C_TEXT:C284(acme__debugMethodNameGet ;$0)
+
+C_BOOLEAN:C305(acme_assertionGet ;$0)
+C_BOOLEAN:C305(acme_assertionSet ;$1)
+C_BOOLEAN:C305(acme__isHeadless ;$0)
+C_BOOLEAN:C305(acme__launchedAsService ;$0)

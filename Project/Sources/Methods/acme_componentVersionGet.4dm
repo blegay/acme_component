@@ -5,11 +5,11 @@
   //@scope : public
   //@deprecated : no
   //@description : This function returns the component version 
-  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "0.90.16")
+  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "1.00.04")
   //@notes :
   //@example : acme_componentVersionGet 
   //@see : 
-  //@version : 0.90.16
+  //@version : 1.00.04
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
   //@history : 
   // CREATION : Bruno LEGAY (BLE) - 04/12/2018, 23:39:22 - v0.90.00
@@ -67,6 +67,20 @@
   //  - fixed bug with execBitForced (execution bit was not set when calling openssl on a MacOS X client). Fix suggested by Stanislas Caron
   // MODIFICATION : Bruno LEGAY (BLE) - 09/10/2020, 19:11:12 - v1.00.03
   //  - fixing a bug with getting modulus from "key.pem" from "account" dir (reported by Armin Deeg)
+  // MODIFICATION : Bruno LEGAY (BLE) - 22/02/2021, 09:51:24 - 1.00.03
+  //  - making code pre-emptive (4D v18.3)
+  // MODIFICATION : Bruno LEGAY (BLE) - 04/05/2021, 13:25:59 - 2.00.00
+  //  - making code pre-emptive (4D v18.3)
+  //  - using Storage so code is now 4D v17+
+  // MODIFICATION : Bruno LEGAY (BLE) - 09/05/2021, 15:16:01 - 2.00.01
+  //  - fixed bug in acme_certCheckEnd, on OS X with 4D v17+ (change of behavior in LEP) 
+  //  - fixed documentation bug in acme_certCheckEnd
+  // MODIFICATION : Bruno LEGAY (BLE) - 21/07/2021, 16:28:30 - 2.00.02
+  //  - added acme_assertionGet / acme_assertionSet
+  //  - added code to detect headless/running as service (if so no assertions)
+  //  - added acme__opensslConfigDefault call in acme__opensslCsrNew
+  //  - notifications are disabled if application is headless or running as service
+  //  - disabled assertions check in "err" stream in acme__openSslCmd
   //@xdoc-end
   //================================================================================
 
@@ -79,12 +93,36 @@ C_TEXT:C284($0;$vt_componentVersion)
   //    - proxy auth ?
   //<Modif>
 
-  //<Modif> Bruno LEGAY (BLE) (01/10/2020)
-  // fixing a bug with getting modulus from "key.pem" from "account" dir (reported by Armin Deeg)
-$vt_componentVersion:="1.00.03"
+  //<Modif> Bruno LEGAY (BLE) (21/07/2021)
+  // added acme_assertionGet / acme_assertionSet
+  // added code to detect headless/running as service (if so no assertions)
+  // added acme__opensslConfigDefault call in acme__opensslCsrNew
+  // notifications are disabled if application is headless or running as service
+  // disabled assertions check in "err" stream in acme__openSslCmd
+$vt_componentVersion:="2.00.02"
   //<Modif>
 
 If (False:C215)
+	
+	  //<Modif> Bruno LEGAY (BLE) (09/05/2021)
+	  // fixed bug in acme_certCheckEnd, on OS X with 4D v17+ (change of behavior in LEP)
+	  // https://github.com/blegay/acme_component/commit/7dd33a8027e6ac807fe598651bebbe6c09ba1f4d 
+	  // fixed documentation bug in acme_certCheckEnd
+	  // https://github.com/blegay/acme_component/commit/de8bdcc4feb3f6f1b3ee749910b899b9fb2ac1ac#diff-80203937ff5648671c6ddb5b18c879d798a1ecb93884a58202d6832314156e97
+	  // $vt_componentVersion:="2.00.01"
+	  //<Modif>
+	
+	  //<Modif> Bruno LEGAY (BLE) (22/02/2021)
+	  // making code pre-emptive (4D v18.3)
+	  // using Storage so code is now 4D v17+
+	  // $vt_componentVersion:="2.00.00"
+	  //<Modif>
+	
+	
+	  //<Modif> Bruno LEGAY (BLE) (01/10/2020)
+	  // fixing a bug with getting modulus from "key.pem" from "account" dir (reported by Armin Deeg)
+	  // $vt_componentVersion:="1.00.03"
+	  //<Modif>
 	
 	  //<Modif> Bruno LEGAY (BLE) (01/10/2020)
 	  // fixed bug with execBitForced (execution bit was not set when calling openssl on a MacOS X client)

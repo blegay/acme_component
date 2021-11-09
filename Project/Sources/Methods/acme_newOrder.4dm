@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_newOrder
@@ -272,7 +272,9 @@ If ($vl_nbParam>1)
 						
 						UTL_textToFile ($vt_orderDir+$vt_timestamp+"_httpRequest.json";JSON Stringify:C1217($vo_httpResponse;*))
 						If (False:C215)
+							  //%T-
 							SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vo_httpResponse;*))
+							  //%T+
 						End if 
 						
 						CLEAR VARIABLE:C89($vo_httpResponse)

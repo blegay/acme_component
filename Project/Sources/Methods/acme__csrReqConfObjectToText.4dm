@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__csrReqConfObjectToText
@@ -78,7 +78,9 @@ End if
 $vt_csrConf:=acme__csrReqConfObjectToTextSub ($vo_csr;$vt_endLine)
 
 If (False:C215)
+	  //%T-
 	SET TEXT TO PASTEBOARD:C523($vt_csrConf)
+	  //%T+
 End if 
 
   //TABLEAU TEXTE($tt_propertyNames;0)

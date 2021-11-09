@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_directoryUrlSet
@@ -39,9 +39,9 @@ If (Count parameters:C259>0)
 	If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
 		
 		If (Not:C34(TXT_isEqualStrict (Storage:C1525.acme.config.directoryUrl;$vt_directoryUrl)))
-			acme__log (4;Current method name:C684;"setting \"workingDir\" : \""+$vt_directoryUrl+"\"")
+			acme__log (4;Current method name:C684;"setting \"directoryUrl\" : \""+$vt_directoryUrl+"\"")
 			
-			Use (Storage:C1525.acme)  // locking "Storage.acme" or "Storage.acme.config" is juste the same
+			Use (Storage:C1525.acme)  // locking "Storage.acme" or "Storage.acme.config" is just the same
 				Storage:C1525.acme.config.directoryUrl:=$vt_directoryUrl
 			End use 
 			
@@ -49,11 +49,11 @@ If (Count parameters:C259>0)
 	Else 
 		  // unfortunately, the thread-safe compiler directive do not work with interprocess variables (v18.0)...
 		  //%T-
-		If (Not:C34(TXT_isEqualStrict (<>vt_ACME_directoryUrl;$vt_directoryUrl)))
-			acme__log (4;Current method name:C684;"setting \"workingDir\" : \""+$vt_directoryUrl+"\"")
-			
-			<>vt_ACME_directoryUrl:=$vt_directoryUrl
-		End if 
+		  //%T// If (Not(TXT_isEqualStrict (<>vt_ACME_directoryUrl;$vt_directoryUrl)))
+		  //%T// acme__log (4;Current method name;"setting \"workingDir\" : \""+$vt_directoryUrl+"\"")
+		  //%T// 
+		  //%T// <>vt_ACME_directoryUrl:=$vt_directoryUrl
+		  //%T// End if 
 		  //%T+
 	End if 
 	

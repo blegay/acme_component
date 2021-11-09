@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__pemFormatCheck
@@ -82,14 +82,18 @@ If ($vl_nbParam>1)
 			$vt_pemData:=Substring:C12($vt_pem;$vl_posStart+Length:C16($vt_startTag);$vl_posEnd-$vl_posStart-Length:C16($vt_startTag))
 			
 			If (False:C215)  // debug
+				  //%T-
 				SET TEXT TO PASTEBOARD:C523($vt_pemData)
+				  //%T+
 			End if 
 			
 			  // remove indentation
 			$vt_pemData:=Replace string:C233($vt_pemData;"\n";"";*)
 			
 			If (False:C215)  // debug
+				  //%T-
 				SET TEXT TO PASTEBOARD:C523($vt_pemData)
+				  //%T+
 			End if 
 			
 			If (Length:C16($vt_pemData)>0)  // should not be empty

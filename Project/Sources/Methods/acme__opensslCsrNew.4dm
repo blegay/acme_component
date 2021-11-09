@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__opensslCsrNew
@@ -91,13 +91,30 @@ C_TEXT:C284($vt_in;$vt_err)
 $vt_in:=""
 $vt_err:=""
 
+  //<Modif> Bruno LEGAY (BLE) (22/07/2021)
+
+  // try avoiding the "error/warning" on Windows 
+  // 2021-07-22T05:48:02.060Z - acme - 04 - acme__openSslCmd ==> cmd ""C:\Users\bruno\myApp\Components\acme_component.4dbase\Resources\openssl\win64\openssl.exe" req 
+  // -new 
+  // -key "C:\Users\bruno\myApp\letsencrypt\org.letsencrypt.api.acme-v02\_orders\11332917651\key.pem" 
+  // -sha256 
+  // -outform DER 
+  // -nodes 
+  // -config "C:\Users\bruno\AppData\Local\Temp\openssl_config_442FD54E5118264BB9AFE54D814FD882.cnf"", in : "", out : "1225 byte(s)", err : "WARNING: can't open config file: /usr/local/ssl/openssl.cnf
+  // ", duration : 0,496s success. [OK]
+
+acme__opensslConfigDefault 
+  //<Modif>
+
 If (acme__openSslCmd ($vt_args;->$vt_in;$vp_csrPtr;->$vt_err))
 	$vb_ok:=True:C214
 	
 	acme__log (4;Current method name:C684;"openssl generate "+$vt_outForm+" csr, csrObj :\r"+JSON Stringify:C1217($vo_csrObj;*)+"\r, config :\r"+$vt_csrConf+"\r csr :\r"+acme__opensslCsrToText ($vp_csrPtr))
 	
 	If (False:C215)  // for debugging
+		  //%T-
 		SET TEXT TO PASTEBOARD:C523(acme__opensslCsrToText ($vp_csrPtr))
+		  //%T+
 	End if 
 	
 Else 

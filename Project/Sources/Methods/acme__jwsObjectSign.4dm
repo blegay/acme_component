@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__jwsObjectSign
@@ -92,7 +92,9 @@ SET BLOB SIZE:C606($vx_signatureBinary;0)
 
 If (False:C215)  // for debugging
 	  // https://jwt.io/#encoded-jwt
+	  //%T-
 	SET TEXT TO PASTEBOARD:C523($vt_stringToSign+"."+$vt_signature)
+	  //%T+
 End if 
 
 

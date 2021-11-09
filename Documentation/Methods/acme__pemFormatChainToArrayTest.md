@@ -1,1 +1,1 @@
-﻿## **Parameters :** 
+﻿## **Treadsafe :** capable ✅ ## **Parameters :** 

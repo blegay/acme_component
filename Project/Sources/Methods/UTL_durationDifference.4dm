@@ -25,6 +25,14 @@
   // $vl_tickCount:=Tickcount
   // `...
   // $vl_durationInTicks:=LONG_durationDifference ($vl_tickCount;Tickcount)
+  //
+  // ASSERT(LONG_durationDifference (1;1)=0)
+  // ASSERT(LONG_durationDifference (2;1)=0)  // error (wrong input)
+  // ASSERT(LONG_durationDifference (1;2)=1)
+  // ASSERT(LONG_durationDifference (-1;1)=2)
+  // ASSERT(LONG_durationDifference (2147483647;-2147483648)=1)
+  // ASSERT(LONG_durationDifference (2147483647;-2147483647)=2)
+  //
   //@see : 
   //@version : 1.00.00
   //@author : 
@@ -42,23 +50,12 @@ If (Count parameters:C259>1)
 	$vl_valStart:=$1
 	$vl_valEnd:=$2
 	
-	Case of 
-			  //:($vl_valStart=$vl_valEnd)
-			  //$vl_diff:=0
-		: (($vl_valStart>=0) & ($vl_valEnd>=0))
-			$vl_diff:=$vl_valEnd-$vl_valStart
-			
-		: (($vl_valStart<0) & ($vl_valEnd<0))
-			$vl_diff:=$vl_valEnd-$vl_valStart
-			
-		: ($vl_valEnd>0)
-			  //$vl_valStart < 0 but in unsigned char above $vl_valEnd
-			$vl_diff:=Abs:C99((MAXLONG:K35:2-$vl_valEnd)+($vl_valStart-MAXLONG:K35:2))
-			
-		Else 
-			$vl_diff:=($vl_valEnd-MAXLONG:K35:2)+(MAXLONG:K35:2-$vl_valStart)
-			
-	End case 
+	  // https://discuss.4d.com/t/nombre-de-millisecondes-quand-le-serveur-ne-redemarre-jamais/17971
+	
+	$vl_diff:=$vl_valEnd-$vl_valStart
+	If ($vl_diff<0)  // duration can never be negative, error (wrong input)
+		$vl_diff:=0
+	End if 
 	
 End if 
 $0:=$vl_diff

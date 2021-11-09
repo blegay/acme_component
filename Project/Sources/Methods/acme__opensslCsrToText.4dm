@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__opensslCsrToText
@@ -67,7 +67,9 @@ Else
 End if 
 
 If (False:C215)
+	  //%T-
 	SET TEXT TO PASTEBOARD:C523($vt_out)
+	  //%T+
 End if 
 
 $0:=$vt_out

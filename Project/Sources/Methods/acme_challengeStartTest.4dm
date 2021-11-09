@@ -1,4 +1,4 @@
-//%attributes = {"invisible":false,"shared":true}
+//%attributes = {"invisible":false,"shared":true,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_challengeStartTest

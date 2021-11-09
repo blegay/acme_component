@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_directoryUrlGet
@@ -25,7 +25,7 @@ If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
 Else 
 	  // unfortunately, the thread-safe compiler directive do not work with interprocess variables (v18.0)...
 	  //%T-
-	$vt_directoryUrl:=<>vt_ACME_directoryUrl
+	  //%T// $vt_directoryUrl:=<>vt_ACME_directoryUrl
 	  //%T+
 End if 
 

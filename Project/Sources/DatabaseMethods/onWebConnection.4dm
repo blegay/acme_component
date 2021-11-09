@@ -22,6 +22,12 @@ If (Not:C34(Is compiled mode:C492))
 			
 		Else 
 			
+			  //ALERT(WEB Get current session ID)
+			
+			  //WEB SEND TEXT("hello")
+			  //WEB Get current session ID
+			
 	End case 
 	
 End if 
+

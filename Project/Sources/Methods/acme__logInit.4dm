@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"preemptive":"incapable","executedOnServer":false,"publishedSql":false,"shared":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__logInit
@@ -15,6 +15,7 @@
   //@xdoc-end
   //================================================================================
 
+  //%T-
 ARRAY TEXT:C222($tt_componentList;0)
 COMPONENT LIST:C1001($tt_componentList)
   // if the component "log4D_component" is installed
@@ -32,3 +33,4 @@ If (Find in array:C230($tt_componentList;"log4D_component")>0)
 	
 End if 
 ARRAY TEXT:C222($tt_componentList;0)
+  //%T+

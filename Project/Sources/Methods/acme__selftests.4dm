@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"preemptive":"capable","shared":false}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__selftests
@@ -262,7 +262,9 @@ $vt_expected:=$vt_expected+"         9a:61:c6:8c"+$vt_newLine
 $vt_actual:=acme__opensslCsrToText (->$vx_csr)
 ASSERT:C1129($vt_expected=$vt_actual;"openssl get private key exponent failed")
 If (False:C215)
+	  //%T-
 	SET TEXT TO PASTEBOARD:C523($vt_actual+"\r"+$vt_expected)
+	  //%T+
 End if 
 
 If (True:C214)

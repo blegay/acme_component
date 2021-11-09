@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"shared":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__compiler
@@ -16,13 +16,13 @@
 
   //declare the interprocess variable which will indicate if the module had been inited once (interprocess)
   //initialized, used in acme_init
-C_BOOLEAN:C305(<>vb_ACME_init)
+  // C_BOOLEAN(<>vb_ACME_init)
 
   //declare the interprocess variable which will contain the name of the debug method
   //initialized in acme__initSub
   //used in acme__moduleDebugDateTimeLine
-C_TEXT:C284(<>vt_ACME_dbgMethodName)
+  // C_TEXT(<>vt_ACME_dbgMethodName)
 
-C_BOOLEAN:C305(<>vb_ACME_execBitForced)
+  // C_BOOLEAN(<>vb_ACME_execBitForced)
 
-C_TEXT:C284(<>vt_ACME_workingDir;<>vt_ACME_directoryUrl)
+  // C_TEXT(<>vt_ACME_workingDir;<>vt_ACME_directoryUrl)

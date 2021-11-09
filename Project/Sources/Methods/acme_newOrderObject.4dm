@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
   //================================================================================
   //@xdoc-start : en
   //@name : acme_newOrderObject
@@ -114,7 +114,9 @@ If ($vl_nbParam>0)
 	
 	acme__log (4;Current method name:C684;"new order object :\r"+JSON Stringify:C1217($vb_newOrderObject;*))
 	If (False:C215)
+		  //%T-
 		SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vb_newOrderObject;*))
+		  //%T+
 	End if 
 	
 End if 

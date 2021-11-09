@@ -7,7 +7,7 @@
   //@description : This function returns a default config path for openss on Windows 
   //@parameter[0-OUT-configArg-TEXT] : config argument " -config \"C:\.....\openssl.cnf\"")
   //@notes : on OS X, default file "/usr/local/ssl/openssl.cnf" will exist ?
-  // avoird error " "WARNING: can't open config file: /usr/local/ssl/openssl.cnf"
+  // avoid error " "WARNING: can't open config file: /usr/local/ssl/openssl.cnf"
   //@example : acme__opensslConfigDefault
   //@see : 
   //@version : 1.00.00

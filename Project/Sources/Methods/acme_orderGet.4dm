@@ -1,4 +1,4 @@
-//%attributes = {"shared":true,"invisible":false}
+//%attributes = {"shared":true,"invisible":false,"preemptive":"capable","executedOnServer":false,"publishedSql":false,"publishedWsdl":false,"publishedSoap":false,"publishedWeb":false,"published4DMobile":{"scope":"none"}}
 
   //================================================================================
   //@xdoc-start : en
@@ -118,7 +118,9 @@ If (Length:C16($vt_url)>0)
 				  //$2:=OB Copy($vo_order)
 				
 				If (False:C215)
+					  //%T-
 					SET TEXT TO PASTEBOARD:C523(JSON Stringify:C1217($vo_order;*))
+					  //%T+
 				End if 
 				CLEAR VARIABLE:C89($vo_order)
 				

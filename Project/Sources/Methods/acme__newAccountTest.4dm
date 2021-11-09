@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"shared":false}
+//%attributes = {"invisible":true,"preemptive":"capable","shared":false}
   //================================================================================
   //@xdoc-start : en
   //@name : acme__newAccountTest
