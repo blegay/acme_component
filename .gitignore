@@ -35,3 +35,10 @@ key.pem
 /Documentation/Methods/UTL_durationDifference.md
 /Documentation/Methods/UTL_pathToPosixConvert.md
 /Documentation.zip
+/*.4BL
+/*.4BK
+/backupHistory.json
+/Project/Sources/Methods/Methode*.4dm
+/Project/Sources/settings.4DSettings
+/Project/Sources/Methods/web_cookieHeader.4dm
+/Project/Sources/catalog.4DCatalog
