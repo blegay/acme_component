@@ -7,7 +7,8 @@
   //@description : This function returns the active certificates dir path
   //@parameter[0-OUT-activeCertificateDirPath-TEXT] : active certificates dir path
   //@notes : 
-  // on standalone or server, certificates and rsa private key files are in the same folder as the structure file
+  // on standalone or server, (binary mode) certificates and rsa private key files are in the same folder as the structure file (e.g. "myApp.4DB", "myApp.4DC")
+  // on standalone or server, (project mode) certificates and rsa private key files are in the same folder as the "Project" folder/dir
   // on 4D Client, certificates and rsa private key files are next to the 4D executable file
   //@example : acme_certActiveDirPathGet
   //@see : 
@@ -19,21 +20,26 @@
   //================================================================================
 
 C_TEXT:C284($0;$vt_activeCertificateDirPath)
+C_LONGINT:C283($1;$vl_appType)
 
 $vt_activeCertificateDirPath:=""
 
   // dir where to set the certificates
   // https://doc.4d.com/4Dv17/4D/17.3/Using-TLS-Protocol-HTTPS.300-4620625.en.html
-C_LONGINT:C283($vl_appType)
-$vl_appType:=Application type:C494
+If (Count parameters:C259=0)
+	$vl_appType:=Application type:C494
+Else 
+	$vl_appType:=$1
+End if 
+
 Case of 
 	: ($vl_appType=4D Remote mode:K5:5)
 		  // - with 4D in remote mode, these files must be located in the local resources folder of the database on the remote machine 
 		  // (for more information about the location of this folder, refer to the 4D Client Database Folder paragraph in the description of the Get 4D folder command). 
 		  // You must copy these files manually on the remote machine.
-		$vt_activeCertificateDirPath:=Get 4D folder:C485(4D Client database folder:K5:13;*)
-		  //$vt_activeCertificateDirPath:=FS_pathToParent (Application file)
 		
+		$vt_activeCertificateDirPath:=Get 4D folder:C485(4D Client database folder:K5:13;*)
+		  // "Macintosh HD:Users:bruno:Library:Cache:myApp:myApp_192_168_1_1_19813_272:"
 		
 		  //: ($vl_appType=4D Volume desktop)
 		  //  // https://doc.4d.com/4Dv18/4D/18/Structure-file.301-4505358.en.html
@@ -81,6 +87,27 @@ Case of
 		  //$vt_activeCertificateDirPath:=FS_pathToParent (Structure file(*))
 End case 
 
-acme__log (4;Current method name:C684;"active certificates dir path : \""+$vt_activeCertificateDirPath+"\"")
+C_TEXT:C284($vt_appTypeTxtDebug)
+Case of 
+	: ($vl_appType=4D Local mode:K5:1)  // 0
+		$vt_appTypeTxtDebug:="Local"
+		
+	: ($vl_appType=4D Volume desktop:K5:2)  // 1
+		$vt_appTypeTxtDebug:="Volume desktop"
+		
+	: ($vl_appType=4D Desktop:K5:4)  // 3
+		$vt_appTypeTxtDebug:="Desktop"
+		
+	: ($vl_appType=4D Remote mode:K5:5)  // 4 
+		$vt_appTypeTxtDebug:="Remote"
+		
+	: ($vl_appType=4D Server:K5:6)  // 5 
+		$vt_appTypeTxtDebug:="Server"
+		
+	Else 
+		$vt_appTypeTxtDebug:="???"
+End case 
+
+acme__log (4;Current method name:C684;"app type : "+$vt_appTypeTxtDebug+" ("+String:C10($vl_appType)+"), active certificates dir path : \""+$vt_activeCertificateDirPath+"\"")
 
 $0:=$vt_activeCertificateDirPath
