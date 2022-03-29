@@ -1,1 +1,27 @@
-﻿# **Method :** acme__processInfosDebug## **Scope :** private## **Description :** This method/function returns## **Parameters :** | Parameter | Direction | Name | Type | Ddescription | |:----:|:----:|:----|:----|:----| | $0 | OUT | paramName | TEXT | ParamDescription | | $1 | IN | paramName | OBJECT | ParamDescription | | $2 | IN | paramName | POINTER | ParamDescription (not modified) | | $3 | INOUT | paramName | POINTER | ParamDescription (modified) | | $4 | OUT | paramName | POINTER | ParamDescription (modified) | | $5 | IN | paramName | LONGINT | ParamDescription (optional, default value : 1) | ## **Notes :** ## **Example :** ```acme__processInfosDebug```## **Version :** 1.00.00## **Author :** Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022## **History :**          CREATION : Bruno LEGAY (BLE) - 27/01/2022, 19:21:15 - 2.00.04
+﻿# **Method :** acme__processInfosDebug
+## **Scope :** private
+## **Description :** 
+This method/function returns
+## **Parameters :** 
+| Parameter | Direction | Name | Type | Ddescription | 
+|:----:|:----:|:----|:----|:----| 
+| $0 | OUT | paramName | TEXT | ParamDescription | 
+| $1 | IN | paramName | OBJECT | ParamDescription | 
+| $2 | IN | paramName | POINTER | ParamDescription (not modified) | 
+| $3 | INOUT | paramName | POINTER | ParamDescription (modified) | 
+| $4 | OUT | paramName | POINTER | ParamDescription (modified) | 
+| $5 | IN | paramName | LONGINT | ParamDescription (optional, default value : 1) | 
+
+## **Notes :** 
+
+## **Example :** 
+```
+acme__processInfosDebug
+```
+## **Version :** 
+1.00.00
+## **Author :** 
+Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+## **History :** 
+ 
+        CREATION : Bruno LEGAY (BLE) - 27/01/2022, 19:21:15 - 2.00.04
