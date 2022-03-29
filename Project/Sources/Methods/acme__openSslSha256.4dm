@@ -8,12 +8,12 @@
   //@parameter[0-OUT-ok-BOOLEAN] : TRUE if ok, FALSE otherwise
   //@parameter[1-IN-dataPtr-POINTER] : blob data pointer (modified)
   //@parameter[2-IN-digestBinary-POINTER] : digest blob pointer (modified)
-  //@notes : 
+  //@notes :
   //@example : acme__openSslSha256
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : 
-  //@history : 
+  //@author :
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 23/06/2018, 18:59:33 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -38,7 +38,7 @@ $vt_args:="dgst"+\
 acme__opensslConfigDefault 
 
 C_TEXT:C284($vt_err)
-If (acme__openSslCmd ($vt_args;$vp_dataPtr;$vp_digestBinaryPtr;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vp_dataPtr;$vp_digestBinaryPtr;->$vt_err))
 	$vb_ok:=True:C214
 Else 
 	ASSERT:C1129(False:C215;"sha256 digest failure, openssl args : "+$vt_args)

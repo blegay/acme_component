@@ -13,7 +13,7 @@
   //@example : acme__executeBatFile
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 25/04/2019, 13:33:13 - 0.90.05
   //@xdoc-end
@@ -35,7 +35,7 @@ $vt_batfile:=$1
 $vp_outPtr:=$2
 $vp_errPtr:=$3
 
-If (ENV_onWindows )
+If (Is Windows:C1573)
 	
 	C_TEXT:C284($vt_batfilePosix)
 	$vt_batfilePosix:=UTL_pathToPosixConvert ($vt_batfile)

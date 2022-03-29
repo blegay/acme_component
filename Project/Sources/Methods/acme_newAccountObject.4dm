@@ -28,7 +28,7 @@
   //
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 03/07/2018, 18:43:01 - 1.0
   //@xdoc-end

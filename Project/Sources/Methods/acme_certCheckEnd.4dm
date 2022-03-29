@@ -14,8 +14,8 @@
   // C_TEXT($vt_cert)
   // If (acme_certCurrentGet (->$vt_cert))
   //    C_LONGINT($vl_nbDays;$vl_secs)
-  //    $vl_nbDays:=30 
-  //    $vl_secs:=$vl_nbDays*86400 // 86400 = 24 x 60 x 60 
+  //    $vl_nbDays:=30
+  //    $vl_secs:=$vl_nbDays*86400 // 86400 = 24 x 60 x 60
   //    If (acme_certCheckEnd ($vt_cert;$vl_secs))
   //      // Do something here because the certificate will expire in the next $vl_nbDays days
   //    Else
@@ -23,10 +23,10 @@
   //    End if
   // End if
   //
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 12/02/2019, 09:19:06 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -54,7 +54,7 @@ If (Count parameters:C259>0)
 	
 	If (Length:C16($vt_cert)>0)
 		
-		If (ENV_onWindows )
+		If (Is Windows:C1573)
 			
 			C_TEXT:C284($vt_uuid)
 			$vt_uuid:=Generate UUID:C1066
@@ -78,7 +78,7 @@ If (Count parameters:C259>0)
 			  // writes files without bom (but not UTF8), converts CR to CRLF on windows :
 			  // TEXTE VERS DOCUMENT($vt_certTempPath;$vt_cert;"windows-1252")
 			  // TEXTE VERS DOCUMENT($vt_batTempPath;$vt_bat;"windows-1252")
-			  // 
+			  //
 			  // writes files with bom, converts CR to CRLF on windows :
 			  // TEXTE VERS DOCUMENT($vt_certTempPath;$vt_cert)
 			  // TEXTE VERS DOCUMENT($vt_batTempPath;$vt_bat)
@@ -108,12 +108,12 @@ If (Count parameters:C259>0)
 			End if 
 			
 			  // @ECHO OFF
-			  // 
+			  //
 			  // set OPENSSL_CONF=C:\Users\Win\Documents\bruno\acme_component.4dbase\Resources\openssl\openssl.cnf
-			  // 
+			  //
 			  // "C:\Users\Win\Documents\bruno\acme_component.4dbase\Resources\openssl\win32\openssl.exe" x509  -noout  -checkend 3024000  -inform PEM -in "C:\Users\Win\Documents\bruno\test\20190424-cert\cert.pem"
 			  // REM "C:\Users\Win\AppData\Local\Temp\acme_component_checkend_6FC8DD3B1EA6564BA14807A7CE40D12D.crt"
-			  // 
+			  //
 			  // echo %ERRORLEVEL%
 			
 			If (Test path name:C476($vt_certTempPath)=Is a document:K24:1)
@@ -153,7 +153,7 @@ If (Count parameters:C259>0)
 			  // 1 ($vb_willExpire = True)
 			
 			C_BOOLEAN:C305($vb_ok)
-			$vb_ok:=acme__openSslCmd ($vt_args;->$vt_in;->$vt_out;->$vt_err)
+			$vb_ok:=acme_opensslCmd ($vt_args;->$vt_in;->$vt_out;->$vt_err)
 			If ($vb_ok)
 				$vt_out:=Replace string:C233($vt_out;"\n";"";*)
 				$vt_out:=Replace string:C233($vt_out;"\r";"";*)

@@ -37,18 +37,30 @@ End if
 
 C_BLOB:C604($vx_blob)
 SET BLOB SIZE:C606($vx_blob;0)
-CONVERT FROM TEXT:C1011($vt_text;$vt_encoding;$vx_blob)
-ASSERT:C1129(ok=1;"convert text to blob failed with encoding \""+$vt_encoding+"\"")
-If (ok=1)
+
+C_BOOLEAN:C305($vb_writeFile)
+
+If (Length:C16($vt_text)>0)
+	
+	CONVERT FROM TEXT:C1011($vt_text;$vt_encoding;$vx_blob)
+	$vb_writeFile:=(ok=1)
+	ASSERT:C1129($vb_writeFile;"convert text to blob failed with encoding \""+$vt_encoding+"\"")
+	If (Not:C34($vb_writeFile))
+		acme__log (2;Current method name:C684;"failed to convert text to \""+$vt_encoding+"\" encoding, text (length : "+String:C10(Length:C16($vt_text))+") :\r"+$vt_text+"\r[KO]")
+	End if 
+	
+Else 
+	$vb_writeFile:=True:C214
+End if 
+
+If ($vb_writeFile)
 	BLOB TO DOCUMENT:C526($vt_filepath;$vx_blob)
 	ASSERT:C1129(ok=1;"writing to file \""+$vt_filepath+"\" failed")
 	$vb_ok:=(ok=1)
 	
-	acme__log (Choose:C955($vb_ok;4;2);Current method name:C684;"dump :\r"+$vt_text+"\rinto file : \""+$vt_filepath+"\". "+Choose:C955($vb_ok;"[OK]";"[KO]"))
-	
-Else 
-	acme__log (2;Current method name:C684;"failed to convert text to \""+$vt_encoding+"\" encoding, text :\r"+$vt_text+"\r[KO]")
+	acme__log (Choose:C955($vb_ok;4;2);Current method name:C684;"dump text (length : "+String:C10(Length:C16($vt_text))+") :\r"+$vt_text+"\rinto file : \""+$vt_filepath+"\". "+Choose:C955($vb_ok;"[OK]";"[KO]"))
 End if 
+
 SET BLOB SIZE:C606($vx_blob;0)
 
 $0:=$vb_ok

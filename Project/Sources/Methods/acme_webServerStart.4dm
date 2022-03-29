@@ -14,7 +14,7 @@
   //
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 06/09/2018, 19:12:43 - 1.0
   //@xdoc-end
@@ -39,6 +39,9 @@ If (Not:C34(WEB Is server running:C1313))
 		  //   - https://blog.4d.com/a-security-ranking-for-4d-web-sites/
 		
 		If (ENV_isv17OrAbove )
+			
+			  // #4D-v19-newhttpServer
+			
 			  // The time that the browser should remember that the site is only to be accessed using HTTPS.
 			WEB SET OPTION:C1210(Web HSTS max age:K73:27;31536000)  // 87 - 31 536 000 = 365 * 86400 s = 365 days
 			
@@ -56,6 +59,9 @@ If (Not:C34(WEB Is server running:C1313))
 		acme__log (2;Current method name:C684;"no certficate found")
 		
 		If (ENV_isv17OrAbove )
+			
+			  // #4D-v19-newhttpServer
+			
 			  // Enable HTTP on your 4D Web server (no certificates)
 			WEB SET OPTION:C1210(Web HTTP enabled:K73:28;1)  // 88
 			
@@ -67,6 +73,8 @@ If (Not:C34(WEB Is server running:C1313))
 	
 	acme__log (4;Current method name:C684;"starting web server...")
 	acme__notify ("4D http server : starting...")
+	
+	  // #4D-v19-newhttpServer
 	
 	C_BOOLEAN:C305($vb_started)
 	WEB START SERVER:C617

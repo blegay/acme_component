@@ -10,7 +10,7 @@
   //@example : acme__httpHeaderSignature
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 25/06/2018, 20:22:36 - 1.0
   //@xdoc-end
@@ -20,6 +20,6 @@ C_TEXT:C284($0;$vt_httpHeaderSignature)
 
 $vt_httpHeaderSignature:="acme_component (4D) v"+acme_componentVersionGet +\
 "/"+ENV_versionStr +Choose:C955(ENV_is64bits ;" (64 bits)";" (32 bits)")+\
-"/"+Choose:C955(ENV_onWindows ;"Windows";"macOS")
+"/"+Choose:C955(Is Windows:C1573;"Windows";"macOS")
 
 $0:=$vt_httpHeaderSignature

@@ -29,6 +29,8 @@ End if
 
 acme__init 
 
+  // #4D-v19-newhttpServer
+
 C_TEXT:C284($vt_cipherListRead)
 C_REAL:C285($vr_result)
 $vr_result:=Get database parameter:C643(SSL cipher list:K37:54;$vt_cipherListRead)  // not "thread-safe" compatible (in v18.0) #thread-safe : todo

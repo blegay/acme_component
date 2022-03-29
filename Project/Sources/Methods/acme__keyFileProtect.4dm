@@ -13,7 +13,7 @@
   //@example : acme__keyFileProtect ("file") <=> chmod 600 'file'
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 03/07/2018, 08:49:59 - 1.0
   //@xdoc-end
@@ -29,7 +29,7 @@ ASSERT:C1129(Test path name:C476($1)=Is a document:K24:1;"$1 (\""+$1+"\") file n
 $vb_ok:=False:C215
 $vt_privateKeyPath:=$1
 
-If (ENV_onWindows )
+If (Is Windows:C1573)
 	$vb_ok:=True:C214
 	
 	If (False:C215)  // #todo : how do we protect files on windows ? chmod 600 equivalent

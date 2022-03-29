@@ -5,11 +5,11 @@
   //@scope : public
   //@deprecated : no
   //@description : This function returns the component version 
-  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "1.00.04")
+  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "2.00.05")
   //@notes :
   //@example : acme_componentVersionGet 
   //@see : 
-  //@version : 1.00.04
+  //@version : 2.00.05
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
   //@history : 
   // CREATION : Bruno LEGAY (BLE) - 04/12/2018, 23:39:22 - v0.90.00
@@ -83,6 +83,14 @@
   //  - disabled assertions check in "err" stream in acme__openSslCmd
   //  MODIFICATION : Bruno LEGAY (BLE) - 29/09/2021, 10:19:15 - 2.00.03
   //  - acme__openSslCmd : use blob parameters to LAUNCH EXTERNAL PROCESS
+  //  MODIFICATION : Bruno LEGAY (BLE) - 28/03/2022, 09:48:16 - 2.00.04
+  //  - checked compatibility with 4D v19 (not tested with new Web server, only with Legacy)
+  //  - added progress
+  //  - fixed spurious ASSERT in UTL_textToFile with empty text
+  //  - methods made public : acme_opensslVersionGet, acme_opensslCmd
+  //  - sanitize openssl (hide passwords) commands for log files
+  //  MODIFICATION : Bruno LEGAY (BLE) - 28/03/2022, 09:48:16 - 2.00.05
+  //  - fixed a bug where the progress bar would not be closed properly
   //@xdoc-end
   //================================================================================
 
@@ -94,13 +102,27 @@ C_TEXT:C284($0;$vt_componentVersion)
   //    - interface
   //    - proxy auth ?
   //<Modif>
+  //  MODIFICATION : Bruno LEGAY (BLE) - 17/01/2022, 12:07:55 - 2.00.03
 
-  //<Modif> Bruno LEGAY (BLE) (29/09/2021)
-  // acme__openSslCmd : use blob parameters to LAUNCH EXTERNAL PROCESS
-$vt_componentVersion:="2.00.03"
+  //<Modif> Bruno LEGAY (BLE) (28/03/2022)
+  // fixed a bug where the progress bar would not be closed properly
+$vt_componentVersion:="2.00.05"
+  //<Modif>
+
+  //<Modif> Bruno LEGAY (BLE) (26/01/2022)
+  //  checked compatibility with 4D v19 (not tested with new Web server, only with Legacy)
+  //  added progress
+  //  fixed spurious ASSERT in UTL_textToFile with empty text
+  //  methods made public : acme_opensslVersionGet, acme_opensslCmd
+  //  sanitize openssl (hide passwords) commands for log files
+  // $vt_componentVersion:="2.00.04"
   //<Modif>
 
 If (False:C215)
+	  //<Modif> Bruno LEGAY (BLE) (29/09/2021)
+	  // acme__openSslCmd : use blob parameters to LAUNCH EXTERNAL PROCESS
+	  // $vt_componentVersion:="2.00.03"
+	  //<Modif>
 	
 	  //<Modif> Bruno LEGAY (BLE) (21/07/2021)
 	  // added acme_assertionGet / acme_assertionSet

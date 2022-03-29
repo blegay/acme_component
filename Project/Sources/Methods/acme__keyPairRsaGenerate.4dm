@@ -11,7 +11,7 @@
   //@parameter[3-IN-size-LONGINT] : key size (optional, default : 2048)
   //@notes : uses openssl
   //@example : acme__keyPairRsaGenerate 
-  //@see : 
+  //@see :
   //@version : 1.00.00
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2008
   //@history : CREATION : Bruno LEGAY (BLE) - 30/06/2018, 08:08:30 - v1.00.00
@@ -53,14 +53,14 @@ If ($vl_nbParam>1)
 			
 			acme__opensslConfigDefault 
 			
-			If (acme__openSslCmd ($vt_args;->$vt_in;$vp_privateKeyPtr;->$vt_err))
+			If (acme_opensslCmd ($vt_args;->$vt_in;$vp_privateKeyPtr;->$vt_err))
 				
 				$vt_args:="rsa"+\
 					" -pubout"
 				
 				acme__opensslConfigDefault 
 				
-				If (acme__openSslCmd ($vt_args;$vp_privateKeyPtr;$vp_publicKeyPtr;->$vt_err))
+				If (acme_opensslCmd ($vt_args;$vp_privateKeyPtr;$vp_publicKeyPtr;->$vt_err))
 					$vb_ok:=True:C214
 				End if 
 			End if 

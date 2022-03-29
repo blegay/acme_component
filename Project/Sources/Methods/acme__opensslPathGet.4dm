@@ -23,7 +23,7 @@ If (Storage:C1525.acme#Null:C1517)
 	$vt_openSslPath:=Storage:C1525.acme.config.opensslPath
 Else 
 	
-	If (ENV_onWindows )
+	If (Is Windows:C1573)
 		
 		C_BOOLEAN:C305($vb_64bits)
 		$vb_64bits:=ENV_is64bits   // true 4D if 4D is running as a 64 bits app

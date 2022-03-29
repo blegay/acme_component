@@ -12,7 +12,7 @@
   // ASSERT(acme__domainReverse ("acme-v02.api.letsencrypt.org")="org.letsencrypt.api.acme-v02")
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 12/02/2019, 20:24:03 - 1.00.00
   //@xdoc-end

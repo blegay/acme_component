@@ -50,7 +50,7 @@ $vl_errCount:=Size of array:C274($tl_errorCodes)
 For ($vl_errIndex;1;$vl_errCount)
 	acme__log (2;Current method name:C684;String:C10($vl_errIndex)+" / "+String:C10($vl_errCount)+\
 		", error : "+String:C10($tl_errorCodes{$vl_errIndex})+\
-		", internal componnent : "+String:C10($vl_errorLine)+\
+		", internal component : "+String:C10($vl_errorLine)+\
 		", error text : \""+$tt_errorText{$vl_errIndex}+"\"")
 End for 
 

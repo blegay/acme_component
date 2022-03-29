@@ -43,7 +43,7 @@
   //@example : acme_orderAuthorisationWait
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 14/02/2019, 00:59:37 - 0.90.01
   //@xdoc-end
@@ -57,7 +57,6 @@ ASSERT:C1129(Count parameters:C259>1;"requires 2 parameters")
 ASSERT:C1129(OB Is defined:C1231($1);"$1 order object cannot be undefined")
 ASSERT:C1129(OB Is defined:C1231($1;"authorizations");"$1 order property \"authorizations\" is undefined")
 ASSERT:C1129($2>=0;"$2 (nbSecondsMax) should be greater or equal to 0")
-
 
 $vb_ok:=False:C215
 $vo_orderObject:=$1
@@ -83,9 +82,18 @@ If (Size of array:C274($tt_authUrl)>0)
 	$vl_expiredCount:=0
 	$vl_revokedCount:=0
 	
+	acme__log (4;Current method name:C684;String:C10($vl_pendingCount)+" authorization(s) to wait for...")
+	
+	acme__progressUpdate (55;"authorizationGet")  //"Autorisierung der Anfrage abwarten")
+	  //If ($vb_progress)
+	  //Progress SET PROGRESS ($vl_progressID;55;"Autorisierung der Anfrage abwarten";True)
+	  //End if 
+	
 	C_LONGINT:C283($vl_index)
 	$vl_index:=1
 	Repeat 
+		
+		acme__log (4;Current method name:C684;String:C10(Size of array:C274($tt_authUrl))+" autorization(s) pending...")
 		
 		C_TEXT:C284($vt_authorizationUrl)
 		$vt_authorizationUrl:=$tt_authUrl{$vl_index}
@@ -121,7 +129,6 @@ If (Size of array:C274($tt_authUrl)>0)
 				End if 
 				
 			Else 
-				$vl_pendingCount:=$vl_pendingCount-1
 				
 				Case of 
 						  //: ($vt_authorizationStatus="pending")
@@ -139,10 +146,12 @@ If (Size of array:C274($tt_authUrl)>0)
 						
 					: ($vt_authorizationStatus="revoked")
 						$vl_revokedCount:=$vl_revokedCount+1
+						
 					Else 
 						ASSERT:C1129(False:C215;"unexpected status : \""+$vt_authorizationStatus+"\"")
 				End case 
 				
+				$vl_pendingCount:=$vl_pendingCount-1
 				DELETE FROM ARRAY:C228($tt_authUrl;$vl_index;1)
 				
 				If ($vl_index>Size of array:C274($tt_authUrl))
@@ -162,9 +171,11 @@ If (Size of array:C274($tt_authUrl)>0)
 			: (Size of array:C274($tt_authUrl)=0)
 				$vb_exit:=True:C214
 				$vb_ok:=(($vl_invalidCount=0) & ($vl_deactivatedCount=0) & ($vl_expiredCount=0) & ($vl_revokedCount=0))
+				acme__log (4;Current method name:C684;"0 authorization(s) to wait for...")
 				
 			: ($vl_diffTicks>$vl_maxDiffTicks)
 				$vb_exit:=True:C214
+				acme__log (2;Current method name:C684;"timeout")
 		End case 
 		
 	Until ($vb_exit)

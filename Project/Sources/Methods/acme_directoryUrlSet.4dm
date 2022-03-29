@@ -20,7 +20,7 @@
   //
   //@see : acme_directoryUrlGet
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 12/02/2019, 19:52:02 - 1.00.00
   //@xdoc-end

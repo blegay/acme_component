@@ -12,7 +12,7 @@
   //@example : acme__opensslCsrConvertFormat
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 29/06/2018, 12:15:08 - 1.0
   //@xdoc-end
@@ -41,7 +41,7 @@ acme__opensslConfigDefault
 C_TEXT:C284($vt_err)
 $vt_err:=""
 
-If (acme__openSslCmd ($vt_args;$vp_inPtr;$vp_outPtr;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vp_inPtr;$vp_outPtr;->$vt_err))
 	$vb_ok:=True:C214
 	
 	acme__log (4;Current method name:C684;"openssl csr convert format. [OK]")

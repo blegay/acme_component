@@ -10,12 +10,12 @@
   //@parameter[2-IN-sourcePtr-POINTER] : source pointer (private key, csr, or certificate in PEM or DER format) (not modified)
   //@parameter[3-IN-param-TEXT] : "text", "startdate", "enddate" (optional, default "text")
   //@parameter[4-IN-inform-TEXT] : "PEM" or "DER" (optional, default "PEM" if $2 is text, "DER" if $2 is blob)
-  //@notes : 
+  //@notes :
   //@example : acme__opensslToText
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 29/06/2018, 13:08:27 - 1.0
   //@xdoc-end
   //================================================================================
@@ -73,7 +73,7 @@ End if
 C_TEXT:C284($vt_err)
 $vt_err:=""
 
-If (acme__openSslCmd ($vt_args;$vp_inPtr;->$vt_text;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vp_inPtr;->$vt_text;->$vt_err))
 	  //$vb_ok:=Vrai
 	acme__log (4;Current method name:C684;"openssl "+$vt_type+" text \r"+$vt_text+"\r [OK]")
 Else 

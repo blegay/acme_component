@@ -13,7 +13,7 @@
   //@example : DAT_iso8601DateTimeGmt
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 12/07/2018, 07:16:09 - 1.00.11
   //@xdoc-end

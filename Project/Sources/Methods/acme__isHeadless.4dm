@@ -10,7 +10,7 @@
   //@example : acme__isHeadless
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2021
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 22/07/2021, 08:32:54 - 2.00.02
   //@xdoc-end

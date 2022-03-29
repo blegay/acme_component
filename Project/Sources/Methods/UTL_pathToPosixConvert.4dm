@@ -33,7 +33,7 @@ Else
 	$vb_enclose:=True:C214
 End if 
 
-If (ENV_onWindows )
+If (Is Windows:C1573)
 	
 	$vt_posix:=$vt_path
 	If ($vb_enclose)

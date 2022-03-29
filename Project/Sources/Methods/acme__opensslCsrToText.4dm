@@ -7,7 +7,7 @@
   //@description : This function checks a csr output
   //@parameter[0-OUT-csrText-TEXT] : csr output
   //@parameter[2-IN-csrPointer-POINTER] : csr pointer (if blob assumed in DER format, else PEM format) (not modified)
-  //@notes : 
+  //@notes :
   //@example : acme__opensslCsrToText
   //
   // Certificate Request:
@@ -34,10 +34,10 @@
   //         b3:69:c2:48:77:b8:eb:1f:b1:dd:3d:52:da:22:e5:4f:9c:21:
   //         11:4c:ba:a3
   //
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : 
-  //@history : 
+  //@author :
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 23/06/2018, 08:21:47 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -60,7 +60,7 @@ $vt_args:="req"+\
 acme__opensslConfigDefault 
 
 C_TEXT:C284($vt_err)
-If (acme__openSslCmd ($vt_args;$vp_csrPtr;->$vt_out;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vp_csrPtr;->$vt_out;->$vt_err))
 	
 Else 
 	ASSERT:C1129(False:C215;$vt_err)

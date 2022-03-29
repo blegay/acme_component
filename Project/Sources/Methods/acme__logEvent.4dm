@@ -21,7 +21,7 @@ ASSERT:C1129(Count parameters:C259>0;"requires 1 parameter")
 $vt_message:=$1
 
 C_LONGINT:C283($vl_outputType;$vl_importance)
-If (ENV_onWindows )
+If (Is Windows:C1573)
 	$vl_outputType:=Into Windows log events:K38:4
 	$vl_importance:=Information message:K38:1
 	

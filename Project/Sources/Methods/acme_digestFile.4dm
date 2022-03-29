@@ -8,10 +8,10 @@
   //@parameter[0-OUT-digest-TEXT] : digest (in hex fomrat e.g. "d0ccab71ae6185d36f0705b88d4ac681")
   //@parameter[1-IN-filepath-TEXT] : file path
   //@parameter[2-IN-digestAlg-TEXT] : digest algorithm (optional, default "md5")
-  //@notes : 
+  //@notes :
   // can compress large files without having to load them in a blob
   //
-  // uses openssl 
+  // uses openssl
   //
   // digestAlg :
   //  - gost-mac       to use the gost-mac message digest algorithm
@@ -27,12 +27,12 @@
   //  - sha384         to use the sha384 message digest algorithm
   //  - sha512         to use the sha512 message digest algorithm
   //  - whirlpool      to use the whirlpool message digest algorithm
-  // 
+  //
   //@example : acme_digestFile
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 28/02/2019, 11:51:57 - 0.90.02
   //@xdoc-end
   //================================================================================
@@ -97,7 +97,7 @@ $vt_out:=""
 $vt_err:=""
 
 C_TEXT:C284($vt_err)
-If (acme__openSslCmd ($vt_args;->$vt_in;->$vt_out;->$vt_err))
+If (acme_opensslCmd ($vt_args;->$vt_in;->$vt_out;->$vt_err))
 	
 	  //"MD5(/Volumes/.../file.jpg)= d0cc...81"
 	

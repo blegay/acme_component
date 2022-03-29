@@ -69,7 +69,7 @@ $vt_csrConf:=""
 $vo_csr:=$1
 
 C_TEXT:C284($vt_endLine)
-If (ENV_onWindows )
+If (Is Windows:C1573)
 	$vt_endLine:="\r\n"
 Else 
 	$vt_endLine:="\n"

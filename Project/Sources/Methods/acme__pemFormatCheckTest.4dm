@@ -15,7 +15,7 @@
   //@example : acme__pemFormatCheckTest
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 01/07/2019, 09:29:48 - 0.90.08
   //@xdoc-end

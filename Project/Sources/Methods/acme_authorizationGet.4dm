@@ -39,8 +39,6 @@
   //     }
   //   ]
   // 
-  // 
-  //
   //@example : amce_authorizationGet
   //@see : 
   //@version : 1.00.00
@@ -70,7 +68,7 @@ SET BLOB SIZE:C606($vx_responseBody;0)
 ARRAY TEXT:C222($tt_headerKey;0)
 ARRAY TEXT:C222($tt_headerValue;0)
 
-acme__httpRequestHeaderCommon (->$tt_headerKey;->$tt_headerValue;acme__jsonContentType )
+acme__httpRequestHeaderCommon (->$tt_headerKey;->$tt_headerValue;acme__joseContentType )
 
 C_OBJECT:C1216($vo_requestHeaders)
 $vo_requestHeaders:=acme__httpHeadersToObject (->$tt_headerKey;->$tt_headerValue)
@@ -112,6 +110,8 @@ SET BLOB SIZE:C606($vx_requestBody;0)
 $vx_requestBody:=acme__objectToBlob ($vo_requestBody)
   //<Modif>
 
+acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\"...")
+
 C_TEXT:C284($vt_errorHandler)
 $vt_errorHandler:=acme__errorHdlrBefore 
 
@@ -120,29 +120,34 @@ C_LONGINT:C283($vl_ms)
 $vl_ms:=Milliseconds:C459
 
 C_LONGINT:C283($vl_status)
-  //<Modif> Bruno LEGAY (BLE) (11/02/2020)
-  // https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
-  // https://tools.ietf.org/html/rfc8555#section-6.3
-C_TEXT:C284($vt_httpMethod)
-If (True:C214)
-	$vt_httpMethod:=HTTP POST method:K71:2
-	$vl_status:=HTTP Request:C1158($vt_httpMethod;$vt_url;$vx_requestBody;$vx_responseBody;$tt_headerKey;$tt_headerValue)
-Else 
-	$vt_httpMethod:=HTTP GET method:K71:1
-	$vl_status:=HTTP Get:C1157($vt_url;$vx_responseBody;$tt_headerKey;$tt_headerValue)
-End if 
+$vl_status:=HTTP Request:C1158(HTTP POST method:K71:2;$vt_url;$vx_requestBody;$vx_responseBody;$tt_headerKey;$tt_headerValue)
+
+  //  //<Modif> Bruno LEGAY (BLE) (11/02/2020)
+  //  // https://community.letsencrypt.org/t/acme-v2-scheduled-deprecation-of-unauthenticated-resource-gets/74380
+  //  // https://tools.ietf.org/html/rfc8555#section-6.3
+  //C_TEXT($vt_httpMethod)
+  //If (True)
+  //$vt_httpMethod:=HTTP POST method
+  //$vl_status:=HTTP Request($vt_httpMethod;$vt_url;$vx_requestBody;$vx_responseBody;$tt_headerKey;$tt_headerValue)
+  //Else 
+  //$vt_httpMethod:=HTTP GET method
+  //$vl_status:=HTTP Get($vt_url;$vx_responseBody;$tt_headerKey;$tt_headerValue)
+  //End if 
+
 SET BLOB SIZE:C606($vx_requestBody;0)
   //<Modif>
 
   // timer
 $vl_ms:=UTL_durationDifference ($vl_ms;Milliseconds:C459)
 
+acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\", status : "+String:C10($vl_status))
+
 If ($vl_status=0)  // server did not respond
 	
 	  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 	C_LONGINT:C283($vl_networkError)
 	$vl_networkError:=acme__errorLastGet 
-	acme__log (2;Current method name:C684;"method : "+HTTP GET method:K71:1+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
+	acme__log (2;Current method name:C684;"method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", duration : "+UTL_durationMsDebug ($vl_ms)+", networkError : "+String:C10($vl_networkError))
 	
 End if 
 acme__errorHdlrAfter ($vt_errorHandler)
@@ -157,7 +162,7 @@ C_OBJECT:C1216($vo_responseHeaders)
 $vo_responseHeaders:=acme__httpHeadersToObject (->$tt_headerKey;->$tt_headerValue)
 
 C_OBJECT:C1216($vo_httpResponse)
-OB SET:C1220($vo_httpResponse;"method";$vt_httpMethod)  //HTTP méthode GET)
+OB SET:C1220($vo_httpResponse;"method";HTTP POST method:K71:2)  //HTTP méthode GET)
 OB SET:C1220($vo_httpResponse;"url";$vt_url)
 OB SET:C1220($vo_httpResponse;"status";$vl_status)
 OB SET:C1220($vo_httpResponse;"requestHeaders";$vo_requestHeaders)
@@ -223,13 +228,13 @@ Case of
 			  //   "status": "valid"
 			  // }
 			
-			acme__log (4;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+			acme__log (4;Current method name:C684;HTTP POST method:K71:2+" url : \""+$vt_url+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
 				", response body : \""+Convert to text:C1012($vx_responseBody;"UTF-8")+"\". [OK]")
 		Else 
-			acme__log (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+			acme__log (2;Current method name:C684;HTTP POST method:K71:2+" url : \""+$vt_url+"\""+\
 				", status : "+String:C10($vl_status)+\
 				", duration : "+UTL_durationMsDebug ($vl_ms)+\
 				", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\
@@ -248,7 +253,7 @@ Case of
 			OB SET:C1220($vo_httpResponse;"responseBody";$vt_json)
 		End if 
 		
-		acme__log (2;Current method name:C684;$vt_httpMethod+" url : \""+$vt_url+"\""+\
+		acme__log (2;Current method name:C684;HTTP POST method:K71:2+" url : \""+$vt_url+"\""+\
 			", status : "+String:C10($vl_status)+\
 			", duration : "+UTL_durationMsDebug ($vl_ms)+\
 			", request :\r"+JSON Stringify:C1217($vo_httpResponse;*)+"\r"+\

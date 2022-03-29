@@ -102,7 +102,7 @@ If ($vl_nbParam>1)
 	ARRAY TEXT:C222($tt_headerKey;0)
 	ARRAY TEXT:C222($tt_headerValue;0)
 	
-	acme__httpRequestHeaderCommon (->$tt_headerKey;->$tt_headerValue;acme__jsonContentType )
+	acme__httpRequestHeaderCommon (->$tt_headerKey;->$tt_headerValue;acme__joseContentType )
 	
 	  // get the json object into the request body blob
 	$vx_requestBody:=acme__objectToBlob ($vo_requestBody)
@@ -113,6 +113,7 @@ If ($vl_nbParam>1)
 	
 	acme__httpClientOptionsSet 
 	
+	acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_finalizeUrl+"\"...")
 	C_TEXT:C284($vt_errorHandler)
 	$vt_errorHandler:=acme__errorHdlrBefore 
 	
@@ -126,7 +127,14 @@ If ($vl_nbParam>1)
 	  // timer
 	$vl_ms:=UTL_durationDifference ($vl_ms;Milliseconds:C459)
 	
+	acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_finalizeUrl+"\", status : "+String:C10($vl_status))
+	
 	If ($vl_status=0)  // server did not respond
+		
+		acme__progressUpdate (100;"serverDidNotRespond")  //"Zertifikat anfordern fehlgeschlagen")
+		  //If ($vb_progress)
+		  //Progress SET PROGRESS ($vl_progressID;100;"Zertifikat anfordern fehlgeschlagen";True)
+		  //End if 
 		
 		  // for instance, using an invalid port (server not listening on that port) on a server, acme__errorLastGet will return 30
 		C_LONGINT:C283($vl_networkError)
@@ -150,6 +158,11 @@ If ($vl_nbParam>1)
 	
 	Case of 
 		: ($vl_status=200)  // certificate generated
+			
+			acme__progressUpdate (0;"certificateGenerated")  //"Zertifikat erfolgreich angefordert")
+			  //If ($vb_progress)
+			  //Progress SET PROGRESS ($vl_progressID;0;"Zertifikat erfolgreich angefordert";True)
+			  //End if 
 			
 			  // {
 			  //   "status": "valid",

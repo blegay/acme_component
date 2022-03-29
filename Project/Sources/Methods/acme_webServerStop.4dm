@@ -12,7 +12,7 @@
   //
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 06/09/2018, 19:12:43 - 1.0
   //@xdoc-end
@@ -21,6 +21,8 @@
 If (WEB Is server running:C1313)
 	acme__log (4;Current method name:C684;"stopping web server...")
 	acme__notify ("4D http server : stopping...")
+	
+	  // #4D-v19-newhttpServer
 	
 	C_BOOLEAN:C305($vb_stopped)
 	WEB STOP SERVER:C618

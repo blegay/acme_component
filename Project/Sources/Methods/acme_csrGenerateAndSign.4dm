@@ -13,7 +13,7 @@
   //@example : acme_csrGenerateAndSign
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 12/02/2019, 23:07:47 - 1.00.00
   //@xdoc-end
@@ -40,6 +40,8 @@ SET BLOB SIZE:C606($vx_csr;0)
 C_TEXT:C284($vt_privateKeyPath)
 $vt_privateKeyPath:=$vt_orderDir+"key.pem"
 ASSERT:C1129(Test path name:C476($vt_privateKeyPath)=Is a document:K24:1;"private key path: \""+$vt_privateKeyPath+"\" : file not found")
+
+acme__progressUpdate (20;"csrReqConfObjectNew")  //"Zertifikat Anforderung (CSR) erstellen")
 
   // create the csr (certificate request in a DER/binary form)
 If (acme__opensslCsrNew ($vo_csrReqConfObject;$vt_privateKeyPath;->$vx_csr))
@@ -71,6 +73,11 @@ If (acme__opensslCsrNew ($vo_csrReqConfObject;$vt_privateKeyPath;->$vx_csr))
 		acme__archiveFile ($vt_csrFile;$vt_archiveDir)
 		UTL_textToFile ($vt_csrFile;$vt_csrPem)
 	End if 
+	
+	acme__progressUpdate (52;"csrGenerateAndSign")  //"Zertifikat Anforderung abschließen")
+	  //If ($vb_progress)
+	  //Progress SET PROGRESS ($vl_progressID;50;"Zertifikat Anforderung abschließen";True)
+	  //End if 
 	
 	  // base64 encode the csr in DER (binary) format into base64UrlSafe
 	  // and add to to a payload object with property named "csr"

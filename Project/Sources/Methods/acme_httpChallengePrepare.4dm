@@ -47,6 +47,8 @@ $vt_directoryUrl:=acme_directoryUrlGet
 
 C_OBJECT:C1216($vo_authObj)
 
+acme__log (4;Current method name:C684;"url : \""+$vt_authorizationUrl+"\"...")
+
 If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 	
 	If (False:C215)
@@ -102,15 +104,22 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 	C_LONGINT:C283($i)
 	For ($i;1;Size of array:C274($to_challenges))
 		C_TEXT:C284($vt_challengeType)
+		
 		ASSERT:C1129(OB Is defined:C1231($to_challenges{$i};"type"))
 		$vt_challengeType:=OB Get:C1224($to_challenges{$i};"type")
+		
 		Case of 
 			: ($vt_challengeType="http-01")
 				ASSERT:C1129(OB Is defined:C1231($to_challenges{$i};"status"))
 				$vt_status:=OB Get:C1224($to_challenges{$i};"status")
+				
 				Case of 
 					: ($vt_status="valid")
 						$vb_ok:=True:C214
+						
+						acme__log (4;Current method name:C684;"authorization "+String:C10($i)+" / "+String:C10(Size of array:C274($to_challenges))+\
+							", challenge type : \""+$vt_challengeType+"\""+\
+							", status : \""+$vt_status+"\"")
 						
 					: ($vt_status="pending")
 						$vb_httpPendingChallengeFound:=True:C214
@@ -119,7 +128,22 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 						
 						ASSERT:C1129(OB Is defined:C1231($to_challenges{$i};"token"))
 						$vt_token:=OB Get:C1224($to_challenges{$i};"token")
+						
+						acme__log (4;Current method name:C684;"authorization "+String:C10($i)+" / "+String:C10(Size of array:C274($to_challenges))+\
+							", challenge type : \""+$vt_challengeType+"\""+\
+							", status : \""+$vt_status+"\""+\
+							", url : \""+$vt_url+"\""+\
+							", token : \""+$vt_token+"\"...")
+						
+					Else 
+						acme__log (2;Current method name:C684;"authorization "+String:C10($i)+" / "+String:C10(Size of array:C274($to_challenges))+\
+							", challenge type : \""+$vt_challengeType+"\""+\
+							", status : \""+$vt_status+"\"")
 				End case 
+				
+			Else 
+				acme__log (4;Current method name:C684;"authorization "+String:C10($i)+" / "+String:C10(Size of array:C274($to_challenges))+\
+					", challenge type : \""+$vt_challengeType+"\" (not supported)")
 		End case 
 	End for 
 	
@@ -140,6 +164,9 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 		C_TEXT:C284($vt_challengeResponse)
 		$vt_challengeResponse:=$vt_token+"."+UTL_base64UrlSafeEncode (acme__jwkThumbprint ($vt_privateKeyPath))
 		
+		acme__log (4;Current method name:C684;" token : \""+$vt_token+"\""+\
+			", challengeResponse : \""+$vt_challengeResponse+"\"")
+		
 		  // write a "<token>.txt" file in the "/.well-known/acme-challenge/" directory
 		C_TEXT:C284($vt_challengeDirPath)
 		$vt_challengeDirPath:=Get 4D folder:C485(HTML Root folder:K5:20)+".well-known"+Folder separator:K24:12+"acme-challenge"+Folder separator:K24:12
@@ -147,11 +174,19 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 		If (Test path name:C476($vt_challengeDirPath)#Is a folder:K24:2)
 			CREATE FOLDER:C475($vt_challengeDirPath;*)
 			ASSERT:C1129(ok=1;"failed creating dir \""+$vt_challengeDirPath+"\"")
+			acme__log (Choose:C955(ok=1;4;2);Current method name:C684;"acme-challenge dir  \""+$vt_challengeDirPath+"\" creation. "+Choose:C955(ok=1;"[OK]";"[KO]"))
 		End if 
+		acme__log (4;Current method name:C684;"store challengeResponse in : \""+$vt_challengeDirPath+"\"")
 		
 		  // save the challengeResponse
 		C_TEXT:C284($vt_challengeFilePath)
 		$vt_challengeFilePath:=$vt_challengeDirPath+acme__tokenToFilenameSafe ($vt_token)
+		
+		acme__log (4;Current method name:C684;"url : \""+$vt_url+"\""+\
+			", token : \""+$vt_token+"\""+\
+			", challengeResponse : \""+$vt_challengeResponse+"\""+\
+			", file : \""+$vt_challengeFilePath+"\"...")
+		
 		UTL_textToFile ($vt_challengeFilePath;$vt_challengeResponse)
 		
 		acme__log (4;Current method name:C684;"challengeResponse file \""+$vt_challengeFilePath+"\" created, file content : "+$vt_challengeResponse)
@@ -165,7 +200,11 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 		If (Not:C34(WEB Is server running:C1313))
 			acme__log (4;Current method name:C684;"starting web server...")
 			acme__notify ("4D http server : starting...")
+			
+			  // #4D-v19-newhttpServer
+			
 			WEB START SERVER:C617
+			
 			ASSERT:C1129(ok=1;"web server failed to start")
 			acme__log (Choose:C955(ok=1;4;2);Current method name:C684;"web server started. "+Choose:C955(ok=1;"[OK]";"[KO]"))
 			
@@ -179,7 +218,9 @@ If (acme_authorizationGet ($vt_authorizationUrl;->$vo_authObj))
 		  // the CA will try to do an "HTTP GET /.well-known/acme-challenge/<token>" (and we will return the file we have just generated)
 		  // see "acme_onWebAuthentication" and "acme_onWebConnection"
 		
+		acme__log (4;Current method name:C684;"url : \""+$vt_url+"\" challenge request...")
 		$vb_ok:=acme__challengeRequest ($vt_directoryUrl;$vt_url;$vt_workingDir)
+		acme__log (Choose:C955($vb_ok;4;2);Current method name:C684;"url : \""+$vt_url+"\" challenge request done."+Choose:C955($vb_ok;"[OK]";"[KO]"))
 		
 	End if 
 	

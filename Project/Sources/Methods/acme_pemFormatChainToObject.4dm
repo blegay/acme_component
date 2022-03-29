@@ -26,7 +26,7 @@
   //@example : acme_pemFormatChainToObject
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2020
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 14/12/2020, 10:08:14 - 1.00.03
   //@xdoc-end

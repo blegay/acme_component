@@ -9,10 +9,10 @@
   //@parameter[1-IN-sourcePtr-POINTER] : source pointer (private key, csr, or certificate in PEM or DER format) (not modified)
   //@parameter[2-IN-param-TEXT] : "text", "startdate", "enddate" (optional, default "text")
   //@parameter[3-IN-inform-TEXT] : "PEM" or "DER" (optional, default "PEM" if $2 is text, "DER" if $2 is blob)
-  //@notes : 
+  //@notes :
   // "startdate" => "notBefore=Jan 23 19:15:40 2019 GMT\n"
   // "enddate" => "notAfter=Jan 20 19:15:40 2029 GMT\n"
-  // "text" => 
+  // "text" =>
   //     Certificate:
   //         Data:
   //             Version: 1 (0x0)
@@ -39,7 +39,7 @@
   //              c3:b9:94:e3:d9:fd:b3:dc:25:6d:04:86:3f:87:c8:93:3c:3c:
   //              ea:0e:54:24
 
-  //@example : 
+  //@example :
 
   // If (acme_certCurrentGet (->$vt_key;->$vt_cert))
   //   C_OBJECT($vo_certificateProperties)
@@ -63,10 +63,10 @@
   //   OB SET($vo_certificateProperties;"alias";acme_certToText (->$vt_cert;"alias"))
   // End if
   //
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 23/01/2019, 22:35:47 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -168,7 +168,7 @@ acme__opensslConfigDefault
 C_TEXT:C284($vt_err)
 $vt_err:=""
 
-If (acme__openSslCmd ($vt_args;$vp_inPtr;->$vt_text;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vp_inPtr;->$vt_text;->$vt_err))
 	$vb_ok:=True:C214
 	acme__log (4;Current method name:C684;"openssl "+$vt_args+" \r"+$vt_text+"\r [OK]")
 Else 

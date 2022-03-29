@@ -1,0 +1,55 @@
+
+# Compiled on macOS Monterey 12.0.1 with XCode v13.1
+
+
+$ curl -O https://www.openssl.org/source/openssl-1.1.1l.tar.gz
+
+$ tar -zxf openssl-1.1.1l.tar.gz 
+
+$ cp -r openssl-1.1.1l openssl-1.1.1l-arm64 
+$ cp -r openssl-1.1.1l openssl-1.1.1l-x86_64
+
+$ mkdir openssl-mac
+
+
+# no-ssl2	Disables SSLv2. OPENSSL_NO_SSL2 will be defined in the OpenSSL headers.
+# no-ssl3	Disables SSLv3. OPENSSL_NO_SSL3 will be defined in the OpenSSL headers.
+# no-comp	Disables compression independent of zlib. OPENSSL_NO_COMP will be defined in the OpenSSL headers.
+# no-idea	Disables IDEA algorithm. Unlike RC5 and MDC2, IDEA is enabled by default
+# no-asm	Disables assembly language routines (and uses C routines)
+# no-dtls	Disables DTLS in OpenSSL 1.1.0 and above
+# no-dtls1	Disables DTLS in OpenSSL 1.0.2 and below
+# no-shared	Disables shared objects (only a static library is created)
+# no-hw	Disables hardware support (useful on mobile devices)
+# no-engine	Disables hardware support (useful on mobile devices)
+# no-threads	Disables threading support.
+# no-dso	Disables the OpenSSL DSO API (the library offers a shared object abstraction layer). If you disable DSO, then you must disable Engines also
+# no-err	Removes all error function names and error reason text to reduce footprint
+# no-npn/no-nextprotoneg	Disables Next Protocol Negotiation (NPN). Use no-nextprotoneg for 1.1.0 and above; and no-npn otherwise
+# no-psk	Disables Preshared Key (PSK). PSK provides mutual authentication independent of trusted authorities, but it's rarely offered or used
+# no-srp	Disables Secure Remote Password (SRP). SRP provides mutual authentication independent of trusted authorities, but it's rarely offered or used
+# no-ec2m	Used when configuring FIPS Capable Library with a FIPS Object Module that only includes prime curves. That is, use this switch if you use openssl-fips-ecp-2.0.5.
+# no-weak-ssl-ciphers Disables RC4. Available in OpenSSL 1.1.0 and above.
+
+# no-ssl2 no-ssl3 no-comp no-idea no-asm no-dtls no-dtls1 no-hw no-engine no-threads no-dso no-npn no-psk no-srp no-weak-ssl-ciphers
+
+$ cd openssl-1.1.1l-x86_64 
+$ ./Configure darwin64-x86_64-cc -no-shared
+$ make
+$ cd ..
+
+
+$ cd openssl-1.1.1l-arm64
+$ #./Configure enable-rc5 zlib darwin64-arm64-cc no-asm -no-shared
+$ ./Configure darwin64-arm64-cc no-asm -no-shared
+$ make
+$ cd ..
+
+
+$ lipo -create \
+         openssl-1.1.1l-arm64/apps/openssl \
+         openssl-1.1.1l-x86_64/apps/openssl \
+       -output \
+         openssl-mac/openssl
+
+$ cp -p openssl-1.1.1l-arm64/LICENSE openssl-mac/

@@ -30,7 +30,7 @@ $vt_uuid:=Lowercase:C14($vt_uuid)
   // AB00070ED7824BC682F9D2803EE98F4B
   //$vt_uuid:="33221100554477668899aabbccddeeff"
 
-If (ENV_onWindows )
+If (Is Windows:C1573)
 	$vt_uuid:=$vt_uuid[[7]]+$vt_uuid[[8]]+$vt_uuid[[5]]+$vt_uuid[[6]]+$vt_uuid[[3]]+$vt_uuid[[4]]+$vt_uuid[[1]]+$vt_uuid[[2]]+$vt_uuid[[11]]+$vt_uuid[[12]]+$vt_uuid[[9]]+$vt_uuid[[10]]+$vt_uuid[[15]]+$vt_uuid[[16]]+$vt_uuid[[13]]+$vt_uuid[[14]]+Substring:C12($vt_uuid;17)
 End if 
 

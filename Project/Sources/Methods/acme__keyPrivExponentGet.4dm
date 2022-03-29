@@ -7,12 +7,12 @@
   //@description : This function returns the Exponent of the private key in binary form
   //@parameter[0-OUT-exponent-BLOB] : private key exponent in binary form
   //@parameter[1-IN-privateKeyPath-TEXT] : private key file path (in PEM format)
-  //@notes : 
+  //@notes :
   //@example : acme__keyPrivExponentGet
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : 
-  //@history : 
+  //@author :
+  //@history :
   // CREATION : Bruno LEGAY (BLE) - 23/06/2018, 22:25:28 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -34,12 +34,14 @@ SET BLOB SIZE:C606($vx_private;0)
 DOCUMENT TO BLOB:C525($vt_privateKeyPath;$vx_private)
 
 C_TEXT:C284($vt_args)
-$vt_args:="rsa"+" -noout"+" -text"
+$vt_args:="rsa"+\
+" -noout"+\
+" -text"
 
 acme__opensslConfigDefault 
 
 C_TEXT:C284($vt_out;$vt_err)
-If (acme__openSslCmd ($vt_args;->$vx_private;->$vt_out;->$vt_err))
+If (acme_opensslCmd ($vt_args;->$vx_private;->$vt_out;->$vt_err))
 	
 	  // search a line starting with "publicExponent: "
 	C_TEXT:C284($vt_exponent;$vt_regex)

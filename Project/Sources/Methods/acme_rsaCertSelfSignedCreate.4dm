@@ -11,8 +11,8 @@
   //@parameter[3-IN-csrObj-OBJECT] : csr object (see acme_csrReqConfObjectNew)
   //@parameter[4-IN-validity-LONGINT] : validity (number of days), optional default 365
   //@parameter[5-IN-keySize-LONGINT] : key size (optional, default 2048)
-  //@notes : 
-  //@example : 
+  //@notes :
+  //@example :
   //
   // C_OBJET($vo_csrObj)
   // OB FIXER($vo_csrObj;"CN";"www.example.com")
@@ -25,7 +25,7 @@
   //   acme_certificateAsTextInstall ($vt_key;$vt_cert)
   // Fin de si
   //
-  //     csr conf object ==>  
+  //     csr conf object ==>
   //
   //     {
   //       "req": {
@@ -38,15 +38,15 @@
   //         "CN": "www.example.com"
   //       }
   //     }
-  //     
-  //     openssl csr conf file ==>  
-  //   
+  //
+  //     openssl csr conf file ==>
+  //
   //     [req]
   //     default_bits = 2048
   //     prompt = no
   //     default_md = sha256
   //     distinguished_name = dn
-  //     
+  //
   //     [dn]
   //     CN = www.example.com
   //
@@ -81,9 +81,9 @@
   // Si (acme_rsaCertSelfSignedCreate (->$vt_key;->$vt_cert;$vo_csrReqConfObject;3650))
   //   acme_certificateAsTextInstall ($vt_key;$vt_cert)
   // Fin de si
-  // 
   //
-  //     csr conf object ==>  
+  //
+  //     csr conf object ==>
   //
   //     {
   //       "req": {
@@ -111,7 +111,7 @@
   //       }
   //     }
   //
-  //     openssl csr conf file ==>  
+  //     openssl csr conf file ==>
   //
   //     [req]
   //     default_bits = 2048
@@ -119,7 +119,7 @@
   //     default_md = sha256
   //     req_extensions = req_ext
   //     distinguished_name = dn
-  //     
+  //
   //     [dn]
   //     C = FR
   //     L = Paris
@@ -128,18 +128,18 @@
   //     OU = AC Consulting
   //     emailAddress = john@example.com
   //     CN = www.example.com
-  //     
+  //
   //     [req_ext]
   //     subjectAltName = @alt_names
-  //     
+  //
   //     [alt_names]
   //     DNS.1 = api.example.com
   //     DNS.2 = status.example.com
-  //     
-  //@see : 
+  //
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 23/01/2019, 07:39:18 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -250,7 +250,7 @@ If ($vl_nbParam>2)
 			  //EFFACER VARIABLE($vo_req)
 			
 			C_TEXT:C284($vt_structureDir)
-			$vt_structureDir:=Temporary folder:C486  //cert__dirPath 
+			$vt_structureDir:=Temporary folder:C486  //cert__dirPath
 			
 			C_TEXT:C284($vt_uuid)
 			$vt_uuid:=Generate UUID:C1066
@@ -297,7 +297,7 @@ If ($vl_nbParam>2)
 						" -out "+$vt_certPathPosix
 				End if 
 				
-				$vb_ok:=acme__openSslCmd ($vt_cmd;->$vt_in;->$vt_out;->$vt_err)
+				$vb_ok:=acme_opensslCmd ($vt_cmd;->$vt_in;->$vt_out;->$vt_err)
 				ASSERT:C1129($vb_ok;"error "+$vt_err)
 				
 				If (Test path name:C476($vt_keyPath)=Is a document:K24:1)
@@ -337,7 +337,7 @@ If ($vl_nbParam>2)
 						" -out "+$vt_certPathPosix
 				End if 
 				
-				$vb_ok:=acme__openSslCmd ($vt_cmd;->$vt_in;->$vt_out;->$vt_err)
+				$vb_ok:=acme_opensslCmd ($vt_cmd;->$vt_in;->$vt_out;->$vt_err)
 				ASSERT:C1129($vb_ok;"error "+$vt_err)
 				
 				DOCUMENT TO BLOB:C525($vt_certPath;$vp_certPtr->)

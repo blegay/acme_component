@@ -10,7 +10,7 @@
   //@example : acme__notify
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 03/07/2018, 18:36:36 - 1.0
   //@xdoc-end
@@ -21,6 +21,8 @@ C_TEXT:C284($1;$vt_message)
 ASSERT:C1129(Count parameters:C259>0;"requires 1 parameter")
 
 $vt_message:=$1
+
+acme__log (4;Current method name:C684;$vt_message)
 
 acme__logEvent ($vt_message)
 
@@ -35,6 +37,7 @@ If (Not:C34($vb_isHeadless | $vb_launchedAsService))
 	C_LONGINT:C283($vl_delaySecs)
 	$vl_delaySecs:=20
 	
+	  // in 4D v19.1 DISPLAY NOTIFICATION is not "thread-safe" ...
 	If (Not:C34(ENV_isPreemptive ))
 		  //%T-
 		DISPLAY NOTIFICATION:C910($vt_title;$vt_message;$vl_delaySecs)  // not "thread-safe" compatible (in v18.0) #thread-safe : todo

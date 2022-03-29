@@ -158,7 +158,7 @@ If ($vl_nbParam>1)
 	ARRAY TEXT:C222($tt_headerKey;0)
 	ARRAY TEXT:C222($tt_headerValue;0)
 	
-	acme__httpRequestHeaderCommon (->$tt_headerKey;->$tt_headerValue;acme__jsonContentType )
+	acme__httpRequestHeaderCommon (->$tt_headerKey;->$tt_headerValue;acme__joseContentType )
 	
 	  // get the json object into the request body blob
 	$vx_requestBody:=acme__objectToBlob ($vo_requestBody)
@@ -167,7 +167,14 @@ If ($vl_nbParam>1)
 	C_OBJECT:C1216($vo_requestHeaders)
 	$vo_requestHeaders:=acme__httpHeadersToObject (->$tt_headerKey;->$tt_headerValue)
 	
+	acme__progressUpdate (50;"newOrder")  //"Senden der Zertifikats-Anforderung (CSR)")
+	  //If ($vb_progress)
+	  //Progress SET PROGRESS ($vl_progressID;50;"Senden der Zertifikats-Anforderung (CSR)";True)
+	  //End if 
+	
 	acme__httpClientOptionsSet 
+	
+	acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\"...")
 	
 	C_TEXT:C284($vt_errorHandler)
 	$vt_errorHandler:=acme__errorHdlrBefore 
@@ -181,6 +188,8 @@ If ($vl_nbParam>1)
 	
 	  // timer
 	$vl_ms:=UTL_durationDifference ($vl_ms;Milliseconds:C459)
+	
+	acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\", status : "+String:C10($vl_status))
 	
 	If ($vl_status=0)  // server did not respond
 		
@@ -199,9 +208,9 @@ If ($vl_nbParam>1)
 	$vo_responseHeaders:=acme__httpHeadersToObject (->$tt_headerKey;->$tt_headerValue)
 	
 	Case of 
-		: ($vl_status=200)  //account already created, account update ?
+		: ($vl_status=200)  //order already created ?
 			
-			acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+", account already created ?. [KO]")
+			acme__log (2;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+", protected : \""+JSON Stringify:C1217($vo_protected;*)+"\""+", payload : \""+JSON Stringify:C1217($vo_payload;*)+"\""+", request body : \""+JSON Stringify:C1217($vo_requestBody;*)+"\""+", duration : "+UTL_durationMsDebug ($vl_ms)+", order already created ?. [KO]")
 			
 		: ($vl_status=201)  // certificate issuance request created
 			
@@ -213,11 +222,16 @@ If ($vl_nbParam>1)
 			
 			C_TEXT:C284($vt_orderStatus)
 			$vt_orderStatus:=acme__orderStatusGet ($vt_locationUrl)
+			
+			acme__log (4;Current method name:C684;"url : \""+$vt_locationUrl+"\""+", order status : "+String:C10($vt_orderStatus))
+			
 			If (($vt_orderStatus="pending") | ($vt_orderStatus="ready") | ($vt_orderStatus="valid"))
 				
 				C_TEXT:C284($vt_id)
 				$vt_id:=acme__urlLocationIdGet ($vt_locationUrl)
 				$vp_orderIdPtr->:=$vt_id
+				
+				acme__log (4;Current method name:C684;"url : \""+$vt_locationUrl+"\""+", order status : "+String:C10($vt_orderStatus)+", order id : "+$vt_id)
 				
 				C_TEXT:C284($vt_contentType)
 				$vt_contentType:=acme__httpHeaderGetValForKey (->$tt_headerKey;->$tt_headerValue;"Content-Type")
@@ -235,12 +249,13 @@ If ($vl_nbParam>1)
 					  //$vt_orderDir:=$vt_accountKeyDir+"_orders"+Séparateur dossier+$vt_id+Séparateur dossier
 					  // create the order directory
 					CREATE FOLDER:C475($vt_orderDir;*)
-					C_BOOLEAN:C305($vb_direCreated)
-					$vb_direCreated:=(ok=1)
-					ASSERT:C1129($vb_direCreated;"failed to create \""+$vt_orderDir+"\" directory")
-					acme__log (Choose:C955($vb_direCreated;4;2);Current method name:C684;"order dir : \""+$vt_orderDir+". "+Choose:C955($vb_direCreated;"[OK]";"[KO]"))
+					C_BOOLEAN:C305($vb_dirCreated)
+					$vb_dirCreated:=(ok=1)
+					ASSERT:C1129($vb_dirCreated;"failed to create \""+$vt_orderDir+"\" directory")
+					acme__log (Choose:C955($vb_dirCreated;4;2);Current method name:C684;"order dir : \""+$vt_orderDir+". "+Choose:C955($vb_dirCreated;"[OK]";"[KO]"))
 					
 					  // generate an rsa key pair in the order dir
+					acme__log (4;Current method name:C684;"generate keypair in dir : \""+$vt_orderDir+"\"...")
 					acme_rsakeyPairGenerate ($vt_orderDir)
 					
 					UTL_textToFile ($vt_orderDir+$vt_id+".json";JSON Stringify:C1217($vo_responseBody;*))
@@ -249,11 +264,16 @@ If ($vl_nbParam>1)
 					  // we need to make sure we have stop HSTS (redirection "http://" to "https://")
 					  // otherwise we may not receive the challenge from Let's Encrypt®
 					  // this means the site should have a traditional "http:" => "https://" redirect in the meantime
+					acme__log (4;Current method name:C684;"stop HSTS...")
 					acme__webHstsStop 
 					
+					
+					acme__log (4;Current method name:C684;"order accepted, proceed to autorization(s), challenge prepare and request...")
 					  // order has been accepted, we need to proceed to the autorization
 					  // using the challenges
 					$vb_ok:=(acme_orderAuthorisationProcess ($vo_responseBody))
+					
+					acme__log (Choose:C955($vb_ok;4;2);Current method name:C684;"order accepted, proceed to autorization(s), challenge prepare and request done. "+Choose:C955($vb_ok;"[OK]";"[KO]"))
 					
 					C_TEXT:C284($vt_timestamp)
 					$vt_timestamp:=acme__timestamp 
@@ -280,9 +300,13 @@ If ($vl_nbParam>1)
 						CLEAR VARIABLE:C89($vo_httpResponse)
 					End if 
 					
+					acme__log (4;Current method name:C684;"order autorization(s) wait...")
+					
 					C_LONGINT:C283($vl_nbSecondsMax)
 					$vl_nbSecondsMax:=120  // wait two minutes 
 					acme_orderAuthorisationWait ($vo_responseBody;$vl_nbSecondsMax)
+					
+					acme__log (4;Current method name:C684;"order autorization(s) wait completed...")
 					
 					acme__log (4;Current method name:C684;"url : \""+$vt_url+"\""+", status : "+String:C10($vl_status)+\
 						", duration : "+UTL_durationMsDebug ($vl_ms)+\
@@ -304,7 +328,7 @@ If ($vl_nbParam>1)
 				acme__log (2;Current method name:C684;"order url : \""+$vt_locationUrl+"\", unexpected status : \""+$vt_orderStatus+"\". [KO]")
 			End if 
 			
-		Else 
+		Else   // new order error
 			  //: (($vl_status>=400) & ($vl_status<500))
 			  // application/problem+json
 			

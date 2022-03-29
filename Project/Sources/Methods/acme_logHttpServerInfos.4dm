@@ -19,12 +19,14 @@ If (ENV_isv17OrAbove )
 	C_BOOLEAN:C305($vb_withCache)
 	$vb_withCache:=True:C214
 	
+	  // #4D-v19-newhttpServer
+	
 	C_OBJECT:C1216($vo_object)
 	$vo_object:=WEB Get server info:C1531($vb_withCache)
 	
 	C_TEXT:C284($vt_serverInfosJson)
 	$vt_serverInfosJson:=JSON Stringify:C1217($vo_object;*)
-	acme__log (4;Current method name:C684;"http server infos :\r"+$vt_serverInfosJson)
+	acme__log (4;Current method name:C684;"http server infos (legacy) :\r"+$vt_serverInfosJson)
 End if 
 
 C_TEXT:C284($vt_cert)

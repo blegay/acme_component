@@ -9,13 +9,13 @@
   //@parameter[1-IN-csrObj-OBJECT] : csr object (see acme_csrReqConfObjectNew)
   //@parameter[2-IN-privateKeyPath-TEXT] : private rsa key path (do not use the account private key)
   //@parameter[3-OUT-csrPtr-POINTER] : csr text (PEM format) or blob (DER format) pointer (modified)
-  //@notes : 
+  //@notes :
   // do not use the account private key to avoid error "certificate public key must be different than account key"
   //@example : acme__opensslCsrNew
   //@see : acme_csrReqConfObjectNew
   //@version : 1.00.00
-  //@author : 
-  //@history : 
+  //@author :
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 23/06/2018, 23:18:01 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -51,7 +51,7 @@ If (False:C215)  // sample config file
 	  // default_md = sha256
 	  // req_extensions = req_ext
 	  // distinguished_name = dn
-	  // 
+	  //
 	  // [ dn ]
 	  // C=US
 	  // ST=New York
@@ -60,10 +60,10 @@ If (False:C215)  // sample config file
 	  // OU=Testing Domain
 	  // emailAddress=your-administrative-address@your-awesome-existing-domain.com
 	  // CN = www.your-new-domain.com
-	  // 
+	  //
 	  // [ req_ext ]
 	  // subjectAltName = @alt_names
-	  // 
+	  //
 	  // [ alt_names ]
 	  // DNS.1 = your-new-domain.com
 	  // DNS.2 = www.your-new-domain.com
@@ -93,20 +93,20 @@ $vt_err:=""
 
   //<Modif> Bruno LEGAY (BLE) (22/07/2021)
 
-  // try avoiding the "error/warning" on Windows 
-  // 2021-07-22T05:48:02.060Z - acme - 04 - acme__openSslCmd ==> cmd ""C:\Users\bruno\myApp\Components\acme_component.4dbase\Resources\openssl\win64\openssl.exe" req 
-  // -new 
-  // -key "C:\Users\bruno\myApp\letsencrypt\org.letsencrypt.api.acme-v02\_orders\11332917651\key.pem" 
-  // -sha256 
-  // -outform DER 
-  // -nodes 
+  // try avoiding the "error/warning" on Windows
+  // 2021-07-22T05:48:02.060Z - acme - 04 - acme__openSslCmd ==> cmd ""C:\Users\bruno\myApp\Components\acme_component.4dbase\Resources\openssl\win64\openssl.exe" req
+  // -new
+  // -key "C:\Users\bruno\myApp\letsencrypt\org.letsencrypt.api.acme-v02\_orders\11332917651\key.pem"
+  // -sha256
+  // -outform DER
+  // -nodes
   // -config "C:\Users\bruno\AppData\Local\Temp\openssl_config_442FD54E5118264BB9AFE54D814FD882.cnf"", in : "", out : "1225 byte(s)", err : "WARNING: can't open config file: /usr/local/ssl/openssl.cnf
   // ", duration : 0,496s success. [OK]
 
 acme__opensslConfigDefault 
   //<Modif>
 
-If (acme__openSslCmd ($vt_args;->$vt_in;$vp_csrPtr;->$vt_err))
+If (acme_opensslCmd ($vt_args;->$vt_in;$vp_csrPtr;->$vt_err))
 	$vb_ok:=True:C214
 	
 	acme__log (4;Current method name:C684;"openssl generate "+$vt_outForm+" csr, csrObj :\r"+JSON Stringify:C1217($vo_csrObj;*)+"\r, config :\r"+$vt_csrConf+"\r csr :\r"+acme__opensslCsrToText ($vp_csrPtr))

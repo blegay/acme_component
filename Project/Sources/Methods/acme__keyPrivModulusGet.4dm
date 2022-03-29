@@ -7,12 +7,12 @@
   //@description : This function returns the modulus of the private key in binary form
   //@parameter[0-OUT-modulus-BLOB] : private key modulus in binary form
   //@parameter[1-IN-privateKeyPath-TEXT] : private key file path (in PEM format)
-  //@notes : 
+  //@notes :
   //@example : acme__keyPrivModulusGet
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : 
-  //@history : 
+  //@author :
+  //@history :
   // CREATION : Bruno LEGAY (BLE) - 23/06/2018, 18:33:37 - 1.00.00
   //@xdoc-end
   //================================================================================
@@ -41,7 +41,7 @@ $vt_args:="rsa"+\
 acme__opensslConfigDefault 
 
 C_TEXT:C284($vt_out;$vt_err)
-If (acme__openSslCmd ($vt_args;->$vx_private;->$vt_out;->$vt_err))
+If (acme_opensslCmd ($vt_args;->$vx_private;->$vt_out;->$vt_err))
 	
 	C_TEXT:C284($vt_modulus;$vt_regex)
 	$vt_regex:="Modulus=(.+)"

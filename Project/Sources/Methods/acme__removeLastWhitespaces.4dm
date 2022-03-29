@@ -11,7 +11,7 @@
   //@example : acme__removeLastWhitespaces
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 30/06/2018, 08:52:37 - 1.0
   //@xdoc-end

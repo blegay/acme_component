@@ -53,7 +53,7 @@ ASSERT:C1129($vt_id="6789")
 C_TEXT:C284($vt_expected;$vt_actual)
 
 C_TEXT:C284($vt_newLine)
-$vt_newLine:=Choose:C955(ENV_onWindows ;"\r\n";"\n")
+$vt_newLine:=Choose:C955(Is Windows:C1573;"\r\n";"\n")
 
 C_TEXT:C284($vt_testDirPath)
 $vt_testDirPath:=Get 4D folder:C485(Current resources folder:K5:16)+"testcases"+Folder separator:K24:12+"signature"+Folder separator:K24:12

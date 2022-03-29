@@ -7,12 +7,12 @@
   //@description : This function checks a csr output
   //@parameter[0-OUT-certText-TEXT] : certificate output
   //@parameter[2-IN-certPointer-POINTER] : certiticate pointer (if blob assumed in DER format, else PEM format) (not modified)
-  //@notes : 
+  //@notes :
   //@example : acme__opensslCertToText
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 29/06/2018, 11:44:55 - 1.0
   //@xdoc-end
   //================================================================================
@@ -35,7 +35,7 @@ $vt_args:="x509"+\
 acme__opensslConfigDefault 
 
 C_TEXT:C284($vt_err)
-If (acme__openSslCmd ($vt_args;$vp_csrPtr;->$vt_out;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vp_csrPtr;->$vt_out;->$vt_err))
 	
 Else 
 	ASSERT:C1129(False:C215;$vt_err)

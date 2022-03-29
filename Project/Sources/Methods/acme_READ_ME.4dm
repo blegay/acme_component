@@ -44,3 +44,35 @@
   // CREATION : Bruno LEGAY (BLE) - 23/06/2018, 08:44:58 - 1.00.00
   //@xdoc-end
   //================================================================================
+
+
+
+  //  "No Key ID in JWS header" => account was not created (see sample method "cert_accountInit", and call acme_newAccount)
+  // 2022-01-26T08:16:41.523Z - acme - 02 - acme_accountObjectGet ==> file "...:letsencrypt:org.letsencrypt.api.acme-v02:_account:account.json" not found. [KO]
+  // ...
+  // 2022-01-26T08:08:13.577Z - acme - 02 - acme_newOrder ==> url : "https://acme-v02.api.letsencrypt.org/acme/new-order", status : 400, duration : 0,407s, protected : "{
+  //     "alg": "RS256",
+  //     "jwk": {
+  //         "kty": "RSA",
+  //         "n": "uS9....Uw",
+  //         "e": "A...B"
+  //     },
+  //     "nonce": "010....K00",
+  //     "url": "https://acme-v02.api.letsencrypt.org/acme/new-order"
+  // }", payload : "{
+  //     "identifiers": [
+  //         {
+  //             "type": "dns",
+  //             "value": "www.example.com"
+  //         }
+  //     ]
+  // }", request body : "{
+  //     "protected": "eyJ...iJ9",
+  //     "payload": "eyJ...V19",
+  //     "signature": "VRW...7WQ"
+  // }", response body : "{
+  //   "type": "urn:ietf:params:acme:error:malformed",
+  //   "detail": "No Key ID in JWS header",
+  //   "status": 400
+  // }". [KO]
+

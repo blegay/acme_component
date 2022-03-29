@@ -30,7 +30,7 @@
   //@example : acme_directoryMetaPropertyGet
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2020
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 05/03/2020, 13:24:13 - 0.90.13
   //@xdoc-end

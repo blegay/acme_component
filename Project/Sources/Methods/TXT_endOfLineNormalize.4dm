@@ -18,7 +18,7 @@
   //@example : TXT_endOfLineNormalize
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 25/04/2019, 15:21:35 - 0.90.05
   //@xdoc-end
@@ -46,7 +46,7 @@ If (Length:C16($vt_in)>0)
 			
 		: ($vl_mode=Document with native format:K24:19)  // 1
 			
-			If (ENV_onWindows )
+			If (Is Windows:C1573)
 				  //$vt_out:=UTL_normalize ($vt_in;Document avec CRLF)
 				$vt_out:=Replace string:C233($vt_in;"\r\n";"\r";*)
 				$vt_out:=Replace string:C233($vt_out;"\n";"\r";*)

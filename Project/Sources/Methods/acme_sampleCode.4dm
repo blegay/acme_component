@@ -25,7 +25,7 @@
   //  // example : Sur uthentification web
   //  // see : 
   //  // version : 1.00.00
-  //  // author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //  // author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //  // history : 
   //  //  CREATION : Bruno LEGAY (BLE) - 01/07/2019, 16:03:41 - 0.90.08
   //  //================================================================================
@@ -76,7 +76,7 @@
   //  // example : Sur connexion Web
   //  // see : 
   //  // version : 1.00.00
-  //  // author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //  // author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //  // history : 
   //  //  CREATION : Bruno LEGAY (BLE) - 01/07/2019, 16:03:41 - 0.90.08
   //  //================================================================================
@@ -276,7 +276,7 @@
 
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 01/07/2019, 16:21:25 - 0.90.08
   //@xdoc-end

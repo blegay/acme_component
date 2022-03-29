@@ -13,7 +13,7 @@
   // acme__urlLocationIdGet ("https://acme-staging-v02.api.letsencrypt.org/acme/order/12345/6789") => "6789"
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 28/06/2018, 18:24:05 - 1.0
   //@xdoc-end

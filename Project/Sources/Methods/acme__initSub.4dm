@@ -18,7 +18,7 @@
 
   //  //<Modif> Bruno LEGAY (BLE) (06/12/2019)
   //C_TEXT($vt_environmentText)
-  //$vt_environmentText:=ENV_versionStr +" "+Choose(ENV_is64bits ;"(64 bits)";"(32 bits)")+" "+Choose(ENV_onWindows ;"Windows";"macOS")+", openssl binary version : \""+acme__opensslVersionGet +"\""+", 4D openssl version : \""+acme__openssl4dVersion +"\""
+  //$vt_environmentText:=ENV_versionStr +" "+Choose(ENV_is64bits ;"(64 bits)";"(32 bits)")+" "+Choose(Is windows ;"Windows";"macOS")+", openssl binary version : \""+acme__opensslVersionGet +"\""+", 4D openssl version : \""+acme__openssl4dVersion +"\""
 
   //  // "4D v15.6 Final (Build 222813) (32 bits) macOS, openssl binary version : "OpenSSL 1.0.2o  27 Mar 2018", 4D openssl version : "OpenSSL 1.0.2j  26 Sep 2016""
 

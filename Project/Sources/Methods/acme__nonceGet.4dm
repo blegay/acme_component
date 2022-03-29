@@ -78,6 +78,8 @@ If (Length:C16($vt_nonce)=0)
 		
 		acme__httpClientOptionsSet 
 		
+		acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\"...")
+		
 		C_TEXT:C284($vt_errorHandler)
 		$vt_errorHandler:=acme__errorHdlrBefore 
 		
@@ -90,6 +92,8 @@ If (Length:C16($vt_nonce)=0)
 		
 		  // timer
 		$vl_ms:=UTL_durationDifference ($vl_ms;Milliseconds:C459)
+		
+		acme__log (6;Current method name:C684;"http request, method : "+HTTP POST method:K71:2+", url : \""+$vt_url+"\", status : "+String:C10($vl_status))
 		
 		If ($vl_status=0)  // server did not respond
 			

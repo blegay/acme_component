@@ -16,7 +16,7 @@
   //  acme__tokenToFilenameSafe ("IFYoEgcXKmHJOKpEG1S3kwfZPOksIKQbs4ZHU0yEeSQ") => "IFYoEgcXKmHJOKpEG1S3kwfZPOksIKQbs4ZHU0yEeSQ-11bd9a9e7b8b400feac82575eca67ce2.txt"
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 25/06/2018, 21:12:10 - 1.0
   //@xdoc-end

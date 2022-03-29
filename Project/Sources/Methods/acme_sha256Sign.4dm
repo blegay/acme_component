@@ -2,14 +2,14 @@
   //================================================================================
   //@xdoc-start : en
   //@name : acme_sha256Sign
-  //@scope : private 
+  //@scope : private
   //@deprecated : no
-  //@description : This method/function returns 
+  //@description : This method/function returns
   //@parameter[0-OUT-signatureBase64-TEXT] : signature base64 encoded
   //@parameter[1-IN-blobPtr-POINTER] : blob pointer (not modified)
   //@parameter[2-IN-privateKeyPem-TEXT] : private key pem format data
-  //@notes : 
-  //@example : 
+  //@notes :
+  //@example :
   //
   //  C_BLOB($vx_blobToSign)
   //  TEXT TO BLOB("hello world";$vx_blobToSign;UTF8 text without length)
@@ -23,10 +23,10 @@
   //  C_TEXT($vt_signatureBase64)
   //  $vt_signatureBase64:=acme_sha256Sign (->$vx_blobToSign;$vo_certificates.pkey)
   //
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2020
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 14/12/2020, 10:18:03 - 1.00.03
   //@xdoc-end
   //================================================================================
@@ -64,7 +64,7 @@ $vt_err:=""
 C_BLOB:C604($vx_signatureBinary)
 SET BLOB SIZE:C606($vx_signatureBinary;0)
 
-If (acme__openSslCmd ($vt_args;$vx_blobPtr;->$vx_signatureBinary;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vx_blobPtr;->$vx_signatureBinary;->$vt_err))
 	BASE64 ENCODE:C895($vx_signatureBinary;$vt_signatureBase64)
 End if 
 

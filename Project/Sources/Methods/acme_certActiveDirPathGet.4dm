@@ -13,7 +13,7 @@
   //@example : acme_certActiveDirPathGet
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 09/10/2018, 08:47:14 - 1.0
   //@xdoc-end
@@ -23,6 +23,8 @@ C_TEXT:C284($0;$vt_activeCertificateDirPath)
 C_LONGINT:C283($1;$vl_appType)
 
 $vt_activeCertificateDirPath:=""
+
+  // #4D-v19-newhttpServer
 
   // dir where to set the certificates
   // https://doc.4d.com/4Dv17/4D/17.3/Using-TLS-Protocol-HTTPS.300-4620625.en.html

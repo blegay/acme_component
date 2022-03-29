@@ -76,7 +76,7 @@
 
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 13/02/2019, 17:42:25 - 1.00.00
   //@xdoc-end
@@ -94,15 +94,43 @@ $vb_ok:=False:C215
 $vo_newOrderObject:=$1
 $vo_csrReqConfObject:=$2
 
-C_TEXT:C284($vt_id)
-C_OBJECT:C1216($vo_order)
-If (acme_newOrder ($vo_newOrderObject;->$vt_id;->$vo_order))
+  // mutex semaphore
+C_TEXT:C284($vt_semaphore)
+$vt_semaphore:="$acme_certificateOrderAndInstall"
+If (Not:C34(Semaphore:C143($vt_semaphore;120)))
+	acme__log (4;Current method name:C684;"semaphore \""+$vt_semaphore+"\" set in process "+acme__processInfosDebug )
 	
-	C_TEXT:C284($vt_orderDir)
-	$vt_orderDir:=acme_orderDirPathGet ($vt_id)
+	  //<Modif> Bruno LEGAY (BLE) (28/03/2022)
+	C_BOOLEAN:C305($vb_newProgress)
+	$vb_newProgress:=(Storage:C1525.acme.progressId=0)
+	If ($vb_newProgress)
+		acme__progressInit ("title")  //"Zertifikat anfordern / erneuern")
+	End if 
 	
-	$vb_ok:=acme_csrGenerateAndSign ($vo_order;$vo_csrReqConfObject;$vt_orderDir)
+	  //<Modif>
+	acme__progressUpdate (35;"newOrderObject")  //"Zertifikat Anforderungs-Objekt abrufen")
 	
+	C_TEXT:C284($vt_id)
+	C_OBJECT:C1216($vo_order)
+	If (acme_newOrder ($vo_newOrderObject;->$vt_id;->$vo_order))
+		
+		C_TEXT:C284($vt_orderDir)
+		$vt_orderDir:=acme_orderDirPathGet ($vt_id)
+		
+		$vb_ok:=acme_csrGenerateAndSign ($vo_order;$vo_csrReqConfObject;$vt_orderDir)
+		
+	End if 
+	
+	  //<Modif> Bruno LEGAY (BLE) (28/03/2022)
+	If ($vb_newProgress)
+		acme__progressDeinit 
+	End if 
+	  //<Modif>
+	
+	CLEAR SEMAPHORE:C144($vt_semaphore)
+	acme__log (4;Current method name:C684;"semaphore \""+$vt_semaphore+"\" cleared in process "+acme__processInfosDebug )
+Else 
+	acme__log (2;Current method name:C684;"semaphore \""+$vt_semaphore+"\" already set, process "+acme__processInfosDebug )
 End if 
 
 $0:=$vb_ok

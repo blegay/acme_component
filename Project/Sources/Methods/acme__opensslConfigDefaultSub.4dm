@@ -11,7 +11,7 @@
   //@example : acme__opensslConfigDefaultSub
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 25/04/2019, 13:25:03 - 0.90.05
   //@xdoc-end

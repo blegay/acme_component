@@ -7,8 +7,8 @@
   //@deprecated : no
   //@description : This method parse a pem data (a certificate chain for instance) into a pem array
   //@parameter[1-IN-pem-TEXT] : pem data
-  //@parameter[2-OUT-pemDataArrPtr-POINTER] : pem type array pointer (modified)
-  //@parameter[3-OUT-pemTypeArrPtr-POINTER] : pem type array pointer (modified)
+  //@parameter[2-OUT-pemDataArrPtr-POINTER] : pem type text array pointer (modified)
+  //@parameter[3-OUT-pemTypeArrPtr-POINTER] : pem type text array pointer (modified)
   //@notes :
   //   # define PEM_STRING_X509_OLD     "X509 CERTIFICATE"
   //   # define PEM_STRING_X509         "CERTIFICATE"
@@ -95,7 +95,8 @@ ARRAY TEXT:C222($tt_pemType;0)
 
 If (Length:C16($vt_pem)>0)
 	C_TEXT:C284($vt_regexStart)
-	$vt_regexStart:="(?m)-----BEGIN ("+$vt_pemTypeKey+")-----\n"  //"(.*)+\n-----END ("+$vt_pemTypeKey+")-----"
+	$vt_regexStart:="(?m)-----BEGIN ("+$vt_pemTypeKey+")-----\n"
+	  //"(.*)+\n-----END ("+$vt_pemTypeKey+")-----"
 	
 	C_LONGINT:C283($vl_start)
 	$vl_start:=1
@@ -107,7 +108,7 @@ If (Length:C16($vt_pem)>0)
 	While (Match regex:C1019($vt_regexStart;$vt_pem;$vl_start;$tl_pos;$tl_len))
 		
 		C_TEXT:C284($vt_tag)
-		$vt_tag:=Substring:C12($vt_pem;$tl_pos{1};$tl_len{1})
+		$vt_tag:=Substring:C12($vt_pem;$tl_pos{1};$tl_len{1})  // "X509 CERTIFICATE"
 		
 		  // find the corresponding end tag
 		C_TEXT:C284($vt_regexEnd)

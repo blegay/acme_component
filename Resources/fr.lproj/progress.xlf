@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+   <!--
+Translation file.
+This file is distributed under the same license as the product package.-->
+
+<xliff version="1.0">
+   <file datatype="x-STR#" original="undefined" source-language="en" target-language="fr">
+      <header>
+         <prop-group name="Xliff-Editor.4dbase">
+            <prop prop-type="version">1.0</prop>
+         </prop-group>
+      </header>
+      <body>
+         <group resname="Messages">
+            <trans-unit id="1" resname="title" translate="yes">
+               <source>Renewing Let's Encrypt® certificate...</source>
+               <target>Renouvellement du certificat Let's Encrypt®...</target>
+            </trans-unit>
+            <trans-unit id="2" resname="initialization">
+               <source>Initialization</source>
+               <target>Initialisation</target>
+            </trans-unit>
+            <trans-unit id="3" resname="newOrderObject">
+               <source>New "order" object</source>
+               <target>Nouvel objet "commande"</target>
+            </trans-unit>
+            <trans-unit id="4" resname="csrReqConfObjectNew">
+               <source>New certificate signing request object</source>
+               <target>Nouvelle demande de signature de certificat</target>
+            </trans-unit>
+            <trans-unit id="5" resname="newOrderAndInstall">
+               <source>Sending certificate signing request</source>
+               <target>Envoi de la demande de signature de certificat</target>
+            </trans-unit>
+            <trans-unit id="6" resname="newOrder">
+               <source>Sending "order"</source>
+               <target>Envoi de la "commande"</target>
+            </trans-unit>
+            <trans-unit id="7" resname="csrGenerateAndSign">
+               <source>Finalize "order"</source>
+               <target>Finalisation de la "commande"</target>
+            </trans-unit>
+            <trans-unit id="8" resname="authorizationGet">
+               <source>Waiting for authorization</source>
+               <target>Attente de l'authorisation</target>
+            </trans-unit>
+            <trans-unit id="9" resname="serverDidNotRespond">
+               <source>Server did not respond</source>
+               <target>Le serveur ne répond pas</target>
+            </trans-unit>
+            <trans-unit id="10" resname="certificateGenerated">
+               <source>Certificate generated</source>
+               <target>Certificat généré</target>
+            </trans-unit>
+            <trans-unit id="11" resname="gettingCertificate">
+               <source>Getting certificate</source>
+               <target>Récupération du certificat</target>
+            </trans-unit>
+            <trans-unit id="12" resname="certificateInstallation">
+               <source>Certificate installation</source>
+               <target>Installation certificat</target>
+            </trans-unit>
+         </group>
+      </body>
+   </file>
+</xliff>

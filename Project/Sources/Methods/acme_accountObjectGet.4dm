@@ -73,6 +73,7 @@ If (acme__domainExtractFromUrl ($vt_directoryUrl;->$vt_caDomain))
 		$vt_json:=Document to text:C1236($vt_accountJsonFilePath)
 		$vo_accountObject:=JSON Parse:C1218($vt_json)
 		
+		acme__log (4;Current method name:C684;"file \""+$vt_accountJsonFilePath+"\" found : "+JSON Stringify:C1217($vo_accountObject)+". [OK]")
 	Else 
 		acme__log (2;Current method name:C684;"file \""+$vt_accountJsonFilePath+"\" not found. [KO]")
 	End if 

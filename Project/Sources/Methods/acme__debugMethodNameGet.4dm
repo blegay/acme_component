@@ -10,7 +10,7 @@
   //@example : acme__debugMethodNameGet
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2021
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 04/05/2021, 12:52:37 - 1.00.04
   //@xdoc-end

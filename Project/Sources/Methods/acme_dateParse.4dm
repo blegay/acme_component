@@ -11,7 +11,7 @@
   //@example : acme_dateParse("Jan 23 19:15:40 2019 GMT\n") => "20190123T191540Z"
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 23/01/2019, 22:58:41 - 1.00.00
   //@xdoc-end

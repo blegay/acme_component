@@ -8,12 +8,12 @@
   //@parameter[0-OUT-modulus-BLOB] : modulus
   //@parameter[1-IN-type-TEXT] : source type ("rsa", "req" or "x509")
   //@parameter[2-IN-sourcePtr-POINTER] : source pointer (private key, csr, or certificate in PEM or DER format) (not modified)
-  //@notes : 
+  //@notes :
   //@example : acme__opensslModulus
-  //@see : 
+  //@see :
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
-  //@history : 
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
+  //@history :
   //  CREATION : Bruno LEGAY (BLE) - 29/06/2018, 12:37:30 - 1.0
   //@xdoc-end
   //================================================================================
@@ -44,7 +44,7 @@ acme__opensslConfigDefault
 C_TEXT:C284($vt_err)
 $vt_err:=""
 
-If (acme__openSslCmd ($vt_args;$vp_inPtr;->$vx_modulus;->$vt_err))
+If (acme_opensslCmd ($vt_args;$vp_inPtr;->$vx_modulus;->$vt_err))
 	  //$vb_ok:=Vrai
 	acme__log (4;Current method name:C684;"openssl "+$vt_type+" modulus (md5 : "+Generate digest:C1147($vx_modulus;MD5 digest:K66:1)+"). [OK]")
 Else 

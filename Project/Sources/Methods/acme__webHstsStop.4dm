@@ -16,6 +16,9 @@
   //================================================================================
 
 If (ENV_isv17OrAbove )
+	
+	  // #4D-v19-newhttpServer
+	
 	C_LONGINT:C283($vl_hstsMode)
 	WEB GET OPTION:C1209(Web HSTS enabled:K73:26;$vl_hstsMode)
 	If ($vl_hstsMode=1)
@@ -24,4 +27,5 @@ If (ENV_isv17OrAbove )
 	Else 
 		acme__log (2;Current method name:C684;"HSTS mode not activated")
 	End if 
+	
 End if 

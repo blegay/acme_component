@@ -12,7 +12,7 @@
   //@example : acme_certificateGetAndInstall
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2018
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 09/10/2018, 08:41:27 - 1.0
   //@xdoc-end
@@ -29,6 +29,11 @@ ASSERT:C1129(Test path name:C476($2)=Is a folder:K24:2;"$2 (orderDir) does not e
 $vb_ok:=False:C215
 $vt_certificateUrl:=$1
 $vt_orderDir:=$2
+
+acme__progressUpdate (80;"certificateGenerated")  //"Zertifikat abrufen")
+  //If ($vb_progress)
+  //Progress SET PROGRESS ($vl_progressID;80;"Zertifikat abrufen";True)
+  //End if 
 
   // get the certificate in PEM format into $vt_certificate
 C_TEXT:C284($vt_certificate)

@@ -6,7 +6,7 @@
   //@scope : public
   //@deprecated : no
   //@description : This function returns TRUE if 4D is v17 or above 
-  //@parameter[0-OUT-v16orAbove-TEXT] : returns True if 4D is v17 or above, False otherwise.
+  //@parameter[0-OUT-v17orAbove-TEXT] : returns True if 4D is v17 or above, False otherwise.
   //@notes :
   //@example : ENV_v17orAbove 
   //@see : 

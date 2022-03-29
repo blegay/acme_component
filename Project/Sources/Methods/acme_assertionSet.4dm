@@ -10,7 +10,7 @@
   //@example : acme_assertionSet
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2021
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 21/07/2021, 16:25:35 - 2.00.02
   //@xdoc-end

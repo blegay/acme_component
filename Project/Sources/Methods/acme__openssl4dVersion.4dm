@@ -10,7 +10,7 @@
   //@example : acme__openssl4dVersion
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 06/12/2019, 14:52:24 - 0.90.11
   //@xdoc-end
@@ -19,6 +19,8 @@
 C_TEXT:C284($0;$vt_openSslVersion)
 
 If (ENV_isv17OrAbove )  // "Get database parameter" is not "thread-safe" compatible (in v18.0)
+	
+	  // #4D-v19-newhttpServer
 	
 	C_OBJECT:C1216($vo_webServerInfos)
 	$vo_webServerInfos:=WEB Get server info:C1531

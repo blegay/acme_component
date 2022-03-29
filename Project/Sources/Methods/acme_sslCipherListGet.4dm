@@ -10,7 +10,7 @@
   //@example : acme_sslCipherListGet
   //@see : 
   //@version : 1.00.00
-  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2019
+  //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting 2022
   //@history : 
   //  CREATION : Bruno LEGAY (BLE) - 13/03/2019, 17:28:04 - 0.90.03
   //@xdoc-end
@@ -19,6 +19,8 @@
 C_TEXT:C284($0;$vt_cipherList)
 
 If (ENV_isv17OrAbove )  // "Get database parameter" is not "thread-safe" compatible (in v18.0)
+	
+	  // #4D-v19-newhttpServer
 	
 	C_OBJECT:C1216($vo_webServerInfos)
 	$vo_webServerInfos:=WEB Get server info:C1531

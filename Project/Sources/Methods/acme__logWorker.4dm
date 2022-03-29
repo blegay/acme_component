@@ -34,11 +34,18 @@ If (Count parameters:C259>3)
 	C_TEXT:C284($vt_logDir)
 	$vt_logDir:=Get 4D folder:C485(Logs folder:K5:19;*)
 	
+	If (Test path name:C476($vt_logDir)#Is a folder:K24:2)
+		CREATE FOLDER:C475($vt_logDir;*)
+	End if 
+	
 	If (Test path name:C476($vt_logDir)=Is a folder:K24:2)
 		
 		C_TEXT:C284($vt_endOfLine)
 		$vt_endOfLine:=Choose:C955(Is Windows:C1573;"\r\n";"\n")
 		
+		If ($vt_endOfLine="\r\n")  // json stringfy (;*) generates "\n" for indentation, in windows log file we want CRLF
+			$vt_debugMessage:=Replace string:C233($vt_debugMessage;"\n";$vt_endOfLine;*)
+		End if 
 		$vt_debugMessage:=Replace string:C233($vt_debugMessage;"\r";$vt_endOfLine;*)
 		
 		C_TEXT:C284($vt_timestamp)
