@@ -231,8 +231,17 @@ If ($vl_nbParam>0)
 						CLEAR VARIABLE:C89($vo_responseBody)
 						
 						C_TEXT:C284($vt_location)
-						ASSERT:C1129(OB Is defined:C1231($vo_responseHeaders;"Location");"\"Location\" header not in response of HTTP POST on url \""+$vt_newAccountUrl+"\"")
-						$vt_location:=OB Get:C1224($vo_responseHeaders;"Location")
+						  //<Modif> Bruno LEGAY (BLE) (05/08/2022) -  2.00.06
+						If (True:C214)
+							$vt_location:=acme__httpHeaderGetValForKey (->$tt_headerKey;->$tt_headerValue;"Location")
+							ASSERT:C1129($vt_location#"";"\"Location\" header not in response of HTTP POST on url \""+$vt_newAccountUrl+"\"")
+						Else   // if the server was returning "location" instead of "Location", this code would fail :-(
+							ASSERT:C1129(OB Is defined:C1231($vo_responseHeaders;"Location");"\"Location\" header not in response of HTTP POST on url \""+$vt_newAccountUrl+"\"")
+							$vt_location:=OB Get:C1224($vo_responseHeaders;"Location")
+						End if 
+						  //<Modif>
+						
+						acme__httpHeaderGetValForKey 
 						
 						  //C_ENTIER LONG($vl_accountId)
 						C_TEXT:C284($vt_accountId)  // treat the account id as string (in case the numbers get really big)

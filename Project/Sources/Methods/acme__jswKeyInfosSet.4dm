@@ -63,10 +63,19 @@ If ((Test path name:C476($vt_accountFilePath)=Is a document:K24:1) & (Test path 
 		C_OBJECT:C1216($vo_responseHeaders)
 		$vo_responseHeaders:=OB Get:C1224($vo_httpRequestObj;"responseHeaders";Is object:K8:27)
 		ASSERT:C1129(OB Is defined:C1231($vo_responseHeaders);"file \""+$vt_httpRequestFilePath+"\" does not have a responseHeaders property")
-		ASSERT:C1129(OB Is defined:C1231($vo_responseHeaders;"Location");"file \""+$vt_httpRequestFilePath+"\" does not have a responseHeaders.Location property")
 		
+		  //<Modif> Bruno LEGAY (BLE) (05/08/2022) -  2.00.06
 		C_TEXT:C284($vt_location)
-		$vt_location:=OB Get:C1224($vo_responseHeaders;"Location";Is text:K8:3)  // "https://acme-v02.api.letsencrypt.org/acme/acct/12345678"
+		If (True:C214)
+			C_TEXT:C284($vt_locationHeaderKey)
+			$vt_locationHeaderKey:=UTL__httpHeaderCaseFix ($vo_responseHeaders;"Location")  // may return "location"
+			ASSERT:C1129(OB Is defined:C1231($vo_responseHeaders;$vt_locationHeaderKey);"file \""+$vt_httpRequestFilePath+"\" does not have a responseHeaders.Location property")
+			$vt_location:=OB Get:C1224($vo_responseHeaders;$vt_locationHeaderKey;Is text:K8:3)  // "https://acme-v02.api.letsencrypt.org/acme/acct/12345678"
+		Else   // if the server was returning "location" instead of "Location", this code would fail :-(
+			ASSERT:C1129(OB Is defined:C1231($vo_responseHeaders;"Location");"file \""+$vt_httpRequestFilePath+"\" does not have a responseHeaders.Location property")
+			$vt_location:=OB Get:C1224($vo_responseHeaders;"Location";Is text:K8:3)  // "https://acme-v02.api.letsencrypt.org/acme/acct/12345678"
+		End if 
+		  //<Modif>
 		
 		  //<Modif> Bruno LEGAY (BLE) (11/02/2020)
 		If (True:C214)

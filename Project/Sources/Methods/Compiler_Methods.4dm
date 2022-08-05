@@ -749,3 +749,8 @@ C_TEXT:C284(acme__processInfosDebug ;$0)
 C_OBJECT:C1216(acme__check4dWebLicenceSrv ;$0)
 
 C_BOOLEAN:C305(ENV_isv19OrAbove ;$0)
+
+C_TEXT:C284(UTL__httpHeaderCaseFix ;$0)
+C_OBJECT:C1216(UTL__httpHeaderCaseFix ;$1)
+C_TEXT:C284(UTL__httpHeaderCaseFix ;$2)
+

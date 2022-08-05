@@ -99,3 +99,6 @@ Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
         - sanitize openssl (hide passwords) commands for log files
         MODIFICATION : Bruno LEGAY (BLE) - 28/03/2022, 09:48:16 - 2.00.05
         - fixed a bug where the progress bar would not be closed properly
+        MODIFICATION : Bruno LEGAY (BLE) - 05/08/2022, 21:01:46 - 2.00.06
+        - fixed a bug cause spurious errors "type": "urn:ietf:params:acme:error:malformed",  "detail": "No embedded JWK in JWS header"
+                  if the server was returning "location" instead of "Location" in "acme/new-acct", acme would not handle further requests properly

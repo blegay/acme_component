@@ -67,7 +67,10 @@ If (Count parameters:C259>0)
 			$vt_inform:="PEM"
 			
 			C_TEXT:C284($vt_bat)
-			$vt_bat:="@ECHO OFF\r"+"set OPENSSL_CONF="+acme__opensslConfigDefaultSub +"\r"+acme__opensslPathGet +" x509 -noout -checkend "+String:C10($vl_nbSeconds)+" -inform "+$vt_inform+" -in "+UTL_pathToPosixConvert ($vt_certTempPath)+"\r"+"echo %ERRORLEVEL%\r"
+			$vt_bat:="@ECHO OFF\r"+\
+				"set OPENSSL_CONF="+acme__opensslConfigDefaultSub +"\r"+\
+				acme__opensslPathGet +" x509 -noout -checkend "+String:C10($vl_nbSeconds)+" -inform "+$vt_inform+" -in "+UTL_pathToPosixConvert ($vt_certTempPath)+"\r"+\
+				"echo %ERRORLEVEL%\r"
 			
 			acme__log (6;Current method name:C684;"bat file :\r"+$vt_bat)
 			
@@ -137,6 +140,8 @@ If (Count parameters:C259>0)
 				" -inform "+$vt_inform
 			
 			  //" -noout " => "Certificate will not expire" or "Certificate will expire" output
+			  // we need to remove "noout" option to get "Certificate will not expire" or "Certificate will expire" output
+			  // This is a change of behaviour observed in 4D v17+ (LEP always set ok to 1 regarldess of function result i.e. $?)
 			
 			C_TEXT:C284($vt_in;$vt_out;$vt_err)
 			$vt_in:=$vt_cert
@@ -151,6 +156,16 @@ If (Count parameters:C259>0)
 			  // MacBook-Pro-Bruno-5:~ ble$ '/Users/ble/Documents/Projets/BaseRef_v15/acme_component/source/acme_component.4dbase/Resources/openssl/osx/openssl' x509  -noout  -checkend 10000000  -inform PEM  -in /Users/ble/Documents/Projets/BaseRef_v15/acme_component /source/test/20190424-cert/cert.pem
 			  // MacBook-Pro-Bruno-5:~ ble$ echo $?
 			  // 1 ($vb_willExpire = True)
+			
+			C_BOOLEAN:C305($vb_ok)
+			  //$vb_ok:=acme_opensslCmd($vt_args;->$vt_in;->$vt_out;->$vt_err)
+			  //If ($vb_ok)
+			  //$vb_willExpire:=True  // the certificat will expire  in the next $vl_nbSeconds second
+			  //acme__log(4;Current method name;"nb seconds : "+String($vl_nbSeconds)+", os x (lpe ok) => invalid")
+			  //Else 
+			  //$vb_willExpire:=False
+			  //acme__log(4;Current method name;"nb seconds : "+String($vl_nbSeconds)+", os x (lpe ko) => valid")
+			  //End if 
 			
 			C_BOOLEAN:C305($vb_ok)
 			$vb_ok:=acme_opensslCmd ($vt_args;->$vt_in;->$vt_out;->$vt_err)

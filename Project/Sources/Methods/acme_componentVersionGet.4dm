@@ -91,8 +91,12 @@
   //  - sanitize openssl (hide passwords) commands for log files
   //  MODIFICATION : Bruno LEGAY (BLE) - 28/03/2022, 09:48:16 - 2.00.05
   //  - fixed a bug where the progress bar would not be closed properly
+  //  MODIFICATION : Bruno LEGAY (BLE) - 05/08/2022, 21:01:46 - 2.00.06
+  //  - fixed a bug cause spurious errors "type": "urn:ietf:params:acme:error:malformed",  "detail": "No embedded JWK in JWS header"
+  //            if the server was returning "location" instead of "Location" in "acme/new-acct", acme would not handle further requests properly
   //@xdoc-end
   //================================================================================
+  //    
 
 C_TEXT:C284($0;$vt_componentVersion)
 
@@ -104,21 +108,27 @@ C_TEXT:C284($0;$vt_componentVersion)
   //<Modif>
   //  MODIFICATION : Bruno LEGAY (BLE) - 17/01/2022, 12:07:55 - 2.00.03
 
-  //<Modif> Bruno LEGAY (BLE) (28/03/2022)
-  // fixed a bug where the progress bar would not be closed properly
-$vt_componentVersion:="2.00.05"
-  //<Modif>
-
-  //<Modif> Bruno LEGAY (BLE) (26/01/2022)
-  //  checked compatibility with 4D v19 (not tested with new Web server, only with Legacy)
-  //  added progress
-  //  fixed spurious ASSERT in UTL_textToFile with empty text
-  //  methods made public : acme_opensslVersionGet, acme_opensslCmd
-  //  sanitize openssl (hide passwords) commands for log files
-  // $vt_componentVersion:="2.00.04"
+  //<Modif> Bruno LEGAY (BLE) (05/08/2022)
+$vt_componentVersion:="2.00.06"
+  //  - fixed a bug cause spurious errors "type": "urn:ietf:params:acme:error:malformed",  "detail": "No embedded JWK in JWS header"
+  //            if the server was returning "location" instead of "Location" in "acme/new-acct", acme would not handle further requests properly
   //<Modif>
 
 If (False:C215)
+	  //<Modif> Bruno LEGAY (BLE) (28/03/2022)
+	  // fixed a bug where the progress bar would not be closed properly
+	  // $vt_componentVersion:="2.00.05"
+	  //<Modif>
+	
+	  //<Modif> Bruno LEGAY (BLE) (26/01/2022)
+	  //  checked compatibility with 4D v19 (not tested with new Web server, only with Legacy)
+	  //  added progress
+	  //  fixed spurious ASSERT in UTL_textToFile with empty text
+	  //  methods made public : acme_opensslVersionGet, acme_opensslCmd
+	  //  sanitize openssl (hide passwords) commands for log files
+	  // $vt_componentVersion:="2.00.04"
+	  //<Modif>
+	
 	  //<Modif> Bruno LEGAY (BLE) (29/09/2021)
 	  // acme__openSslCmd : use blob parameters to LAUNCH EXTERNAL PROCESS
 	  // $vt_componentVersion:="2.00.03"
