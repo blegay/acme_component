@@ -25,7 +25,7 @@ If (ENV_isv17OrAbove )
 	If (Storage:C1525.acme=Null:C1517)
 		acme__init 
 	End if 
-	$vt_certActiveDir:=Storage:C1525.acme.certificateDir
+	$vt_certActiveDir:=Storage:C1525.acme.config.certificateDir
 Else 
 	$vt_certActiveDir:=acme__certActiveDirPathDfltGet 
 End if 

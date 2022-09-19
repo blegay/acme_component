@@ -34,10 +34,10 @@ If (ENV_isv17OrAbove )
 			acme__init 
 		End if 
 		
-		If (Storage:C1525.acme.certificateDir#$vt_certActiveDir)
+		If (Storage:C1525.acme.config.certificateDir#$vt_certActiveDir)
 			
-			Use (Storage:C1525.acme)
-				Storage:C1525.acme.certificateDir:=$vt_certActiveDir
+			Use (Storage:C1525.acme.config)
+				Storage:C1525.acme.config.certificateDir:=$vt_certActiveDir
 			End use 
 			
 			acme__log (4;Current method name:C684;"active certificates dir path : \""+$vt_certActiveDir+"\"")

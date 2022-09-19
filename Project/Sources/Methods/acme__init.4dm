@@ -87,8 +87,8 @@ If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
 		
 		C_TEXT:C284($vt_certActiveDirGet)
 		$vt_certActiveDirGet:=acme__certActiveDirPathDfltGet 
-		Use (Storage:C1525)
-			Storage:C1525.acme.certificateDir:=$vt_certActiveDirGet
+		Use (Storage:C1525.acme.config)
+			Storage:C1525.acme.config.certificateDir:=$vt_certActiveDirGet
 		End use 
 		
 		acme__log (4;Current method name:C684;"Storage.acme : "+JSON Stringify:C1217($vo_acme))
