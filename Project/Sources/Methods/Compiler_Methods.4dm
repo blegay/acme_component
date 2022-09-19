@@ -447,9 +447,6 @@ C_BOOLEAN:C305(acme_certificateGetAndInstall ;$0)
 C_TEXT:C284(acme_certificateGetAndInstall ;$1)
 C_TEXT:C284(acme_certificateGetAndInstall ;$2)
 
-  //acme__activeCertsDirPathGet
-C_TEXT:C284(acme_certActiveDirPathGet ;$0)
-C_LONGINT:C283(acme_certActiveDirPathGet ;$1)
 
   //acme_rsaCertSelfSignedCreate
 C_BOOLEAN:C305(acme_rsaCertSelfSignedCreate ;$0)
@@ -754,3 +751,9 @@ C_TEXT:C284(UTL__httpHeaderCaseFix ;$0)
 C_OBJECT:C1216(UTL__httpHeaderCaseFix ;$1)
 C_TEXT:C284(UTL__httpHeaderCaseFix ;$2)
 
+  //acme__activeCertsDirPathGet
+C_TEXT:C284(acme_certActiveDirPathGet ;$0)
+C_TEXT:C284(acme_certActiveDirPathSet ;$1)
+
+C_TEXT:C284(acme__certActiveDirPathDfltGet ;$0)
+C_LONGINT:C283(acme__certActiveDirPathDfltGet ;$1)

@@ -28,6 +28,7 @@ If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
 		$vo_acmeConfig:=New shared object:C1526(\
 			"workingDir";$vt_workingDir;\
 			"directoryUrl";$vt_directoryUrl;\
+			"certificateDir";"";\
 			"opensslPath";acme__opensslPathGet ;\
 			"execBitForced";Choose:C955(Is macOS:C1572;False:C215;Null:C1517);\
 			"progressId";0)
@@ -80,6 +81,16 @@ If (ENV_isv17OrAbove )  // use Storage to be "thread-safe" compatible
 		acme__log (4;Current method name:C684;"cipher list : \""+acme_sslCipherListGet +"\"")
 		acme__log (4;Current method name:C684;"\"workingDir\" default : \""+$vt_workingDir+"\"")
 		acme__log (4;Current method name:C684;"\"directoryUrl\" default : \""+$vt_directoryUrl+"\"")
+		
+		acme__log (4;Current method name:C684;"app type :  "+String:C10(Application type:C494))
+		acme__log (4;Current method name:C684;"structure file :  \""+Structure file:C489(*)+"\"")
+		
+		C_TEXT:C284($vt_certActiveDirGet)
+		$vt_certActiveDirGet:=acme__certActiveDirPathDfltGet 
+		Use (Storage:C1525)
+			Storage:C1525.acme.certificateDir:=$vt_certActiveDirGet
+		End use 
+		
 		acme__log (4;Current method name:C684;"Storage.acme : "+JSON Stringify:C1217($vo_acme))
 		acme__log (4;Current method name:C684;"assertions : "+Choose:C955(Get assert enabled:C1130;"enabled";"disabled"))
 		

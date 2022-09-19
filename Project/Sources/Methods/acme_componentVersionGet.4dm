@@ -5,11 +5,11 @@
   //@scope : public
   //@deprecated : no
   //@description : This function returns the component version 
-  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "2.00.05")
+  //@parameter[0-OUT-componentVersion-TEXT] : component version (e.g. "2.00.07")
   //@notes :
   //@example : acme_componentVersionGet 
   //@see : 
-  //@version : 2.00.05
+  //@version : 2.00.07
   //@author : Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
   //@history : 
   // CREATION : Bruno LEGAY (BLE) - 04/12/2018, 23:39:22 - v0.90.00
@@ -94,10 +94,11 @@
   //  MODIFICATION : Bruno LEGAY (BLE) - 05/08/2022, 21:01:46 - 2.00.06
   //  - fixed a bug cause spurious errors "type": "urn:ietf:params:acme:error:malformed",  "detail": "No embedded JWK in JWS header"
   //            if the server was returning "location" instead of "Location" in "acme/new-acct", acme would not handle further requests properly
+  //  MODIFICATION : Bruno LEGAY (BLE) - 19/09/2022, 14:56:51 - 2.00.07
+  //  - added a method acme_certActiveDirPathSet  
   //@xdoc-end
   //================================================================================
   //    
-
 C_TEXT:C284($0;$vt_componentVersion)
 
   //<Modif> Bruno LEGAY (BLE) (01/03/2019)
@@ -108,8 +109,13 @@ C_TEXT:C284($0;$vt_componentVersion)
   //<Modif>
   //  MODIFICATION : Bruno LEGAY (BLE) - 17/01/2022, 12:07:55 - 2.00.03
 
+  //<Modif> Bruno LEGAY (BLE) (19/09/2022)
+$vt_componentVersion:="2.00.07"
+  // - added a method acme_certActiveDirPathSet
+  //<Modif>
+
   //<Modif> Bruno LEGAY (BLE) (05/08/2022)
-$vt_componentVersion:="2.00.06"
+  // $vt_componentVersion:="2.00.06"
   //  - fixed a bug cause spurious errors "type": "urn:ietf:params:acme:error:malformed",  "detail": "No embedded JWK in JWS header"
   //            if the server was returning "location" instead of "Location" in "acme/new-acct", acme would not handle further requests properly
   //<Modif>
