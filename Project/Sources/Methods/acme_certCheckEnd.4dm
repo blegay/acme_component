@@ -5,7 +5,7 @@
   //@scope : public
   //@deprecated : no
   //@description : This function returns TRUE if the certificates will expire expires in the next $2 seconds
-  //@parameter[0-OUT-willExpire-BOOLEAN] : TRUE if the certificates will expire expires in the next $2 seconds, FALSE otherwise
+  //@parameter[0-OUT-willExpire-BOOLEAN] : TRUE if the certificates will expire in the next $2 seconds, FALSE otherwise
   //@parameter[1-IN-cert-TEXT] : cert in PEM format
   //@parameter[2-IN-nbSeconds-LONGINT] : number of seconds (optional, default 0)
   //@notes : this function uses openssl x509 "checkend" feature

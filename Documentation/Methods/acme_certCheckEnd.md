@@ -6,7 +6,7 @@ This function returns TRUE if the certificates will expire expires in the next $
 ## **Parameters :** 
 | Parameter | Direction | Name | Type | Ddescription | 
 |:----:|:----:|:----|:----|:----| 
-| $0 | OUT | willExpire | BOOLEAN | TRUE if the certificates will expire expires in the next $2 seconds, FALSE otherwise | 
+| $0 | OUT | willExpire | BOOLEAN | TRUE if the certificates will expire in the next $2 seconds, FALSE otherwise | 
 | $1 | IN | cert | TEXT | cert in PEM format | 
 | $2 | IN | nbSeconds | LONGINT | number of seconds (optional, default 0) | 
 

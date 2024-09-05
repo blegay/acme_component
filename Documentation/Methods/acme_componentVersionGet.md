@@ -6,7 +6,7 @@ This function returns the component version
 ## **Parameters :** 
 | Parameter | Direction | Name | Type | Ddescription | 
 |:----:|:----:|:----|:----|:----| 
-| $0 | OUT | componentVersion | TEXT | component version (e.g. "2.00.07") | 
+| $0 | OUT | componentVersion | TEXT | component version (e.g. "2.00.08") | 
 
 ## **Notes :** 
 
@@ -15,7 +15,7 @@ This function returns the component version
 acme_componentVersionGet
 ```
 ## **Version :** 
-2.00.07
+2.00.08
 ## **Author :** 
 Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
 ## **History :** 
@@ -103,4 +103,6 @@ Bruno LEGAY (BLE) - Copyrights A&C Consulting - 2019
         - fixed a bug cause spurious errors "type": "urn:ietf:params:acme:error:malformed",  "detail": "No embedded JWK in JWS header"
                   if the server was returning "location" instead of "Location" in "acme/new-acct", acme would not handle further requests properly
         MODIFICATION : Bruno LEGAY (BLE) - 19/09/2022, 14:56:51 - 2.00.07
-        - added a method acme_certActiveDirPathSet
+        - added a method acme_certActiveDirPathSet  
+        MODIFICATION : Bruno LEGAY (BLE) - 05/09/2024, 10:28:32 - 2.00.08
+        - removed bad call to acme__httpHeaderGetValForKey in acme_newAccount

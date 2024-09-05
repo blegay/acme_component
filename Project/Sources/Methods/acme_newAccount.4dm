@@ -240,9 +240,7 @@ If ($vl_nbParam>0)
 							$vt_location:=OB Get:C1224($vo_responseHeaders;"Location")
 						End if 
 						  //<Modif>
-						
-						acme__httpHeaderGetValForKey 
-						
+												
 						  //C_ENTIER LONG($vl_accountId)
 						C_TEXT:C284($vt_accountId)  // treat the account id as string (in case the numbers get really big)
 						
